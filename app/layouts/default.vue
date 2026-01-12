@@ -9,6 +9,7 @@ div.test
 .main-content
   position: relative
   margin-inline: auto
+  padding-inline: $phi1_5
   max-width: 1280px
   font-family: "Source Sans 3"
   font-size: $phi1
