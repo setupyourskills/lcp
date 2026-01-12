@@ -1,6 +1,6 @@
 <template lang="pug">
 section.features
-  div.features__container
+  div.features__group
     ComponentInfoCard.features__info-card
       template(#title) Couleurs
       template(#content) Des couleurs #[span.font-bold vibrantes] qui embélissent vos œuvres et #[span.font-bold résistent] à l'épreuve du temps.
@@ -18,7 +18,7 @@ section.features
 .features
   margin-top: $phi3
 
-  &__container
+  &__group
     display: flex
     flex-direction: column
     gap: $phi1_5
