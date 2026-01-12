@@ -7,6 +7,7 @@ div.test
 
 <style lang="sass">
 .main-content
+  position: relative
   margin-inline: auto
   max-width: 1280px
   font-family: "Source Sans 3"
