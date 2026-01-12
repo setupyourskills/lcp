@@ -4,7 +4,6 @@ div.title-component(:class="{ 'title-component--mark': props.mark }")
     slot(name="title")
   p.title-component__content
     slot(name="content")
-  p test
 </template>
 
 <script setup lang="ts">
