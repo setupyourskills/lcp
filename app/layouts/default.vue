@@ -2,6 +2,7 @@
 div.test
   main.main-content
     <slot />
+    SectionFooter
 </template>
 
 <style lang="sass">
