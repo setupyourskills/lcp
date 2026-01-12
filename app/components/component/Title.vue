@@ -19,6 +19,7 @@ const props = defineProps({
 .title-component
   text-align: center
   margin-inline: $phi1_5
+  margin-block: $phi3 $phi2
 
   &--mark::before
     content: ''
