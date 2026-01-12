@@ -1,3 +1,10 @@
 <template lang="pug">
-h1 index
+SectionHero
+SectionFeatures
+SectionVideo
+SectionColors
+SectionPurchase
+SectionFaq
+SectionTestimonials
+SectionNewsletter
 </template>
