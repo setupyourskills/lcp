@@ -7,5 +7,6 @@ NuxtLayout
 
 <style lang="sass">
 html
+  font-size: 14px
   background-color: grey
 </style>
