@@ -4,6 +4,7 @@ div.title-component(:class="{ 'title-component--mark': props.mark }")
     slot(name="title")
   p.title-component__content
     slot(name="content")
+  p test
 </template>
 
 <script setup lang="ts">
@@ -18,8 +19,6 @@ const props = defineProps({
 <style lang="sass" scoped>
 .title-component
   text-align: center
-  margin-inline: $phi1_5
-  margin-block: $phi3 $phi2
 
   &--mark::before
     content: ''
