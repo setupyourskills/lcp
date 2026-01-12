@@ -1,3 +1,5 @@
+@use "sass:math"
+
 // Colors
 $external-color: grey
 $background-color: #EAE2D3
@@ -11,4 +13,20 @@ $accent2: #FAD289
 $green-bubble: #97A281
 $yellow-bubble: #C7A67E
 $red-bubble: #9A7668
+
+// Phi units
+$phi: 1.618
+$sqrt-phi: math.sqrt($phi);
+
+$phi1: 1rem*$phi
+
+$phi-0_75: math.div($phi1, math.sqrt($sqrt-phi))
+$phi-0_5: math.div($phi1, $sqrt-phi)
+$phi-1: math.div($phi1, $phi)
+
+$phi1_5: $phi1*$sqrt-phi
+$phi2: $phi1*$phi
+$phi2_5: $phi2*$sqrt-phi
+$phi3: $phi2*$phi
+$phi3_5: $phi3*$sqrt-phi
 
