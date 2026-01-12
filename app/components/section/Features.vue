@@ -16,6 +16,7 @@ section.features
 
 <style lang="sass" scoped>
 .features
+  margin-top: $phi3
 
   &__container
     display: flex
