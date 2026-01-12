@@ -9,5 +9,8 @@ div.test
 .main-content
   margin-inline: auto
   max-width: 1280px
+  font-family: "Source Sans 3"
+  font-size: $phi1
+  line-height: 1.5
   background-color: $background-color
 </style>
