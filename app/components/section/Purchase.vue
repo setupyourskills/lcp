@@ -1,9 +1,14 @@
 <template lang="pug">
 section.purchase
-  ComponentTitle.purchase__title-component(:mark="false")
-    template(#title) #[span.font-accent Commander] le lot Duo
-    template(#content) #[span.font-bold Béneficier] de la #[span.font-bold couleur] pour #[span.font-bold plus de créativité !]
+  ComponentArticleHeader.purchase__title-component(:mark="false" :title="articleHeader.title" :content="articleHeader.content")
 </template>
+
+<script setup lang="ts">
+const articleHeader: ArticleHeader = {
+  title: "<span class='font-accent'>Commander</span> le lot Duo",
+  content: "<span class='font-bold'>Béneficier</span> de la <span class='font-bold'>couleur</span> pour <span class='font-bold'>plus de créativité !</span>",
+};
+</script>
 
 <style lang="sass" scoped>
 .purchase

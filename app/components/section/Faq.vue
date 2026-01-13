@@ -1,8 +1,6 @@
 <template lang="pug">
 section.faq
-  ComponentTitle.faq__title-component
-    template(#title) Les poudres #[span.font-accent Questions] fréquentes
-    template(#content) #[span.font-bold Trouvez les réponses] à toutes vos interrogations sur nos poudres laser, #[span.font-bold tout doit rester clair !]
+  ComponentArticleHeader.faq__title-component(:title="articleHeader.title" :content="articleHeader.content")
   div.faq__group
     ComponentFaq.faq__faq-component(
     v-for="item in faq"
@@ -13,6 +11,10 @@ section.faq
 </template>
 
 <script setup lang="ts">
+const articleHeader: ArticleHeader = {
+  title: "Les poudres <span class='font-accent'>Questions</span> fréquentes",
+  content: "<span class='font-bold'>Trouvez les réponses</span> à toutes vos interrogations sur nos poudres laser, <span class='font-bold'>tout doit rester clair !</span>",
+};
 const faq = [
   {
     question: "Composition des poudres de couleur ?",

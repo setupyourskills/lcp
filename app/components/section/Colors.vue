@@ -1,8 +1,6 @@
 <template lang="pug">
 section.colors
-  ComponentTitle.colors__title-component
-    template(#title) #[span.font-accent 9 couleurs] et des millions d'idées !
-    template(#content) #[span.font-bold Sélectionnez] les couleurs #[span.font-bold parfaites] pour #[span.font-bold vos projets uniques !]
+  ComponentArticleHeader.colors__title-component(:title="articleHeader.title" :content="articleHeader.content")
   div.colors__group
     ComponentColorCard.colors__color-card-component(
       v-for="(color, idx) in colors"
@@ -12,6 +10,10 @@ section.colors
 </template>
 
 <script setup lang="ts">
+const articleHeader: ArticleHeader = {
+  title: "<span class='font-accent'>9 couleurs</span> et des millions d'idées !",
+  content: "<span class='font-bold'>Sélectionnez</span> les couleurs <span class='font-bold'> parfaites</span> pour <span class='font-bold'> vos projets uniques !</span>",
+};
 const colors: string[] = [
   "red",
   "blue",

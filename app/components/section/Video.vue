@@ -1,9 +1,14 @@
 <template lang="pug">
 section.video
-  ComponentTitle.video__title-component
-    template(#title) Les poudres #[span.font-accent en Action]
-    template(#content) #[span.font-bold Découvrez] les fonctionnalités, #[span.font-bold performances], applications et astuces pour #[span.font-bold des créations réussies !]
+  ComponentArticleHeader.video__title-component(:title="articleHeader.title" :content="articleHeader.content")
 </template>
+
+<script setup lang="ts">
+const articleHeader: ArticleHeader = {
+  title: "Les poudres <span class='font-accent'>en Action</span>",
+  content: "<span class='font-bold'>Découvrez</span> les fonctionnalités, <span class='font-bold'>performances</span>, applications et astuces pour <span class='font-bold'>des créations réussies !</span>",
+};
+</script>
 
 <style lang="sass" scoped>
 .video
