@@ -1,10 +1,21 @@
 <template lang="pug">
 div.info-card-component
-  h3.info-card-component__title
-    slot(name="title")
-  p.info-card-component__content
-    slot(name="content")
+  h3.info-card-component__title {{ props.title }}
+  p.info-card-component__content(v-html="props.content")
 </template>
+
+<script setup lang="ts">
+const props = defineProps({
+  title: {
+    type: String,
+    default: "Default title"
+  },
+  content: {
+    type: String,
+    default: "Default content"
+  }
+});
+</script>
 
 <style lang="sass" scoped>
 .info-card-component
