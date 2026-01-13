@@ -37,7 +37,7 @@ const faq = [
 
 <style lang="sass" scoped>
 .faq
-  margin-top: $phi3
+  margin-block: $phi3 0
 
   &__group
     display: flex

@@ -28,7 +28,7 @@ const features = [
 
 <style lang="sass" scoped>
 .features
-  margin-top: $phi3
+  margin-block: $phi3 0
 
   &__group
     display: flex

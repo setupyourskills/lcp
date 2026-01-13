@@ -12,5 +12,5 @@ const articleHeader: ArticleHeader = {
 
 <style lang="sass" scoped>
 .video
-  margin-top: $phi3
+  margin-block: $phi3 0
 </style>

@@ -12,5 +12,5 @@ const articleHeader: ArticleHeader = {
 
 <style lang="sass" scoped>
 .newsletter
-  margin-top: $phi2
+  margin-block: $phi2 0
 </style>
