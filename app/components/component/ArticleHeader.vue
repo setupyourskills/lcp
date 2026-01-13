@@ -1,13 +1,19 @@
 <template lang="pug">
 div.title-component(:class="{ 'title-component--mark': props.mark }")
-  h2.title-component__title
-    slot(name="title")
-  p.title-component__content
-    slot(name="content")
+  h2.title-component__title(v-html="props.title")
+  p.title-component__content(v-html="props.content")
 </template>
 
 <script setup lang="ts">
 const props = defineProps({
+  title: {
+    type: String,
+    default: "Default title"
+  },
+  content: {
+    type: String,
+    default: "Default content"
+  },
   mark: {
     type: Boolean,
     default: true
