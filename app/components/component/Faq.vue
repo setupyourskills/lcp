@@ -53,6 +53,7 @@ const props = defineProps({
       color: $accent1
 
   &__answer 
+    text-align: left
     margin-inline: $phi1_5
     margin-block: $phi1
     font-style: italic
