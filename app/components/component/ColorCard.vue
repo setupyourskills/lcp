@@ -12,7 +12,7 @@ const props = defineProps({
 })
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .color-card-component
   background-color: $element-background-color
   border-radius: 25px
