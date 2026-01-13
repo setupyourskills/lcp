@@ -42,7 +42,6 @@ const colors: string[] = [
 
   &__color-card-component
     flex: 0 1 28%
-    padding: 1rem
     text-align: center
     max-width: 150px
 </style>

@@ -14,6 +14,7 @@ const props = defineProps({
 
 <style lang="sass" scoped>
 .color-card-component
+  padding: 0 $phi1
   background-color: $element-background-color
   border-radius: 25px
   box-shadow: 4px 4px 4px 0px $secondary
