@@ -7,6 +7,11 @@ export default defineNuxtConfig({
     typeCheck: true,
     strict: true,
   },
+  imports: {
+    dirs: [
+      "~/assets/types.ts"
+    ],
+  },
   css: ["normalize.css/normalize.css"],
   image: {
     dir: "assets/images",
