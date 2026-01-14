@@ -1,6 +1,12 @@
 <template lang="pug">
 section.newsletter
-  ComponentArticleHeader.newsletter__title-component(:mark="false" :title="articleHeader.title" :content="articleHeader.content")
+  div.newsletter__group
+    ComponentArticleHeader.newsletter__title-component(:mark="false" :title="articleHeader.title" :content="articleHeader.content")
+    div.newsletter__form
+      ComponentInput(placeholder="Email")
+      ComponentButton(title="S'abonner")
+  div.newsletter__info
+    p  #[span.font-accent.font-bold 🗹] Pas de Spam #[br] #[span.font-accent.font-bold 🗹] Votre Email reste confidentiel 
 </template>
 
 <script setup lang="ts">
@@ -12,5 +18,28 @@ const articleHeader: ArticleHeader = {
 
 <style lang="sass" scoped>
 .newsletter
-  margin-top: $phi2
+  margin-top: $phi3
+
+  &__title-component
+    margin-top: $phi2
+
+  &__group
+    padding-inline: $phi1
+    padding-block: 0 $phi2
+    border: 8px solid $accent2
+    border-radius: 25px
+    background-color: $element-background-color
+
+  &__form
+    display: flex
+    flex-direction: column
+    gap: $gap-space
+    
+  &__info
+    text-align: center
+
+    p
+      margin-block: $phi-1
+      line-height: 1_5
+      font-size: $phi-0_5
 </style>
