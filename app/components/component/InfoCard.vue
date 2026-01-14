@@ -39,5 +39,6 @@ const props = defineProps({
 
   &__content
     margin-block: 0
+    font-size: $phi-0_75
     font-style: italic
 </style>
