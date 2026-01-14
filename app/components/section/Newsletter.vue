@@ -6,7 +6,7 @@ section.newsletter
       ComponentInput(placeholder="Email")
       ComponentButton(title="S'abonner")
   div.newsletter__info
-    p  #[span.font-accent.font-bold 🗹] Pas de Spam #[br] #[span.font-accent.font-bold 🗹] Votre Email reste confidentiel 
+    p  #[span.font-accent.font-bold.font-normal 🗹] Pas de Spam #[br] #[span.font-accent.font-bold.font-normal 🗹] Votre Email reste confidentiel 
 </template>
 
 <script setup lang="ts">
@@ -40,6 +40,6 @@ const articleHeader: ArticleHeader = {
 
     p
       margin-block: $phi-1
-      line-height: 1_5
       font-size: $phi-0_5
+      font-style: italic
 </style>
