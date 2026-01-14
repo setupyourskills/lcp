@@ -40,5 +40,4 @@ const props = defineProps({
 
   &__content
     margin-block: $phi-1 0
-    font-size: $phi1_5
 </style>
