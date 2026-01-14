@@ -9,7 +9,7 @@ section.hero
 
 <style lang="sass" scoped>
 .hero 
-  border-bottom: 10px solid $accent2
+  border-bottom: $border-section-separator solid $accent2
 
   &__group
     position: absolute
