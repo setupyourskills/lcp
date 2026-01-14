@@ -26,7 +26,7 @@ const props = defineProps({
 
   &__title
     margin-block: 0
-    font-size: $phi2
+    font-size: $phi1_5
     
   &__title::after
     content: ''
