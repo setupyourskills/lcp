@@ -26,7 +26,7 @@ const articleHeader: ArticleHeader = {
   &__group
     padding-inline: $phi1
     padding-block: 0 $phi2
-    border: 8px solid $accent2
+    border: $border-section-framed solid $accent2
     border-radius: 25px
     background-color: $element-background-color
 
