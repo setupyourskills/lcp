@@ -41,15 +41,9 @@ const testimonials = [
 
 <style lang="sass" scoped>
 .testimonials
-  margin-block: $phi3 0
 
   &__group
     display: flex
     flex-direction: column
-    align-items: center
-    gap: $phi1_5
-    margin-inline: auto
-    padding-inline: $phi3
-    margin-top: $phi2
-    max-width: 300px
+    gap: $gap_space
 </style>

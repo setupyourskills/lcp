@@ -32,12 +32,12 @@ const props = defineProps({
     content: ''
     display: block
     margin-inline: auto
-    margin-top: $phi-1
+    margin-block: $phi-1
     width: $phi3
     height: 6px
     background-color: $accent2
 
   &__content
-    margin-block: $phi-1 0
+    margin-block: 0
     font-style: italic
 </style>

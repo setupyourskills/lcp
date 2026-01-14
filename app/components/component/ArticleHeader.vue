@@ -24,18 +24,19 @@ const props = defineProps({
 <style lang="sass" scoped>
 .title-component
   text-align: center
+  margin-block: $phi3 $phi2
 
   &--mark::before
     content: ''
     position: absolute
     left: 0
-    width: $phi1_5
+    width: $phi-1
     height: $phi3
     background-color: $accent2
 
   &__title
     margin-block: 0
-    font-size: $phi2_5
+    font-size: $phi2
 
   &__content
     margin-block: $phi-1 0

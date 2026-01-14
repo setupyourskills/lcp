@@ -17,31 +17,29 @@ const articleHeader: ArticleHeader = {
 };
 const faq = [
   {
-    question: "Composition des poudres de couleur ?",
-    answer: "question1",
+    question: "Choix des couleurs",
+    answer: "Vous pouvez choisir entre <span class='font-bold'>9 couleurs</span> différentes que vous pouvez commander par lot de deux boîtes de 300g",
   },
   {
-    question: "Choisir la quantité & les couleurs ?",
-    answer: "question2",
+    question: "Quelle quantité utiliser par application ?",
+    answer: "Vous n'avez besoin que de seulement quelques grammes par application.",
   },
   {
-    question: "Les délais de livraison ?",
-    answer: "question3",
+    question: "Délais de livraison ?",
+    answer: "Cela dépend de là où vous résider, mais en général, il faudra compte 2 semaines maximum pour recevoir votre colis. Les poudres sont envoyées de Taïwan.",
   },
   {
-    question: "Configuration du laser ?",
-    answer: "question4",
+    question: "Configuration et installation du laser",
+    answer: "Il vous faudra trouver la meilleur configuration en fonction de votre laser. Quelqes tests seront nécessaire les premières fois jusqu'à trouver les bons paramètres.",
   },
 ];
 </script>
 
 <style lang="sass" scoped>
 .faq
-  margin-block: $phi3 0
 
   &__group
     display: flex
     flex-direction: column
-    gap: $phi1_5
-    margin-top: $phi2
+    gap: $gap_space
 </style>

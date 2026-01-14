@@ -2,7 +2,7 @@
 div.faq-component
   details.faq-component__details
     summary.faq-component__question {{ props.question }}
-    p.faq-component__answer {{ props.answer }}
+    p.faq-component__answer(v-html="props.answer")
 </template>
 
 <script setup lang="ts">
@@ -21,7 +21,6 @@ const props = defineProps({
 <style lang="sass" scoped>
 .faq-component
   position: relative
-  text-align: center
 
   &__details
     border-bottom: 4px solid $accent2
@@ -40,22 +39,24 @@ const props = defineProps({
   &__question
     display: flex
     align-items: center
-    padding-block: $phi1
+    padding-block: $phi-1
     padding-inline: $phi1_5 $phi3
-    font-size: $phi1_5
+    font-size: $phi1
     font-weight: bold
 
     &::before
       content: '+'
       position: absolute
-      right: $phi1_5
+      right: $phi1
       font-size: $phi2
       color: $accent1
 
   &__answer 
-    text-align: left
+    text-align: center
     margin-inline: $phi1_5
-    margin-block: $phi1
     font-style: italic
+
+  summary::marker
+    content: none
 </style>
 

@@ -12,5 +12,5 @@ const articleHeader: ArticleHeader = {
 
 <style lang="sass" scoped>
 .purchase
-  margin-block: $phi2 0
+  margin-top: $phi2
 </style>

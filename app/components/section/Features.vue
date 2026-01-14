@@ -1,7 +1,7 @@
 <template lang="pug">
 section.features
   div.features__group
-    ComponentInfoCard.features__info-card(
+    ComponentInfoCard(
       v-for="feature in features"
       :key="feature"
       :title="feature.title"
@@ -28,10 +28,9 @@ const features = [
 
 <style lang="sass" scoped>
 .features
-  margin-block: $phi3 0
 
   &__group
     display: flex
     flex-direction: column
-    gap: $phi1_5
+    gap: $gap_space
 </style>

@@ -33,16 +33,14 @@ const props = defineProps({
 .testimonial-card-component
   display: flex
   flex-direction: column
-  justify-content: space-between
   align-items: center
-  padding: 0 $phi1
+  padding: $phi1
   border-radius: 25px 25px 25px 0
   background-color: $element-background-color
   box-shadow: 4px 4px 4px 0px $secondary
 
   &__content
-    margin-inline: $phi1
-    margin-block: $phi1 0
+    margin-block: 0
     text-align: center
     font-size: $phi-0_75
     font-style: italic
@@ -51,7 +49,7 @@ const props = defineProps({
       content: ''
       display: block
       margin-inline: auto
-      margin-top: $phi-1
+      margin-block: $phi-1
       width: $phi3
       height: 6px
       background-color: $accent2
@@ -59,8 +57,7 @@ const props = defineProps({
   &__user
     display: grid
     grid-template-columns: 20% 80%
-    gap: $phi2
-    margin-block: $phi1
+    gap: $phi2_5
 
   &__avatar
     aspect-ratio: 1 / 1;

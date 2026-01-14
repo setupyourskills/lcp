@@ -1,10 +1,10 @@
 <template lang="pug">
 section.colors
-  ComponentArticleHeader.colors__title-component(:title="articleHeader.title" :content="articleHeader.content")
+  ComponentArticleHeader(:title="articleHeader.title" :content="articleHeader.content")
   div.colors__group
     ComponentColorCard.colors__color-card-component(
-      v-for="(color, idx) in colors"
-      :key="idx"
+      v-for="color in colors"
+      :key="color"
       :color-name="color"
     )
 </template>
@@ -29,19 +29,10 @@ const colors: string[] = [
 
 <style lang="sass" scoped>
 .colors 
-  margin-block: $phi3 0
 
   &__group
     display: flex
     flex-wrap: wrap
     justify-content: center
-    gap: $phi1_5
-    margin-inline: auto
-    margin-top: $phi2
-    width: 300px
-
-  &__color-card-component
-    flex: 0 1 28%
-    text-align: center
-    max-width: 150px
+    gap: $gap_space
 </style>
