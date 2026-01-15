@@ -25,7 +25,7 @@ const faq = [
     answer: "Vous n'avez besoin que de seulement quelques grammes par application.",
   },
   {
-    question: "Délais de livraison ?",
+    question: "Délais de livraison",
     answer: "Cela dépend de là où vous résider, mais en général, il faudra compte 2 semaines maximum pour recevoir votre colis. Les poudres sont envoyées de Taïwan.",
   },
   {
