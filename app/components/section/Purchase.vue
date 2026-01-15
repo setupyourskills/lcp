@@ -1,20 +1,22 @@
 <template lang="pug">
 section.purchase
-  div.purchase__group
-    ComponentArticleHeader.purchase__title-component(:mark="false" :title="articleHeader.title" :content="articleHeader.content")
-    div.purchase__form
-      ComponentInfoCard(
-        v-for="(item, idx) in purchaseForm"
-        :key="idx"
-        :number="(idx+1).toString()"
-        :title="item.title"
-        :content="item.content"
-      )
-      div.purchase__box-image-group
-        NuxtImg(v-for="id in 2" :key="id" src="box.webp" :class="`purchase__box${(id).toString()}`")
-      ComponentButton(title="Commander")
-    div.purchase__info
-      p(v-html="coupon")
+  div.purchase__frame
+    ComponentBubbles(section="purchase")
+    div.purchase__group
+      ComponentArticleHeader.purchase__title-component(:mark="false" :title="articleHeader.title" :content="articleHeader.content")
+      div.purchase__form
+        ComponentInfoCard(
+          v-for="(item, idx) in purchaseForm"
+          :key="idx"
+          :number="(idx+1).toString()"
+          :title="item.title"
+          :content="item.content"
+        )
+        div.purchase__box-image-group
+          NuxtImg(v-for="id in 2" :key="id" src="box.webp" :class="`purchase__box${(id).toString()}`")
+        ComponentButton(title="Commander")
+      div.purchase__info
+        p(v-html="coupon")
 </template>
 
 <script setup lang="ts">
@@ -42,12 +44,18 @@ const coupon = "Le coupon <span class='font-accent font-bold'>FIRST</span> vous 
   &__title-component
     margin-top: $phi2
 
-  &__group
-    padding-inline: $phi1
-    padding-block: 0 $phi2
+  &__frame
+    position: relative
     border: $border-section-framed solid $accent2
     border-radius: 25px
     background-color: $element-background-color
+    overflow: hidden
+
+  &__group
+    z-index: 1
+    position: relative
+    padding-inline: $phi1
+    padding-block: 0 $phi2
 
   &__form
     display: flex

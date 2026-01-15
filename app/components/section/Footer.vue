@@ -1,14 +1,16 @@
 <template lang="pug">
 section.footer
-  div.footer__group
-    ComponentInfoCard(
-      v-for="(item, idx) in footerItems"
-      :key="idx"
-      :title="item.title"
-      :content="item.content"
-      :style="idx ? 'normal' : 'italic'" 
-    )
-  div.footer__copyright(v-html="copyright")
+  div.footer__frame
+    ComponentBubbles(section="footer")
+    div.footer__group
+      ComponentInfoCard(
+        v-for="(item, idx) in footerItems"
+        :key="idx"
+        :title="item.title"
+        :content="item.content"
+        :style="idx ? 'normal' : 'italic'" 
+      )
+    div.footer__copyright(v-html="copyright")
 </template>
 
 <script setup lang="ts">
@@ -19,7 +21,7 @@ const footerItems = [
   },
   {
     title: "Notre Produit",
-    content: "Caractéristiques<br />Démonstration<br />Couleurs disponibles<br />Commander le lot Duo",
+    content: "Caractéristiques<br />Démonstration<br />Couleurs disponibles<br />Commander le lot Duo<br />FAQ<br />Témoignages<br />Newsletter",
   },
   {
     title: "Mentions Légales",
@@ -32,17 +34,25 @@ const copyright="<span class='font-bold font-normal'>©</span> 2026 - <a href='m
 <style lang="sass">
 .footer
   margin-block: $phi3 0
-  border-top: $border-section-separator solid $accent2
-  background-color: $element-background-color
+
+  &__frame
+    position: relative
+    border-top: $border-section-separator solid $accent2
+    background-color: $element-background-color
+    overflow: hidden
 
   &__group
     display: flex
     flex-direction: column
     gap: $gap-space
+    z-index: 1
+    position: relative
     margin-inline: $phi1
     margin-block: $phi2 $phi2
 
   &__copyright
+    z-index: 1
+    position: relative
     text-align: right
     margin-inline: $phi1
     font-size: $phi-0_5
