@@ -20,7 +20,6 @@ const props = defineProps({
 .bubbles-component
 
   &__bubble
-    z-index: 0
     position: absolute
     aspect-ratio: 1/1
     border-radius: 50%
