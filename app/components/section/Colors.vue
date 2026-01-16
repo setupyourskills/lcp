@@ -10,6 +10,8 @@ section.colors
 </template>
 
 <script setup lang="ts">
+import type { ArticleHeader } from "~/assets/types/types.d.ts"
+
 const articleHeader: ArticleHeader = {
   title: "<span class='font-accent'>9 couleurs</span> et des millions d'idées !",
   content: "<span class='font-bold'>Sélectionnez</span> les couleurs <span class='font-bold'> parfaites</span> pour <span class='font-bold'> vos projets uniques !</span>",

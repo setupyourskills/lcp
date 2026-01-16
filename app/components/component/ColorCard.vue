@@ -4,12 +4,11 @@ div.color-card-component
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  colorName: {
-    type: String,
-    default: "Color name"
-  }
-})
+import type { IColorCardProps } from "~/assets/types/interfaces.d.ts"
+
+const props = withDefaults(defineProps<IColorCardProps>(), {
+  colorName: "Color",
+});
 </script>
 
 <style lang="sass" scoped>

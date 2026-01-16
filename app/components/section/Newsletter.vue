@@ -12,14 +12,17 @@ section.newsletter
 </template>
 
 <script setup lang="ts">
+import type { ArticleHeader } from "~/assets/types/types.d.ts";
+import type { InfoNewsletterSection } from "~/assets/types/types.d.ts";
+
 const articleHeader: ArticleHeader = {
   title: "Rejoignez <span class='font-accent'>la newsletter</span>",
   content: "<span class='font-bold'>Recevez</span> les dernières <span class='font-bold'>nouvelles</span> pour <span class='font-bold'>rester toujours informé !</span>",
 };
-const info = {
+const info: InfoNewsletterSection = {
   spam: "<span class='font-accent font-bold font-normal'>🗹</span> Pas de Spam",
   confidential: "<span class='font-accent font-bold font-normal'>🗹</span> Votre Email reste confidentiel"
-}
+};
 </script>
 
 <style lang="sass" scoped>

@@ -8,7 +8,7 @@ section.purchase
         ComponentInfoCard.purchase__info-card(
           v-for="(item, idx) in purchaseForm"
           :key="idx"
-          :number="(idx+1).toString()"
+          :number="idx+1"
           :title="item.title"
           :content="item.content"
         )
@@ -21,11 +21,14 @@ section.purchase
 </template>
 
 <script setup lang="ts">
+import type { ArticleHeader } from "~/assets/types/types.d.ts"
+import type { IInfoCardSection } from "~/assets/types/interfaces.d.ts"
+
 const articleHeader: ArticleHeader = {
   title: "<span class='font-accent'>Commander</span> le lot Duo",
   content: "<span class='font-bold'>Béneficier</span> de la <span class='font-bold'>couleur</span> pour <span class='font-bold'>plus de créativité !</span>",
 };
-const purchaseForm = [
+const purchaseForm: IInfoCardSection[] = [
   {
     title: "Quantités",
     content: "Nos poudres laser sont vendues par lot de deux boîtes de 300g, idéal pour tous vos projets.",
@@ -35,7 +38,7 @@ const purchaseForm = [
     content: "Choisissez parmi une palette de 9 couleurs pour donner vie à vos créations.",
   },
 ];
-const coupon = "Le coupon <span class='font-accent font-bold'>FIRST</span> vous permet de bénéficiez d'une réduction de 10% sur votre 1er achat.";
+const coupon: string = "Le coupon <span class='font-accent font-bold'>FIRST</span> vous permet de bénéficiez d'une réduction de 10% sur votre 1er achat.";
 </script>
 
 <style lang="sass" scoped>

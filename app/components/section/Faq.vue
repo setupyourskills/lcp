@@ -10,11 +10,14 @@ section.faq
 </template>
 
 <script setup lang="ts">
+import type { ArticleHeader } from "~/assets/types/types.d.ts"
+import type { IFaqSection } from "~/assets/types/interfaces.d.ts"
+
 const articleHeader: ArticleHeader = {
   title: "Les poudres <span class='font-accent'>Questions</span> fréquentes",
   content: "<span class='font-bold'>Trouvez les réponses</span> à toutes vos interrogations sur nos poudres laser, <span class='font-bold'>tout doit rester clair !</span>",
 };
-const faq = [
+const faq: IFaqSection[] = [
   {
     question: "Choix des couleurs",
     answer: "Vous pouvez choisir entre <span class='font-bold'>9 couleurs</span> différentes que vous pouvez commander par lot de deux boîtes de 300g",

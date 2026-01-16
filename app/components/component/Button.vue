@@ -4,11 +4,10 @@ div.button-component
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  title: {
-    type: String,
-    default: "Default content"
-  },
+import type { IButtonProps } from "~/assets/types/interfaces.d.ts"
+
+const props = withDefaults(defineProps<IButtonProps>(), {
+  title: "Title",
 });
 </script>
 

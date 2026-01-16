@@ -13,11 +13,14 @@ section.testimonials
 </template>
 
 <script setup lang="ts">
+import type { ArticleHeader } from "~/assets/types/types.d.ts"
+import type { ITestimonialSection } from "~/assets/types/interfaces.d.ts"
+
 const articleHeader: ArticleHeader = {
   title: "Les <span class='font-accent'>avis</span> de nos clients",
   content: "Votre <span class='font-bold'>satisfaction</span> est <span class='font-bold'>notre priorité !</span>",
 };
-const testimonials = [
+const testimonials: ITestimonialSection[] = [
   {
     content: "Merci beaucoup pour ces belles couleurs ! Je les utilise maintenant dans toutes mes gravures !",
     avatar: "",

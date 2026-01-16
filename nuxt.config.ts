@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   },
   imports: {
     dirs: [
-      "~/assets/types.ts"
+      "assets/types/**/*",
     ],
   },
   css: ["normalize.css/normalize.css"],

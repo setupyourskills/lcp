@@ -3,12 +3,11 @@ input.input-component.font-l(:placeholder="props.placeholder")
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  placeholder: {
-    type: String,
-    default: "Default placeholder"
-  },
-})
+import type { IInputProps } from "~/assets/types/interfaces.d.ts"
+
+const props = withDefaults(defineProps<IInputProps>(), {
+  placeholder: "Placeholder",
+});
 </script>
 
 <style lang="sass">

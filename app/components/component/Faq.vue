@@ -6,15 +6,11 @@ div.faq-component
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  question: {
-    type: String,
-    default: "Default question"
-  },
-  answer: {
-    type: String,
-    default: "Default question"
-  }
+import type { IFaqProps } from "~/assets/types/interfaces.d.ts"
+
+const props = withDefaults(defineProps<IFaqProps>(), {
+  question: "Question",
+  answer: "Answer",
 });
 </script>
 

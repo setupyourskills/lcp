@@ -8,7 +8,9 @@ section.hero
 </template>
 
 <script setup lang="ts">
-const hero = {
+import type { HeroSection } from "~/assets/types/types.d.ts"
+
+const hero: HeroSection = {
   title: "La <span class='font-title-accent'>Couleur</span> au service de vos gravures !",
   subtitle: "Sublimez vos gravures lasers avec nos poudres de couleurs intenses, durables et faciles à utiliser.",
 };

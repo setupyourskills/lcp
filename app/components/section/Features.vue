@@ -10,7 +10,9 @@ section.features
 </template>
 
 <script setup lang="ts">
-const features = [
+import type { IInfoCardSection } from "~/assets/types/interfaces.d.ts"
+
+const features: IInfoCardSection[] = [
   {
     title: "Couleurs",
     content: "Des couleurs <span class='font-bold'>vibrantes</span> qui embélissent vos œuvres et <span class='font-bold'>résistent</span> à l'épreuve du temps.",

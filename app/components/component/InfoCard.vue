@@ -6,23 +6,13 @@ div.info-card-component.info-card-component--number
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  number: {
-    type: String,
-    default: ""
-  },
-  title: {
-    type: String,
-    default: "Default title"
-  },
-  content: {
-    type: String,
-    default: "Default content"
-  },
-  style: {
-    type: String,
-    default: "italic"
-  }
+import type { IInfoCardProps } from "~/assets/types/interfaces.d.ts"
+
+const props = withDefaults(defineProps<IInfoCardProps>(), {
+  number: null,
+  title: "Title",
+  content: "Content",
+  style: "italic",
 });
 </script>
 
