@@ -2,8 +2,8 @@
 section.footer
   div.footer__frame
     ComponentBubbles(section="footer")
-    div.footer__group
-      ComponentInfoCard(
+    div.footer__group.margin-space
+      ComponentInfoCard.footer__info-card(
         v-for="(item, idx) in footerItems"
         :key="idx"
         :title="item.title"
@@ -43,18 +43,19 @@ const copyright="<span class='font-bold font-normal'>©</span> 2026 - <a href='m
 
   &__group
     display: flex
-    flex-direction: column
+    justify-content: center
+    flex-wrap: wrap
     gap: $gap-space
     z-index: 1
     position: relative
     margin-inline: $phi1
     margin-block: $phi2 $phi2
 
+  &__info-card
+    flex: 1 0 250px
+
   &__copyright
     z-index: 1
     position: relative
     text-align: right
-    margin-inline: $phi1
-    font-size: $phi-0_5
-    font-style: italic
 </style>

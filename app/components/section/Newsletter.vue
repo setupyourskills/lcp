@@ -1,12 +1,13 @@
 <template lang="pug">
 section.newsletter
-  div.newsletter__group
-    ComponentArticleHeader.newsletter__title-component(:mark="false" :title="articleHeader.title" :content="articleHeader.content")
-    div.newsletter__form
-      ComponentInput(placeholder="Email")
-      ComponentButton(title="S'abonner")
+  div.newsletter__frame
+    div.newsletter__group.margin-space
+      ComponentArticleHeader.newsletter__title-component(:mark="false" :title="articleHeader.title" :content="articleHeader.content")
+      div.newsletter__form
+        ComponentInput.newsletter__input(placeholder="Email")
+        ComponentButton.newsletter__button(title="S'abonner")
   div.newsletter__info
-    p  #[span.font-accent.font-bold.font-normal 🗹] Pas de Spam #[br] #[span.font-accent.font-bold.font-normal 🗹] Votre Email reste confidentiel 
+    p.font-xs(v-html="info") 
 </template>
 
 <script setup lang="ts">
@@ -14,6 +15,7 @@ const articleHeader: ArticleHeader = {
   title: "Rejoignez <span class='font-accent'>la newsletter</span>",
   content: "<span class='font-bold'>Recevez</span> les dernières <span class='font-bold'>nouvelles</span> pour <span class='font-bold'>rester toujours informé !</span>",
 };
+const info = "<span class='font-accent font-bold font-normal'>🗹</span> Pas de Spam <br /><span class='font-accent font-bold font-normal'>🗹</span> Votre Email reste confidentiel ";
 </script>
 
 <style lang="sass" scoped>
@@ -23,23 +25,25 @@ const articleHeader: ArticleHeader = {
   &__title-component
     margin-top: $phi2
 
-  &__group
-    padding-inline: $phi1
-    padding-block: 0 $phi2
+  &__frame
     border: $border-section-framed solid $accent2
     border-radius: 25px
     background-color: $element-background-color
 
+  &__group
+    padding-block: 0 $phi2
+
   &__form
     display: flex
-    flex-direction: column
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: center
+    margin-inline: auto
     gap: $gap-space
-    
+
+  &__input
+    flex: 0 1 450px
+
   &__info
     text-align: center
-
-    p
-      margin-block: $phi-1
-      font-size: $phi-0_5
-      font-style: italic
 </style>

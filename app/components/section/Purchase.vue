@@ -2,10 +2,10 @@
 section.purchase
   div.purchase__frame
     ComponentBubbles(section="purchase")
-    div.purchase__group
+    div.purchase__group.margin-space
       ComponentArticleHeader.purchase__title-component(:mark="false" :title="articleHeader.title" :content="articleHeader.content")
       div.purchase__form
-        ComponentInfoCard(
+        ComponentInfoCard.purchase__info-card(
           v-for="(item, idx) in purchaseForm"
           :key="idx"
           :number="(idx+1).toString()"
@@ -14,9 +14,10 @@ section.purchase
         )
         div.purchase__box-image-group
           NuxtImg(v-for="id in 2" :key="id" src="box.webp" :class="`purchase__box${(id).toString()}`")
-        ComponentButton(title="Commander")
+        div.purchase__button-group
+          ComponentButton.purchase__button(title="Commander")
       div.purchase__info
-        p(v-html="coupon")
+        p.font-xs(v-html="coupon")
 </template>
 
 <script setup lang="ts">
@@ -54,38 +55,51 @@ const coupon = "Le coupon <span class='font-accent font-bold'>FIRST</span> vous 
   &__group
     z-index: 1
     position: relative
-    padding-inline: $phi1
     padding-block: 0 $phi2
 
   &__form
     display: flex
-    flex-direction: column
+    justify-content: center
+    flex-wrap: wrap
     gap: $gap-space
 
   &__box-image-group
     position: relative
     margin-bottom: $phi1_5
     height: 240px
+    width: 207px
+    
+    &::after
+      content: ''
+      display: block
+      position: absolute
+      top: -25px
+      left: -30px
+      width: 400px
+      height: 400px
+      background-color: $yellow-bubble
+      border-radius: 50%
+      z-index: -1
 
   &__box1
     position: absolute
-    top: 0
-    right: $phi1
-    width: 50%
+    top: -10px
+    left: 100px
+    width: 60%
     transform: rotate(10deg)
 
   &__box2
     position: absolute
-    top: $phi3
-    left: $phi1
-    width: 50%
+    top: 50px
+    left: 10px
+    width: 70%
     transform: rotate(-10deg)
+
+  &__button-group
+    display: flex
+    justify-content: center
+    width: 100%
 
   &__info
     text-align: center
-
-    p
-      margin-block: $phi-1 0
-      font-size: $phi-0_5
-      font-style: italic
 </style>

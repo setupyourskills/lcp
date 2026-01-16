@@ -1,7 +1,7 @@
 <template lang="pug">
 section.features
   div.features__group
-    ComponentInfoCard(
+    ComponentInfoCard.features__info-card(
       v-for="feature in features"
       :key="feature"
       :title="feature.title"
@@ -32,6 +32,7 @@ const features = [
 
   &__group
     display: flex
-    flex-direction: column
-    gap: $gap_space
+    flex-wrap: wrap
+    justify-content: center
+    gap: $gap-space
 </style>

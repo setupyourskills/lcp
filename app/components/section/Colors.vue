@@ -2,7 +2,7 @@
 section.colors
   ComponentArticleHeader(:title="articleHeader.title" :content="articleHeader.content")
   div.colors__group
-    ComponentColorCard.colors__color-card-component(
+    ComponentColorCard.colors__color-card(
       v-for="color in colors"
       :key="color"
       :color-name="color"
@@ -35,4 +35,11 @@ const colors: string[] = [
     flex-wrap: wrap
     justify-content: center
     gap: $gap_space
+    margin-inline: auto
+
+    @media screen and (min-width: 600px)
+      width: 480px
+
+    @media screen and (min-width: 850px)
+      width: 750px
 </style>
