@@ -43,8 +43,5 @@ const testimonials = [
 .testimonials
 
   &__group
-    display: flex
-    flex-wrap: wrap
-    justify-content: center      
-    gap: $gap_space
+    @include flexbox-wrap
 </style>

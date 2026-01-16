@@ -62,10 +62,7 @@ const coupon = "Le coupon <span class='font-accent font-bold'>FIRST</span> vous 
     padding-block: 0 $phi2
 
   &__form
-    display: flex
-    justify-content: center
-    flex-wrap: wrap
-    gap: $gap-space
+    @include flexbox-wrap
 
   &__box-image-group
     position: relative

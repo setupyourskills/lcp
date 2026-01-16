@@ -31,10 +31,7 @@ const features = [
   margin-top: $phi2
 
   &__group
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-    gap: $gap-space
+    @include flexbox-wrap
 
   &__info-card
 

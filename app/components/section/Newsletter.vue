@@ -42,20 +42,16 @@ const info = {
     padding-block: 0 $phi2
 
   &__form
-    display: flex
+    @include flexbox-wrap
     flex-direction: row
-    flex-wrap: wrap
-    justify-content: center
     margin-inline: auto
-    gap: $gap-space
 
   &__input
     flex: 0 1 450px
 
   &__info
-    display: flex
-    justify-content: center
-    flex-wrap: wrap
+    @include flexbox-wrap
     align-items: center
+    row-gap: 0
     column-gap: $gap-space
 </style>

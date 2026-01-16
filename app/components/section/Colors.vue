@@ -31,10 +31,7 @@ const colors: string[] = [
 .colors 
 
   &__group
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-    gap: $gap_space
+    @include flexbox-wrap
     margin-inline: auto
 
     @media screen and (min-width: 600px)

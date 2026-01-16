@@ -35,6 +35,7 @@ export default defineNuxtConfig({
           additionalData: `
             @use "~/assets/styles/variables.sass" as *;
             @use "~/assets/styles/globals.sass" as *;
+            @use "~/assets/styles/mixins.sass" as *;
           `,
         },
       },

@@ -42,10 +42,7 @@ const copyright="<span class='font-bold font-normal'>©</span> 2026 - <a href='m
     overflow: hidden
 
   &__group
-    display: flex
-    justify-content: center
-    flex-wrap: wrap
-    gap: $gap-space
+    @include flexbox-wrap
     z-index: 1
     position: relative
     margin-block: $phi2 $phi2
