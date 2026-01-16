@@ -1,13 +1,12 @@
 <template lang="pug">
 section.faq
   ComponentArticleHeader.faq__title-component(:title="articleHeader.title" :content="articleHeader.content")
-  div.faq__group
-    ComponentFaq.faq__faq-component(
-    v-for="item in faq"
-    :key="item"
-    :question="item.question"
-    :answer="item.answer"
-    )
+  ComponentFaq.faq__faq-component(
+  v-for="item in faq"
+  :key="item"
+  :question="item.question"
+  :answer="item.answer"
+  )
 </template>
 
 <script setup lang="ts">
@@ -38,8 +37,6 @@ const faq = [
 <style lang="sass" scoped>
 .faq
 
-  &__group
-    display: flex
-    flex-direction: column
-    gap: $gap_space
+  &__faq-component
+    margin-bottom: $gap_space
 </style>
