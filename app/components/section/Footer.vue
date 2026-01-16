@@ -48,7 +48,6 @@ const copyright="<span class='font-bold font-normal'>©</span> 2026 - <a href='m
     gap: $gap-space
     z-index: 1
     position: relative
-    margin-inline: $phi1
     margin-block: $phi2 $phi2
 
   &__info-card
