@@ -26,6 +26,9 @@ const hero = {
     @media screen and (min-width: 600px)
       align-items: start
 
+    @media screen and (min-width: 1024px)
+      margin-top: 60px
+
   &__title
 
     @media screen and (min-width: 850px)
@@ -51,4 +54,7 @@ const hero = {
     height: 640px
     object-position: right bottom
     object-fit: cover
+
+    @media screen and (min-width: 1024px)
+      height: 800px
 </style>

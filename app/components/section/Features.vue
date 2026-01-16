@@ -35,4 +35,9 @@ const features = [
     flex-wrap: wrap
     justify-content: center
     gap: $gap-space
+
+  &__info-card
+
+    @media screen and (min-width: 1024px)
+      flex: 1 0 250px
 </style>

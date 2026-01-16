@@ -33,6 +33,10 @@ const info = {
     border: $border-section-framed solid $accent2
     border-radius: 25px
     background-color: $element-background-color
+    
+    @media screen and (min-width: calc(1280px - 2*$phi3))
+      margin-inline: auto
+      width: calc(1280px - 2*$phi3)
 
   &__group
     padding-block: 0 $phi2

@@ -52,6 +52,10 @@ const coupon = "Le coupon <span class='font-accent font-bold'>FIRST</span> vous 
     background-color: $element-background-color
     overflow: hidden
 
+    @media screen and (min-width: calc(1280px - 2*$phi3))
+      margin-inline: auto
+      width: calc(1280px - 2*$phi3)
+
   &__group
     z-index: 1
     position: relative
