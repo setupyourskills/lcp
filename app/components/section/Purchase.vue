@@ -46,10 +46,8 @@ const coupon = "Le coupon <span class='font-accent font-bold'>FIRST</span> vous 
     margin-top: $phi2
 
   &__frame
+    @include frame
     position: relative
-    border: $border-section-framed solid $accent2
-    border-radius: 25px
-    background-color: $element-background-color
     overflow: hidden
 
     @media screen and (min-width: calc(1280px - 2*$phi3))

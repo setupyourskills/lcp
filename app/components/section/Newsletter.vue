@@ -30,9 +30,7 @@ const info = {
     margin-top: $phi2
 
   &__frame
-    border: $border-section-framed solid $accent2
-    border-radius: 25px
-    background-color: $element-background-color
+    @include frame
     
     @media screen and (min-width: calc(1280px - 2*$phi3))
       margin-inline: auto
