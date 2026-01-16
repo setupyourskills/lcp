@@ -15,4 +15,10 @@ div.main-group
 
   &--margin
     margin-inline: $phi1 
+
+    @media screen and (min-width: 600px)
+      margin-inline: $phi2
+
+    @media screen and (min-width: 850px)
+      margin-inline: $phi3
 </style>
