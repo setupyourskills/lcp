@@ -8,7 +8,8 @@ main.main-content
 .main-content
   position: relative
   margin-inline: auto
-  width: 320px
+  min-width: 320px
+  max-width: 1024px
   font-family: "Source Sans 3"
   font-size: $phi1
   line-height: 1.5
