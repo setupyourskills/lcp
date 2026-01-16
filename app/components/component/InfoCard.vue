@@ -1,8 +1,8 @@
 <template lang="pug">
 div.info-card-component.info-card-component--number
-  div.info-card-component__number(v-if="props.number") {{ props.number }}
-  h3.info-card-component__title {{ props.title }}
-  p.info-card-component__content(v-html="props.content")
+  div.info-card-component__number.font-l(v-if="props.number") {{ props.number }}
+  h3.info-card-component__title.font-l {{ props.title }}
+  p.info-card-component__content.font-s(v-html="props.content")
 </template>
 
 <script setup lang="ts">
@@ -29,6 +29,7 @@ const props = defineProps({
 <style lang="sass" scoped>
 .info-card-component
   text-align: center
+  width: 250px
 
   &__number
     display: flex
@@ -38,15 +39,9 @@ const props = defineProps({
     margin-block: 0 $phi1
     aspect-ratio: 1 / 1;
     width: $phi3
-    font-size: $phi1_5
-    font-weight: bold
     border-radius: 50%
     background-color: $accent2
 
-  &__title
-    margin-block: 0
-    font-size: $phi1_5
-    
   &__title::after
     content: ''
     display: block
@@ -57,7 +52,5 @@ const props = defineProps({
     background-color: $accent2
 
   &__content
-    margin-block: 0
-    font-size: $phi-0_75
     font-style: v-bind("props.style")
 </style>

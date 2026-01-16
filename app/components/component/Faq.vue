@@ -1,8 +1,8 @@
 <template lang="pug">
 div.faq-component
   details.faq-component__details
-    summary.faq-component__question {{ props.question }}
-    p.faq-component__answer(v-html="props.answer")
+    summary.faq-component__question.font-m {{ props.question }}
+    p.faq-component__answer.font-s(v-html="props.answer")
 </template>
 
 <script setup lang="ts">
@@ -41,7 +41,6 @@ const props = defineProps({
     align-items: center
     padding-block: $phi-1
     padding-inline: $phi1_5 $phi3
-    font-size: $phi1
     font-weight: bold
 
     &::before
@@ -54,7 +53,10 @@ const props = defineProps({
   &__answer 
     text-align: center
     margin-inline: $phi1_5
-    font-style: italic
+    margin-block: $phi1
+
+    @media screen and (min-width: 600px)
+      text-align: left
 
   summary::marker
     content: none

@@ -1,11 +1,11 @@
 <template lang="pug">
 div.testimonial-card-component
-  p.testimonial-card-component__content {{ props.content }}
+  p.testimonial-card-component__content.font-s {{ props.content }}
   div.testimonial-card-component__user
     div.testimonial-card-component__avatar {{ props.avatar }}
     div.testimonial-card-component__details
-      span.testimonial-card-component__name {{ props.name }}
-      span.testimonial-card-component__country {{ props.country }}
+      span.testimonial-card-component__name.font-m {{ props.name }}
+      span.testimonial-card-component__country.font-s {{ props.country }}
 </template>
 
 <script setup lang="ts">
@@ -33,31 +33,21 @@ const props = defineProps({
 .testimonial-card-component
   display: flex
   flex-direction: column
-  align-items: center
+  justify-content: space-between
+  width: 230px
   padding: $phi1
   border-radius: 25px 25px 25px 0
   background-color: $element-background-color
   box-shadow: 4px 4px 4px 0px $secondary
 
   &__content
-    margin-block: 0
     text-align: center
-    font-size: $phi-0_75
-    font-style: italic
-
-    &::after
-      content: ''
-      display: block
-      margin-inline: auto
-      margin-block: $phi-1
-      width: $phi3
-      height: 6px
-      background-color: $accent2
 
   &__user
     display: grid
     grid-template-columns: 20% 80%
     gap: $phi2_5
+    margin-block: $phi1 0
 
   &__avatar
     aspect-ratio: 1 / 1;
@@ -71,7 +61,4 @@ const props = defineProps({
 
   &__name
     font-weight: bold
-
-  &__country
-    font-size: $phi-0_5
 </style>

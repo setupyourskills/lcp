@@ -1,5 +1,5 @@
 <template lang="pug">
-input.input-component(:placeholder="props.placeholder")
+input.input-component.font-l(:placeholder="props.placeholder")
 </template>
 
 <script setup lang="ts">
@@ -17,7 +17,7 @@ const props = defineProps({
   box-sizing: border-box;
   width: 100%
   text-indent: $phi1
-  font-size: $phi1_5
+  font-weight: normal !important
   border: 4px solid $accent2
   border-radius: 25px
   background-color: $background-color
@@ -29,6 +29,5 @@ const props = defineProps({
     background-color: $element-background-color
 
   &::placeholder
-    font-size: $phi1_5
     color: $secondary
 </style>

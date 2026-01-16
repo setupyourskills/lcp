@@ -1,7 +1,7 @@
 <template lang="pug">
 div.title-component(:class="{ 'title-component--mark': props.mark }")
-  h2.title-component__title(v-html="props.title")
-  p.title-component__content(v-html="props.content")
+  h2.title-component__title.font-xl(v-html="props.title")
+  p.title-component__content.font-m(v-html="props.content")
 </template>
 
 <script setup lang="ts">
@@ -26,6 +26,9 @@ const props = defineProps({
   text-align: center
   margin-block: $phi3 $phi2
 
+  &__content
+    margin-block: $phi-1 0
+
   &--mark::before
     content: ''
     position: absolute
@@ -33,11 +36,4 @@ const props = defineProps({
     width: $phi-1
     height: $phi3
     background-color: $accent2
-
-  &__title
-    margin-block: 0
-    font-size: $phi2
-
-  &__content
-    margin-block: $phi-1 0
 </style>

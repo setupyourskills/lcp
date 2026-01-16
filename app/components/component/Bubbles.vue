@@ -25,36 +25,38 @@ const props = defineProps({
     aspect-ratio: 1/1
     border-radius: 50%
 
-  &--green-purchase,
-  &--green-footer
-    background-color: $green-bubble
-    width: 40%
-
-  &--red-purchase,
-  &--red-footer
-    width: 80%
-    background-color: $red-bubble
-
-  &--yellow-purchase,
-  &--yellow-footer
-    width: 130%
-    background-color: $yellow-bubble
-
   &--green-purchase
-    transform: translate(215%, 400%)
+    top: 140px
+    right: -100px
+    background-color: $green-bubble
+    width: 200px
+
+    @media screen and (min-width: 900px)
+      position: absolute
+      top: 540px
+      left: -130px
 
   &--red-purchase
-    transform: translate(-70%, 85%)
-
-  &--yellow-purchase
-    transform: translate(-10%, 200%)
+    top: -160px
+    left: -240px
+    width: 330px
+    background-color: $red-bubble
 
   &--green-footer
-    transform: translate(215%, 355%)
+    top: 200px
+    right: -120px
+    background-color: $green-bubble
+    width: 200px
 
   &--red-footer
-    transform: translate(-65%, -50%)
+    top: -160px
+    left: -240px
+    width: 330px
+    background-color: $red-bubble
 
   &--yellow-footer
-    transform: translate(-75%, 145%)
+    bottom: -125px
+    left: -250px
+    width: 330px
+    background-color: $yellow-bubble
 </style>
