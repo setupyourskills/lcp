@@ -7,7 +7,8 @@ section.newsletter
         ComponentInput.newsletter__input(placeholder="Email")
         ComponentButton.newsletter__button(title="S'abonner")
   div.newsletter__info
-    p.font-xs(v-html="info") 
+    p.font-xs(v-html="info.spam") 
+    p.font-xs(v-html="info.confidential") 
 </template>
 
 <script setup lang="ts">
@@ -15,7 +16,10 @@ const articleHeader: ArticleHeader = {
   title: "Rejoignez <span class='font-accent'>la newsletter</span>",
   content: "<span class='font-bold'>Recevez</span> les dernières <span class='font-bold'>nouvelles</span> pour <span class='font-bold'>rester toujours informé !</span>",
 };
-const info = "<span class='font-accent font-bold font-normal'>🗹</span> Pas de Spam <br /><span class='font-accent font-bold font-normal'>🗹</span> Votre Email reste confidentiel ";
+const info = {
+  spam: "<span class='font-accent font-bold font-normal'>🗹</span> Pas de Spam",
+  confidential: "<span class='font-accent font-bold font-normal'>🗹</span> Votre Email reste confidentiel"
+}
 </script>
 
 <style lang="sass" scoped>
@@ -45,5 +49,9 @@ const info = "<span class='font-accent font-bold font-normal'>🗹</span> Pas de
     flex: 0 1 450px
 
   &__info
-    text-align: center
+    display: flex
+    justify-content: center
+    flex-wrap: wrap
+    align-items: center
+    column-gap: $gap-space
 </style>
