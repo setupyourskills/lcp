@@ -1,11 +1,71 @@
 @use "~/assets/styles/variables" as *;
 
-// font styles
-.font-accent
-  color: $accent1
+// fonts
+.font-normal
+  font-style: normal
 
 .font-bold
   font-weight: bold
 
-.font-normal
-  font-style: normal
+.font-accent
+  color: $accent1
+
+h1
+  margin-block: $phi1 $phi1
+  font-size: $phi2
+
+  @media screen and (min-width: 550px)
+    margin-top: $phi2
+    text-align: left
+    font-size: $phi2_5
+
+  @media screen and (min-width: 850px)
+    font-size: $phi3
+
+  & + p
+    margin-block: 0 $phi2
+    font-size: $phi1
+
+    @media screen and (min-width: 550px)
+      text-align: left
+      font-size: $phi1_5
+
+    @media screen and (min-width: 850px)
+      font-size: $phi2
+
+.font-xs
+  margin-block: $phi-1 0
+  font-size: $phi-0_5
+  font-style: italic
+
+  @media screen and (min-width: 600px)
+    font-size: $phi-0_75
+
+.font-s
+    margin-block: 0
+    font-size: $phi-0_75
+    font-style: italic
+
+    @media screen and (min-width: 600px)
+      font-size: $phi1
+
+.font-m
+  font-size: $phi1
+
+  @media screen and (min-width: 600px)
+    font-size: $phi1_5
+
+.font-l
+    margin-block: 0
+    font-size: $phi1_5
+    font-weight: bold
+
+    @media screen and (min-width: 600px)
+      font-size: $phi2
+
+.font-xl
+  margin-block: 0
+  font-size: $phi2
+
+  @media screen and (min-width: 600px)
+    font-size: $phi2_5
