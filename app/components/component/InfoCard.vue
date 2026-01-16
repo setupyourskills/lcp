@@ -29,7 +29,7 @@ const props = defineProps({
 <style lang="sass" scoped>
 .info-card-component
   text-align: center
-  width: 250px
+  width: 260px
 
   &__number
     display: flex

@@ -67,7 +67,10 @@ const coupon = "Le coupon <span class='font-accent font-bold'>FIRST</span> vous 
     position: relative
     margin-bottom: $phi1_5
     height: 240px
-    width: 207px
+    width: 187px
+
+    @media screen and (max-width: 899.99px)
+      width: 260px
     
     &::after
       content: ''
@@ -85,15 +88,21 @@ const coupon = "Le coupon <span class='font-accent font-bold'>FIRST</span> vous 
     position: absolute
     top: -10px
     left: 100px
-    width: 60%
+    width: 65%
     transform: rotate(10deg)
+
+    @media screen and (max-width: 899.99px)
+      width: 50%
 
   &__box2
     position: absolute
     top: 50px
     left: 10px
-    width: 70%
+    width: 75%
     transform: rotate(-10deg)
+
+    @media screen and (max-width: 899.99px)
+      width: 55%
 
   &__button-group
     display: flex
