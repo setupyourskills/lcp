@@ -16,5 +16,6 @@ export type InfoNewsletterSection = {
 export type SubscriptionStatus = {
   ok: string;
   failed: string;
+  invalid: string;
 };
 

@@ -3,9 +3,9 @@ section.newsletter
   div.newsletter__frame
     div.newsletter__group.margin-space
       ComponentArticleHeader.newsletter__title-component(:mark="false" :title="articleHeader.title" :content="articleHeader.content")
-      form.newsletter__form
-        ComponentInput.newsletter__input(v-model="emailInput" placeholder="Email" type="email")
-        ComponentButton.newsletter__button(@click="submit" type="submit" title="S'abonner")
+      form.newsletter__form(@submit.prevent="join")
+        ComponentInput.newsletter__input(v-model="emailInput" placeholder="Email" type="email" maxlength="255" required)
+        ComponentButton.newsletter__button(title="S'abonner" type="submit")
         p.newsletter__status.font-xs(v-html="statusMessage")
   div.newsletter__info
     p.font-xs(v-html="info.spam") 
@@ -17,6 +17,9 @@ import type { ArticleHeader, SubscriptionStatus } from "~/assets/types/types.d.t
 import type { InfoNewsletterSection } from "~/assets/types/types.d.ts";
 import type { UserResponse } from "~/assets/types/interfaces.d.ts"
 
+const emailInput = ref();
+const statusMessage = ref();
+
 const articleHeader: ArticleHeader = {
   title: "Rejoignez <span class='font-accent'>la newsletter</span>",
   content: "<span class='font-bold'>Recevez</span> les dernières <span class='font-bold'>nouvelles</span> pour <span class='font-bold'>rester toujours informé !</span>",
@@ -25,27 +28,32 @@ const info: InfoNewsletterSection = {
   spam: "<span class='font-accent font-bold font-normal'>🗹</span> Pas de Spam",
   confidential: "<span class='font-accent font-bold font-normal'>🗹</span> Votre Email reste confidentiel"
 };
+
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const status: SubscriptionStatus = {
   ok: "✅ Vous êtes abonné !",
-  failed: "❌ Une erreur s'est produite !"
+  failed: "❌ Une erreur s'est produite !",
+  invalid: "❌ Email est invalide!"
 };
 
-const emailInput = ref();
-const statusMessage = ref();
-
-const submit = async () => {
-  try {
-    const result = await $fetch<UserResponse>("/api/addEmail", {
-      method: "POST",
-      body: {
-        email: emailInput.value
-      }
-    });
-    statusMessage.value = status.ok;
-    emailInput.value = "";
-  } catch (e: any) {
-    statusMessage.value = status.failed;
+const join = async () => {
+  if (!emailRegex.test(emailInput.value)) statusMessage.value = status.invalid;
+  else if (emailInput.value.length > 255) statusMessage.value = status.invalid;
+  else {
+    try {
+      const result = await $fetch<UserResponse>("/api/addEmail", {
+        method: "POST",
+        body: {
+          email: emailInput.value
+        }
+      });
+      statusMessage.value = status.ok;
+    } catch (e: any) {
+      statusMessage.value = status.failed;
+    }
   }
+
+  emailInput.value = "";
 };
 </script>
 
