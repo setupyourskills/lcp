@@ -8,11 +8,11 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, message: "Invalid e‑mail" });
   }
 
+  const sql = "INSERT INTO users (Email) VALUES (?)";
+
   try {
-    const [result] = await db.execute<mysql.ResultSetHeader>(
-      "INSERT INTO users (Email) VALUES (?)",
-      [email],
-    );
+    const [result] = await db.execute<mysql.ResultSetHeader>(sql, [email]);
+
     console.log(result.insertId, email);
   } catch (err: any) {
     console.error("Insertion Error", err.message);
