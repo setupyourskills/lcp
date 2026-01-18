@@ -8,9 +8,7 @@ export default defineNuxtConfig({
     strict: true,
   },
   imports: {
-    dirs: [
-      "assets/types/**/*",
-    ],
+    dirs: ["assets/types/**/*"],
   },
   css: ["normalize.css/normalize.css"],
   image: {
