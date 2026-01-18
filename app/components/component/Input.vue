@@ -1,5 +1,5 @@
 <template lang="pug">
-input.input-component.font-l(:placeholder="props.placeholder")
+input.input-component.font-l(v-model="inputContent" :placeholder="props.placeholder")
 </template>
 
 <script setup lang="ts">
@@ -8,6 +8,8 @@ import type { IInputProps } from "~/assets/types/interfaces.d.ts"
 const props = withDefaults(defineProps<IInputProps>(), {
   placeholder: "Placeholder",
 });
+
+const inputContent = defineModel();
 </script>
 
 <style lang="sass">
