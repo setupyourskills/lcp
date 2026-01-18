@@ -12,3 +12,9 @@ export type InfoNewsletterSection = {
   spam: string;
   confidential: string;
 };
+
+export type SubscriptionStatus = {
+  ok: string;
+  failed: string;
+};
+

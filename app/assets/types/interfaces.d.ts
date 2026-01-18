@@ -16,6 +16,11 @@ export interface ITestimonialSection {
   country: string;
 }
 
+interface UserResponse {
+  id: number;
+  email: string;
+}
+
 // Components
 export interface IArticleHeaderProps {
   title: string;

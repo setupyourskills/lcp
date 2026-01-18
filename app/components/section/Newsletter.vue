@@ -3,17 +3,19 @@ section.newsletter
   div.newsletter__frame
     div.newsletter__group.margin-space
       ComponentArticleHeader.newsletter__title-component(:mark="false" :title="articleHeader.title" :content="articleHeader.content")
-      div.newsletter__form
-        ComponentInput.newsletter__input(placeholder="Email")
-        ComponentButton.newsletter__button(title="S'abonner")
+      form.newsletter__form
+        ComponentInput.newsletter__input(v-model="emailInput" placeholder="Email" type="email")
+        ComponentButton.newsletter__button(@click="submit" type="submit" title="S'abonner")
+        p.newsletter__status.font-xs(v-html="statusMessage")
   div.newsletter__info
     p.font-xs(v-html="info.spam") 
     p.font-xs(v-html="info.confidential") 
 </template>
 
 <script setup lang="ts">
-import type { ArticleHeader } from "~/assets/types/types.d.ts";
+import type { ArticleHeader, SubscriptionStatus } from "~/assets/types/types.d.ts";
 import type { InfoNewsletterSection } from "~/assets/types/types.d.ts";
+import type { UserResponse } from "~/assets/types/interfaces.d.ts"
 
 const articleHeader: ArticleHeader = {
   title: "Rejoignez <span class='font-accent'>la newsletter</span>",
@@ -22,6 +24,28 @@ const articleHeader: ArticleHeader = {
 const info: InfoNewsletterSection = {
   spam: "<span class='font-accent font-bold font-normal'>🗹</span> Pas de Spam",
   confidential: "<span class='font-accent font-bold font-normal'>🗹</span> Votre Email reste confidentiel"
+};
+const status: SubscriptionStatus = {
+  ok: "✅ Vous êtes abonné !",
+  failed: "❌ Une erreur s'est produite !"
+};
+
+const emailInput = ref();
+const statusMessage = ref();
+
+const submit = async () => {
+  try {
+    const result = await $fetch<UserResponse>("/api/addEmail", {
+      method: "POST",
+      body: {
+        email: emailInput.value
+      }
+    });
+    statusMessage.value = status.ok;
+    emailInput.value = "";
+  } catch (e: any) {
+    statusMessage.value = status.failed;
+  }
 };
 </script>
 
@@ -43,11 +67,16 @@ const info: InfoNewsletterSection = {
   &__form
     @include flexbox-wrap
     flex-direction: row
+    text-align: center
     margin-inline: auto
 
   &__input
     flex: 0 1 450px
 
+  &__status
+    flex: 0 1 450px
+    font-style: normal
+    
   &__info
     @include flexbox-wrap
     align-items: center
