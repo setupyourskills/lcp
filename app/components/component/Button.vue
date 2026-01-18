@@ -19,4 +19,5 @@ const props = withDefaults(defineProps<IButtonProps>(), {
   border-radius: 25px
   background-color: $accent1
   box-shadow: 4px 4px 4px 0px $secondary
+  cursor: pointer
 </style>

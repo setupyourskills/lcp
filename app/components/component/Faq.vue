@@ -22,6 +22,7 @@ const props = withDefaults(defineProps<IFaqProps>(), {
     border-bottom: 4px solid $accent2
     border-top-right-radius: 25px
     background-color: $element-background-color
+    cursor: pointer
 
     &[open]
       border-radius: 0 25px 25px 25px
