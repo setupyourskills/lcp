@@ -53,4 +53,5 @@ const info: InfoNewsletterSection = {
     align-items: center
     row-gap: 0
     column-gap: $gap-space
+    margin-block: $phi-1 0
 </style>

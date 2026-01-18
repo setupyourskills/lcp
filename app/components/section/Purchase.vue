@@ -110,5 +110,6 @@ const coupon: string = "Le coupon <span class='font-accent font-bold'>FIRST</spa
     width: 100%
 
   &__info
+    margin-block: $phi-1 0
     text-align: center
 </style>
