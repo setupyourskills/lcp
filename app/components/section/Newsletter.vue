@@ -34,10 +34,8 @@ const info: InfoNewsletterSection = {
 
   &__frame
     @include frame
-    
-    @media screen and (min-width: calc(1280px - 2*$phi3))
-      margin-inline: auto
-      width: calc(1280px - 2*$phi3)
+    max-width: calc(1264px - 2*$phi3)
+    margin-inline: auto
 
   &__group
     padding-block: 0 $phi2
