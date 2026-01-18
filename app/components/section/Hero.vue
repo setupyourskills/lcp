@@ -26,7 +26,7 @@ const hero: HeroSection = {
     line-height: 1.2
 
     @media screen and (min-width: 600px)
-      align-items: start
+      text-align: left
 
     @media screen and (min-width: 1024px)
       margin-top: 60px
@@ -43,12 +43,6 @@ const hero: HeroSection = {
 
     @media screen and (min-width: 850px)
       width: 65%
-
-  &__button-component
-    margin-inline: auto
-
-    @media screen and (min-width: 600px)
-      margin-inline: 0
 
   &__image
     display: block
