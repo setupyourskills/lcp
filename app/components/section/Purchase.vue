@@ -55,6 +55,9 @@ const coupon: string = "Le coupon <span class='font-accent font-bold'>FIRST</spa
     margin-inline: auto
     overflow: hidden
 
+    @media screen and (min-width: 1024px)
+      margin-inline: $phi3
+
   &__group
     z-index: 1
     position: relative

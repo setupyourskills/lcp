@@ -69,6 +69,9 @@ const join = async () => {
     max-width: $frame-max-width
     margin-inline: auto
 
+    @media screen and (min-width: 1024px)
+      margin-inline: $phi3
+
   &__group
     padding-block: 0 $phi2
 
