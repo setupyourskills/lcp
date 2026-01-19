@@ -77,6 +77,7 @@ const coupon: string = "Le coupon <span class='font-accent font-bold'>FIRST</spa
     
     &::after
       content: ''
+      z-index: -1
       display: block
       position: absolute
       top: -25px
@@ -85,7 +86,6 @@ const coupon: string = "Le coupon <span class='font-accent font-bold'>FIRST</spa
       height: 400px
       background-color: $yellow-bubble
       border-radius: 50%
-      z-index: -1
 
   &__box1
     position: absolute
