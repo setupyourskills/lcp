@@ -15,7 +15,7 @@ section.newsletter
 <script setup lang="ts">
 import type { ArticleHeader, SubscriptionStatus } from "~/assets/types/types.d.ts";
 import type { InfoNewsletterSection } from "~/assets/types/types.d.ts";
-import type { UserResponse } from "~/assets/types/interfaces.d.ts"
+import type { IUserResponse } from "~/assets/types/interfaces.d.ts"
 
 const emailInput = ref();
 const statusMessage = ref();
@@ -41,7 +41,7 @@ const join = async () => {
   else if (emailInput.value.length > 255) statusMessage.value = status.invalid;
   else {
     try {
-      const result = await $fetch<UserResponse>("/api/addEmail", {
+      const result = await $fetch<IUserResponse>("/api/addEmail", {
         method: "POST",
         body: {
           email: emailInput.value

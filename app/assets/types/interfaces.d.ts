@@ -16,7 +16,7 @@ export interface ITestimonialSection {
   country: string;
 }
 
-interface UserResponse {
+export interface IUserResponse {
   id: number;
   email: string;
 }
