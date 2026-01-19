@@ -2,7 +2,7 @@
 section.footer
   div.footer__frame
     ComponentBubbles(section="footer")
-    div.footer__group.margin-space
+    div.footer__group.margin-space(ref="refFooterGroup")
       ComponentInfoCard.footer__info-card(
         v-for="(item, idx) in footerItems"
         :key="idx"
@@ -15,6 +15,7 @@ section.footer
 
 <script setup lang="ts">
 import type { IInfoCardSection } from "~/assets/types/interfaces.d.ts"
+import type { IModalsState } from "~/assets/types/interfaces.d.ts";
 
 const footerItems: IInfoCardSection[] = [
   {
@@ -27,10 +28,37 @@ const footerItems: IInfoCardSection[] = [
   },
   {
     title: "Mentions Légales",
-    content: "<a href='#' id='confidentiality'>Confidentialité</a><br /><a href='#' id='conditions'>Conditions</a><br /><a href='#' id='gdpr'>RGPD</a><br />",
+    content: "<a href='#' id='confidential'>Confidentialité</a><br /><a href='#' id='terms'>Conditions</a><br /><a href='#' id='gdpr'>RGPD</a><br />",
   },
 ];
-const copyright="<span class='font-bold font-normal'>©</span> 2026 - <a href='mailto:contact@setupyourskills'>SetupYourSkills</a>"
+const copyright = "<span class='font-bold font-normal'>©</span> 2026 - <a href='mailto:contact@setupyourskills'>SetupYourSkills</a>"
+
+const { setModalState } = useModalsState();
+
+const refFooterGroup = ref<HTMLElement | null>(null);
+const modals = ["Confidential", "Terms", "Gdpr"] as const satisfies readonly (keyof IModalsState)[];
+
+onMounted(() => {
+  if (!refFooterGroup.value) return;
+
+  const handler = (e: MouseEvent) => {
+    const target = e.target as HTMLElement | null;
+    if (!target) return;
+
+    for (const modal of modals) {
+      if (target.matches(`#${modal.toLowerCase()}`)) {
+        e.preventDefault();
+        setModalState(modal, true);
+      }
+    }
+  };
+
+  refFooterGroup.value.addEventListener('click', handler);
+
+  return () => {
+    refFooterGroup.value?.removeEventListener('click', handler);
+  };
+});
 </script>
 
 <style lang="sass">
