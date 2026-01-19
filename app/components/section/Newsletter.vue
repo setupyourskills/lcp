@@ -66,7 +66,7 @@ const join = async () => {
 
   &__frame
     @include frame
-    max-width: calc(1264px - 2*$phi3)
+    max-width: $frame-max-width
     margin-inline: auto
 
   &__group

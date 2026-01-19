@@ -51,7 +51,7 @@ const coupon: string = "Le coupon <span class='font-accent font-bold'>FIRST</spa
   &__frame
     @include frame
     position: relative
-    max-width: calc(1264px - 2*$phi3)
+    max-width: $frame-max-width
     margin-inline: auto
     overflow: hidden
 
