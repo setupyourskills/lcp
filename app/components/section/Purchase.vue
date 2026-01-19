@@ -15,7 +15,7 @@ section.purchase
         div.purchase__box-image-group
           NuxtImg(v-for="id in 2" :key="id" src="box.webp" :class="`purchase__box${(id).toString()}`")
         div.purchase__button-group
-          ComponentButton.purchase__button(title="Commander")
+          ComponentButton.purchase__button(title="Commander" @click="setModalState('Purchase', true)")
       div.purchase__info
         p.font-xs(v-html="coupon")
 </template>
@@ -39,6 +39,8 @@ const purchaseForm: IInfoCardSection[] = [
   },
 ];
 const coupon: string = "Le coupon <span class='font-accent font-bold'>FIRST</span> vous permet de bénéficiez d'une réduction de 10% sur votre 1er achat.";
+
+const { setModalState } = useModalsState();
 </script>
 
 <style lang="sass" scoped>

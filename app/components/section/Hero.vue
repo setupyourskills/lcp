@@ -3,7 +3,7 @@ section.hero
   div.hero__group.margin-space
     h1.hero__title(v-html="hero.title") 
     p.hero__subtitle(v-html="hero.subtitle")
-    ComponentButton.hero__button-component(title="Commander")
+    ComponentButton.hero__button-component(title="Commander" @click="setModalState('Purchase', true)")
   NuxtImg.hero__image(src="hero.webp")
 </template>
 
@@ -14,6 +14,8 @@ const hero: HeroSection = {
   title: "La <span class='font-title-accent'>Couleur</span> au service de vos gravures !",
   subtitle: "Sublimez vos gravures lasers avec nos poudres de couleurs intenses, durables et faciles à utiliser.",
 };
+
+const { setModalState } = useModalsState();
 </script>
 
 <style lang="sass" scoped>

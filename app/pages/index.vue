@@ -1,4 +1,11 @@
 <template lang="pug">
+div.modals
+  ModalsPurchase
+  ModalsConfidential
+  ModalsTerms
+  ModalsGdpr
+  ModalsContact
+
 div.main-group
   SectionHero
   SectionFeatures.margin-space
