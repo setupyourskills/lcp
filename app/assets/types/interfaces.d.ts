@@ -21,6 +21,19 @@ export interface IUserResponse {
   email: string;
 }
 
+// Modals
+export interface IModalsState {
+  Purchase: boolean;
+  Confidential: boolean;
+  Terms: boolean;
+  Gdpr: boolean;
+  Contact: boolean;
+}
+
+export interface IModalProps {
+  modalName: string;
+}
+
 // Components
 export interface IArticleHeaderProps {
   title: string;
