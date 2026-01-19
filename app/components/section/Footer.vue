@@ -23,11 +23,11 @@ const footerItems: IInfoCardSection[] = [
   },
   {
     title: "Notre Produit",
-    content: "Caractéristiques<br />Démonstration<br />Couleurs disponibles<br />Commander le lot Duo<br />FAQ<br />Témoignages<br />Newsletter",
+    content: "<a href='#features'>Caractéristiques</a><br /><a href='#demo'>Démonstration</a><br /><a href='#colors'>Couleurs disponibles</a><br /><a href='#purchase'>Commander le lot Duo</a><br /><a href='#faq'>FAQ</a><br /><a href='#testimonials'>Témoignages</a><br /><a href='#newsletter'>Newsletter</a>",
   },
   {
     title: "Mentions Légales",
-    content: "Confidentialité<br />Conditions<br />RGPD<br />",
+    content: "<a href='#' id='confidentiality'>Confidentialité</a><br /><a href='#' id='conditions'>Conditions</a><br /><a href='#' id='gdpr'>RGPD</a><br />",
   },
 ];
 const copyright="<span class='font-bold font-normal'>©</span> 2026 - <a href='mailto:contact@setupyourskills'>SetupYourSkills</a>"

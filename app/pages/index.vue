@@ -8,11 +8,11 @@ div.modals
 
 div.main-group
   SectionHero
-  SectionFeatures.margin-space
-  SectionVideo.margin-space
-  SectionColors.margin-space
-  SectionPurchase
-  SectionFaq.margin-space
-  SectionTestimonials.margin-space
-  SectionNewsletter
+  SectionFeatures.margin-space#features
+  SectionVideo.margin-space#demo
+  SectionColors.margin-space#colors
+  SectionPurchase#purchase
+  SectionFaq.margin-space#faq
+  SectionTestimonials.margin-space#testimonials
+  SectionNewsletter#newsletter
 </template>
