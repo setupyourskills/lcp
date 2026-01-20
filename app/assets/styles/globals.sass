@@ -13,6 +13,17 @@
 .font-title-accent
   color: #E59714
 
+a
+  font-weight: bold
+  text-decoration: underline dotted $accent1
+  text-decoration-thickness: 0.1rem
+  color: black
+  transition: color .2s ease-out, text-decoration .2s ease-out
+
+  &:hover
+    text-decoration: underline
+    color: $accent1
+
 h1
   margin-block: $phi1 $phi1
   font-size: $phi2
