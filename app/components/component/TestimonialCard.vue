@@ -9,9 +9,9 @@ div.testimonial-card-component
 </template>
 
 <script setup lang="ts">
-import type { ITestimonialProps } from "~/assets/types/interfaces.d.ts"
+import type { ITestimonialSection } from "~/assets/types/interfaces.d.ts"
 
-const props = withDefaults(defineProps<ITestimonialProps>(), {
+const props = withDefaults(defineProps<ITestimonialSection>(), {
   content: "Content",
   avatar: "Avatar",
   name: "Name",
@@ -21,6 +21,7 @@ const props = withDefaults(defineProps<ITestimonialProps>(), {
 
 <style lang="sass" scoped>
 .testimonial-card-component
+  @include transition
   display: flex
   flex-direction: column
   justify-content: space-between
@@ -28,7 +29,6 @@ const props = withDefaults(defineProps<ITestimonialProps>(), {
   padding: $phi1
   border-radius: 25px 25px 25px 0
   background-color: $element-background-color
-  box-shadow: 4px 4px 4px 0px $secondary
 
   &__content
     text-align: center

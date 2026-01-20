@@ -6,6 +6,7 @@ section.faq
   :key="item"
   :question="item.question"
   :answer="item.answer"
+  :height="item.height"
   )
 </template>
 
@@ -21,18 +22,22 @@ const faq: IFaqSection[] = [
   {
     question: "Choix des couleurs",
     answer: "Vous pouvez choisir entre <span class='font-bold'>9 couleurs</span> différentes que vous pouvez commander par lot de deux boîtes de 300g",
+    height: 200
   },
   {
     question: "Quelle quantité utiliser par application ?",
-    answer: "Vous n'avez besoin que de seulement quelques grammes par application.",
+    answer: "Vous n'avez besoin que de seulement quelques grammes par application. fdsa fd safd safdsa fdsafds afdsaf dsafdsa",
+    height: 200
   },
   {
     question: "Délais de livraison",
     answer: "Cela dépend de là où vous résider, mais en général, il faudra compte 2 semaines maximum pour recevoir votre colis. Les poudres sont envoyées de Taïwan.",
+    height: 230
   },
   {
     question: "Configuration et installation du laser",
     answer: "Il vous faudra trouver la meilleur configuration en fonction de votre laser. Quelqes tests seront nécessaire les premières fois jusqu'à trouver les bons paramètres.",
+    height: 240
   },
 ];
 </script>

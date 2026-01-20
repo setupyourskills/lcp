@@ -13,12 +13,12 @@ const props = withDefaults(defineProps<IColorCardProps>(), {
 
 <style lang="sass" scoped>
 .color-card-component
+  @include transition
   display: flex
   justify-content: center
   width: 120px
-  background-color: $element-background-color
   border-radius: 25px
-  box-shadow: 4px 4px 4px 0px $secondary
+  background-color: $element-background-color
 
   &__color-name
     margin-block: 0 $phi1
@@ -34,6 +34,6 @@ const props = withDefaults(defineProps<IColorCardProps>(), {
       margin-block: $phi1
       width: $phi3
       aspect-ratio: 1 / 1;
-      background-color: v-bind("props.colorName")
       border-radius: 50%
+      background-color: v-bind("props.colorName")
 </style>

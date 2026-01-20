@@ -10,3 +10,10 @@
   border: $border-section-framed solid $accent2
   border-radius: 25px
   background-color: $element-background-color
+
+@mixin transition
+  transition: transform .2s ease-in, box-shadow .25s ease-in
+
+  &:hover
+    box-shadow: 4px 4px 4px 0px $secondary
+    transform: translate(-3px, -3px)

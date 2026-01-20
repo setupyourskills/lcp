@@ -6,11 +6,41 @@ div.faq-component
 </template>
 
 <script setup lang="ts">
-import type { IFaqProps } from "~/assets/types/interfaces.d.ts"
+import type { IFaqSection } from "~/assets/types/interfaces.d.ts"
 
-const props = withDefaults(defineProps<IFaqProps>(), {
+const props = withDefaults(defineProps<IFaqSection>(), {
   question: "Question",
   answer: "Answer",
+  height: 200,
+});
+const height = ref(`${props.height}px`);
+
+function calculateHeight() {
+  let h = props.height;
+
+  if (typeof window !== 'undefined') {
+    if (window.matchMedia("(min-width: 700px)").matches) h = props.height - 60 * 2;
+    else if (window.matchMedia("(min-width: 400px)").matches) h = props.height - 60;
+  }
+
+  return `${h}px`;
+}
+
+onMounted(() => {
+  height.value = calculateHeight();
+
+  const w700 = window.matchMedia('(min-width: 700px)');
+  const w400 = window.matchMedia('(min-width: 400px)');
+
+  const handler = () => height.value = calculateHeight();
+
+  w700.addEventListener('change', handler);
+  w400.addEventListener('change', handler);
+
+  onUnmounted(() => {
+    w700.removeEventListener('change', handler);
+    w400.removeEventListener('change', handler);
+  });
 });
 </script>
 
@@ -19,13 +49,23 @@ const props = withDefaults(defineProps<IFaqProps>(), {
   position: relative
 
   &__details
+    @include transition
+    border-radius: 0 25px 25px 25px
     border-bottom: 4px solid $accent2
-    border-top-right-radius: 25px
     background-color: $element-background-color
     cursor: pointer
 
+    &::details-content
+      height: 0
+      overflow: clip
+      transition: all 0.5s ease, content-visibility 0.5s ease allow-discrete;
+
+    &[open]::details-content
+      height: v-bind(height)
+
     &[open]
-      border-radius: 0 25px 25px 25px
+      box-shadow: 4px 4px 4px 0px $secondary
+      transform: translate(-3px, -3px)
 
     &[open] summary::before
       content: "-"
@@ -50,7 +90,6 @@ const props = withDefaults(defineProps<IFaqProps>(), {
   &__answer 
     text-align: center
     margin-inline: $phi1_5
-    margin-block: $phi1
 
     @media screen and (min-width: 600px)
       text-align: left
@@ -58,4 +97,3 @@ const props = withDefaults(defineProps<IFaqProps>(), {
   summary::marker
     content: none
 </style>
-

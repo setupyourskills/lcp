@@ -2,6 +2,7 @@
 export interface IFaqSection {
   question: string;
   answer: string;
+  height: number;
 }
 
 export interface IInfoCardSection {
@@ -53,11 +54,6 @@ export interface IColorCardProps {
   colorName: string;
 }
 
-export interface IFaqProps {
-  question: string;
-  answer: string;
-}
-
 export interface IInfoCardProps {
   number?: number | null;
   title: string;
@@ -67,11 +63,4 @@ export interface IInfoCardProps {
 
 export interface IInputProps {
   placeholder: string;
-}
-
-export interface ITestimonialProps {
-  content: string;
-  avatar: string;
-  name: string;
-  country: string;
 }

@@ -12,12 +12,17 @@ const props = withDefaults(defineProps<IButtonProps>(), {
 
 <style lang="sass">
 .button-component
+  @include transition
   padding-inline: $phi3
   padding-block: $phi1
   min-width: 240px
   border: none
   border-radius: 25px
   background-color: $accent1
-  box-shadow: 4px 4px 4px 0px $secondary
   cursor: pointer
+
+  &:active
+    box-shadow: none
+    transform: translate(0, 0)
+    transition: none
 </style>
