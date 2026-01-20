@@ -20,7 +20,7 @@ import type { IModalsState } from "~/assets/types/interfaces.d.ts";
 const footerItems: IInfoCardSection[] = [
   {
     title: "Laser Skills",
-    content: "Nous avons créé une poudre qui permet d’ajouter <span class='font-bold'>une dimension chromatique exceptionnelle et durable</span> à vos gravures lasers.<br />",
+    content: "Nous avons créé une poudre qui permet d’ajouter <span class='font-bold'>une dimension chromatique exceptionnelle et durable</span> à vos gravures lasers.<p><span class='font-accent'>✉</span> <a href='#' id='contact'>Nous contacter</p>",
   },
   {
     title: "Notre Produit",
@@ -36,7 +36,7 @@ const copyright = "<span class='font-bold font-normal'>©</span> 2026 - <a href=
 const { setModalState } = useModalsState();
 
 const refFooterGroup = ref<HTMLElement | null>(null);
-const modals = ["Confidential", "Terms", "Gdpr"] as const satisfies readonly (keyof IModalsState)[];
+const modals = ["Contact", "Confidential", "Terms", "Gdpr"] as const satisfies readonly (keyof IModalsState)[];
 
 onMounted(() => {
   if (!refFooterGroup.value) return;
