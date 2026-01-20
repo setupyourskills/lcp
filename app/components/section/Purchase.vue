@@ -86,8 +86,12 @@ const { setModalState } = useModalsState();
       left: -30px
       width: 400px
       height: 400px
-      background-color: $yellow-bubble
       border-radius: 50%
+      background-color: $yellow-bubble
+
+      @media screen and (max-width: 899.99px)
+        top: -30px
+        left: -70px
 
   &__box1
     position: absolute
