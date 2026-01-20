@@ -10,7 +10,7 @@ section.footer
         :content="item.content"
         :style="idx ? 'normal' : 'italic'" 
       )
-    div.footer__copyright(v-html="copyright")
+    div.footer__copyright.margin-space(v-html="copyright")
 </template>
 
 <script setup lang="ts">
