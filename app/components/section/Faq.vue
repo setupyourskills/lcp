@@ -26,7 +26,7 @@ const faq: IFaqSection[] = [
   },
   {
     question: "Quelle quantité utiliser par application ?",
-    answer: "Vous n'avez besoin que de seulement quelques grammes par application. fdsa fd safd safdsa fdsafds afdsaf dsafdsa",
+    answer: "Vous n'avez besoin que de seulement quelques grammes par application.",
     height: 200
   },
   {
@@ -36,7 +36,7 @@ const faq: IFaqSection[] = [
   },
   {
     question: "Configuration et installation du laser",
-    answer: "Il vous faudra trouver la meilleur configuration en fonction de votre laser. Quelqes tests seront nécessaire les premières fois jusqu'à trouver les bons paramètres.",
+    answer: "Il vous faudra trouver la meilleur configuration en fonction de votre laser. Quelqes tests seront nécessaires les premières fois jusqu'à trouver les bons paramètres.",
     height: 240
   },
 ];
