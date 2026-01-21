@@ -42,7 +42,7 @@ const props = withDefaults(defineProps<ITestimonialSection>(), {
   &__avatar
     aspect-ratio: 1 / 1;
     width: $phi3
-    border: 3px solid $secondary
+    border: 4px solid $accent2
     border-radius: 50%
 
   &__details
