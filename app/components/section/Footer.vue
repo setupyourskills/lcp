@@ -19,7 +19,7 @@ import type { IInfoCardSection, IModalsState } from "~/assets/types/interfaces.d
 const footerItems: IInfoCardSection[] = [
   {
     title: "Laser Skills",
-    content: "Nous avons créé une poudre qui permet d’ajouter <span class='font-bold'>une dimension chromatique exceptionnelle et durable</span> à vos gravures lasers.<br /><br /><span class='font-accent'>✉</span> <a href='#' id='contact'>Nous contacter",
+    content: "Nous avons créé une poudre qui permet d’ajouter <span class='font-bold'>une dimension chromatique exceptionnelle et durable</span> à vos gravures lasers.<br /><br /><span class='font-accent'>✉</span> <a href='#' id='contact'>Nous contacter</a>",
   },
   {
     title: "Notre Produit",
