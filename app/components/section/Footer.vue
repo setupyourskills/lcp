@@ -14,21 +14,20 @@ section.footer
 </template>
 
 <script setup lang="ts">
-import type { IInfoCardSection } from "~/assets/types/interfaces.d.ts"
-import type { IModalsState } from "~/assets/types/interfaces.d.ts";
+import type { IInfoCardSection, IModalsState } from "~/assets/types/interfaces.d.ts"
 
 const footerItems: IInfoCardSection[] = [
   {
     title: "Laser Skills",
-    content: "Nous avons créé une poudre qui permet d’ajouter <span class='font-bold'>une dimension chromatique exceptionnelle et durable</span> à vos gravures lasers.<p><span class='font-accent'>✉</span> <a href='#' id='contact'>Nous contacter</p>",
+    content: "Nous avons créé une poudre qui permet d’ajouter <span class='font-bold'>une dimension chromatique exceptionnelle et durable</span> à vos gravures lasers.<br /><br /><span class='font-accent'>✉</span> <a href='#' id='contact'>Nous contacter",
   },
   {
     title: "Notre Produit",
     content: "<a href='#features'>Caractéristiques</a><br /><a href='#demo'>Démonstration</a><br /><a href='#colors'>Couleurs disponibles</a><br /><a href='#purchase'>Commander le lot Duo</a><br /><a href='#faq'>FAQ</a><br /><a href='#testimonials'>Témoignages</a><br /><a href='#newsletter'>Newsletter</a>",
   },
   {
-    title: "Mentions Légales",
-    content: "<a href='#' id='confidential'>Confidentialité</a><br /><a href='#' id='terms'>Conditions</a><br /><a href='#' id='gdpr'>RGPD</a><br />",
+    title: "Mentions",
+    content: "<a href='#' id='mentions'>Mentions légales</a><br /><a href='#' id='terms'>Conditions générales de vente</a><br /><a href='#' id='confidential'>Confidentialité / RGPD</a><br /><a href='#' id='cookies'>Gestion des cookies</a><br /><a href='#' id='use'>Conditions générales d'utilisation</a>",
   },
 ];
 const copyright = "<span class='font-bold font-normal'>©</span> 2026 - <a href='mailto:contact@setupyourskills'>SetupYourSkills</a>"
@@ -36,28 +35,28 @@ const copyright = "<span class='font-bold font-normal'>©</span> 2026 - <a href=
 const { setModalState } = useModalsState();
 
 const refFooterGroup = ref<HTMLElement | null>(null);
-const modals = ["Contact", "Confidential", "Terms", "Gdpr"] as const satisfies readonly (keyof IModalsState)[];
+const modals = ["Contact", "Mentions", "Terms", "Confidential", "Cookies", "Use"] as const satisfies readonly (keyof IModalsState)[];
+
+const handler = (e: MouseEvent) => {
+  const target = e.target as HTMLElement | null;
+
+  if (!target) return;
+
+  for (const modal of modals) {
+    if (target.matches(`#${modal.toLowerCase()}`)) {
+      e.preventDefault();
+
+      setModalState(modal, true);
+    }
+  }
+};
 
 onMounted(() => {
   if (!refFooterGroup.value) return;
 
-  const handler = (e: MouseEvent) => {
-    const target = e.target as HTMLElement | null;
-    if (!target) return;
-
-    for (const modal of modals) {
-      if (target.matches(`#${modal.toLowerCase()}`)) {
-        e.preventDefault();
-        setModalState(modal, true);
-      }
-    }
-  };
-
   refFooterGroup.value.addEventListener('click', handler);
 
-  return () => {
-    refFooterGroup.value?.removeEventListener('click', handler);
-  };
+  return () => refFooterGroup.value?.removeEventListener('click', handler);
 });
 </script>
 

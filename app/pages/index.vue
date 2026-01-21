@@ -1,10 +1,12 @@
 <template lang="pug">
 div.modals
   ModalsPurchase
-  ModalsConfidential
-  ModalsTerms
-  ModalsGdpr
   ModalsContact
+  ModalsMentions
+  ModalsTerms
+  ModalsConfidential
+  ModalsCookies
+  ModalsUse
 
 div.main-group
   SectionHero

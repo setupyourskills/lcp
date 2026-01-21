@@ -25,10 +25,12 @@ export interface IUserResponse {
 // Modals
 export interface IModalsState {
   Purchase: boolean;
-  Confidential: boolean;
-  Terms: boolean;
-  Gdpr: boolean;
   Contact: boolean;
+  Mentions: boolean;
+  Terms: boolean;
+  Confidential: boolean;
+  Cookies: boolean;
+  Use: boolean;
 }
 
 export interface IModalProps {
