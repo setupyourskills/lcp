@@ -1,17 +1,38 @@
 <template lang="pug">
-div.modal(v-if="getModalState(props.modalName)")
-  div.modal__container
+div.modal(v-if="isOpen")
+  div.modal__container(ref="refModalContainer")
     slot
-    ComponentButton(title="Fermer" @click="setModalState(props.modalName, false)")
+    ComponentButton(title="Fermer" @click="close()")
 </template>
 
 <script setup lang="ts">
-import type { IModalProps } from "~/assets/types/interfaces.d.ts"
+import type { IModalProps, IModalsState } from "~/assets/types/interfaces.d.ts"
 
 const { setModalState, getModalState } = useModalsState();
 
 const props = withDefaults(defineProps<IModalProps>(), {
   modalName: "",
+});
+
+const refModalContainer = ref<HTMLElement | null>(null);
+const isOpen = computed(() => getModalState(props.modalName as keyof IModalsState));
+const close = () => setModalState(props.modalName as keyof IModalsState, false)
+
+const handleClickOutside = (e: MouseEvent) => {
+  if (!refModalContainer.value) return
+
+  const clickedInside = refModalContainer.value.contains(e.target as Node)
+
+  if (!clickedInside) close();
+}
+
+watch(isOpen, async (open) => {
+  if (!open) return
+    await nextTick();
+
+    document.addEventListener('mousedown', handleClickOutside)
+
+    return () => document.removeEventListener('mousedown', handleClickOutside)
 });
 </script>
 
@@ -29,11 +50,11 @@ const props = withDefaults(defineProps<IModalProps>(), {
 .modal__container
   display: flex
   flex-direction: column
-  justify-content: center
   align-items: center
   position: absolute
   inset: 0
   background-color: $element-background-color
+  overflow-y: auto
 
   @media screen and (min-width: 600px)
     inset-block: $phi3

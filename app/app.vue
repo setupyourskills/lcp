@@ -9,4 +9,7 @@ NuxtLayout
 html
   font-size: 14px
   background-color: grey
+
+.modal-view
+  overflow: hidden
 </style>

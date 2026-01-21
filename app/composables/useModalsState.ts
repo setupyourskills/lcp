@@ -9,6 +9,8 @@ export const useModalsState = () => {
     Contact: false,
   }));
 
+  const isAnyModalOpen = () => Object.values(modalsState.value).some(Boolean);
+
   function setModalState<K extends keyof IModalsState>(
     modalSection: K,
     modalState: boolean,
@@ -22,5 +24,5 @@ export const useModalsState = () => {
     return modalsState.value[modalSection];
   }
 
-  return { setModalState, getModalState };
+  return { isAnyModalOpen, setModalState, getModalState };
 };
