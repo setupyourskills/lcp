@@ -22,6 +22,7 @@ const inputContent = defineModel();
   border: 4px solid $accent2
   border-radius: 25px
   background-color: $background-color
+  cursor: text
 
   &:focus,
   &:active
