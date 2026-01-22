@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<IModalProps>(), {
 
 const refModalContainer = ref<HTMLElement | null>(null);
 const isOpen = computed(() => getModalState(props.modalName as keyof IModalsState));
-const close = () => setModalState(props.modalName as keyof IModalsState, false)
+const close = () => setModalState(props.modalName as keyof IModalsState, false);
 
 const handleClickOutside = (e: MouseEvent) => {
   if (!refModalContainer.value) return
@@ -28,11 +28,11 @@ const handleClickOutside = (e: MouseEvent) => {
 
 watch(isOpen, async (open) => {
   if (!open) return
-    await nextTick();
+  await nextTick();
 
-    document.addEventListener('mousedown', handleClickOutside)
+  document.addEventListener('mousedown', handleClickOutside)
 
-    return () => document.removeEventListener('mousedown', handleClickOutside)
+  return () => document.removeEventListener('mousedown', handleClickOutside)
 });
 </script>
 
