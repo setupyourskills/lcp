@@ -61,6 +61,7 @@ export interface IInfoCardProps {
   title: string;
   content: string;
   style?: string;
+  transition?: boolean;
 }
 
 export interface IInputProps {

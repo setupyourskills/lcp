@@ -6,6 +6,7 @@ section.features
       :key="feature"
       :title="feature.title"
       :content="feature.content"
+      transition=true
     )
 </template>
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-div.info-card-component.info-card-component--number
+div.info-card-component.info-card-component--number(:class="{ 'info-card-component--transition': props.transition }")
   div.info-card-component__number.font-l(v-if="props.number") {{ props.number }}
   h3.info-card-component__title.font-l {{ props.title }}
   p.info-card-component__content.font-s(v-html="props.content")
@@ -13,6 +13,7 @@ const props = withDefaults(defineProps<IInfoCardProps>(), {
   title: "Title",
   content: "Content",
   style: "italic",
+  transition: false
 });
 </script>
 
@@ -20,6 +21,13 @@ const props = withDefaults(defineProps<IInfoCardProps>(), {
 .info-card-component
   text-align: center
   width: 260px
+
+  &--transition
+    border-radius: 25px
+    transition: background-color .2s ease-out
+
+    &:hover
+      background-color: $element-background-color
 
   &__number
     display: flex
