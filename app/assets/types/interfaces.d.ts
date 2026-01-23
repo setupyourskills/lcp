@@ -37,6 +37,14 @@ export interface IModalProps {
   modalName: string;
 }
 
+export interface IPopupsState {
+  Cookies: boolean;
+}
+
+export interface IPopupProps {
+  popupName: string;
+}
+
 // Components
 export interface IArticleHeaderProps {
   title: string;

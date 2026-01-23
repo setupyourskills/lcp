@@ -8,6 +8,9 @@ div.modals
   ModalsCookies
   ModalsUse
 
+div.popups
+  PopupsCookies
+
 div.main-group
   SectionHero
   SectionFeatures.margin-space#features
