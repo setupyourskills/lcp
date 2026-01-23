@@ -19,3 +19,4 @@ export type SubscriptionStatus = {
   invalid: string;
 };
 
+export type YesNo = "yes" | "no";
