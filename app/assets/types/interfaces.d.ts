@@ -43,6 +43,8 @@ export interface IPopupsState {
 
 export interface IPopupProps {
   popupName: string;
+  title: string;
+  content: string;
 }
 
 // Components
