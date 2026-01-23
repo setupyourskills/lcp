@@ -1,7 +1,7 @@
 import type { IModalsState } from "~/assets/types/interfaces.d.ts";
 
 export const useModalsState = () => {
-  const modalsState = useState<IModalsState>("state", () => ({
+  const modalsState = useState<IModalsState>("stateModal", () => ({
     Purchase: false,
     Contact: false,
     Mentions: false,

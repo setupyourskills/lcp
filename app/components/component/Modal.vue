@@ -1,8 +1,8 @@
 <template lang="pug">
-div.modal(v-if="isOpen")
+div.modal(v-if="isModalOpen")
   div.modal__container(ref="refModalContainer")
     slot
-    ComponentButton(title="Fermer" @click="close()")
+    ComponentButton(title="Fermer" @click="closeModal()")
 </template>
 
 <script setup lang="ts">
@@ -15,24 +15,24 @@ const props = withDefaults(defineProps<IModalProps>(), {
 });
 
 const refModalContainer = ref<HTMLElement | null>(null);
-const isOpen = computed(() => getModalState(props.modalName as keyof IModalsState));
-const close = () => setModalState(props.modalName as keyof IModalsState, false);
+const isModalOpen = computed(() => getModalState(props.modalName as keyof IModalsState));
+const closeModal = () => setModalState(props.modalName as keyof IModalsState, false);
 
-const handleClickOutside = (e: MouseEvent) => {
+const handleClickOutsideModal = (e: MouseEvent) => {
   if (!refModalContainer.value) return
 
-  const clickedInside = refModalContainer.value.contains(e.target as Node)
+  const clickedInsideModal = refModalContainer.value.contains(e.target as Node)
 
-  if (!clickedInside) close();
+  if (!clickedInsideModal) closeModal();
 }
 
-watch(isOpen, async (open) => {
+watch(isModalOpen, async (open) => {
   if (!open) return
   await nextTick();
 
-  document.addEventListener('mousedown', handleClickOutside)
+  document.addEventListener('mousedown', handleClickOutsideModal)
 
-  return () => document.removeEventListener('mousedown', handleClickOutside)
+  return () => document.removeEventListener('mousedown', handleClickOutsideModal)
 });
 </script>
 
