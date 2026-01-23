@@ -1,4 +1,4 @@
 <template lang="pug">
-ComponentModal(modalName="Purchase")
+ComponentModal(modalName="purchase")
   h1 purchase
 </template>

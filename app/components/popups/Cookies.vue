@@ -1,4 +1,4 @@
 <template lang="pug">
-ComponentPopup(popupName="Cookies")
+ComponentPopup(popupName="cookies")
   h1 Cookies
 </template>

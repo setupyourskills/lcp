@@ -24,13 +24,13 @@ export interface IUserResponse {
 
 // Modals
 export interface IModalsState {
-  Purchase: boolean;
-  Contact: boolean;
-  Mentions: boolean;
-  Terms: boolean;
-  Confidential: boolean;
-  Cookies: boolean;
-  Use: boolean;
+  purchase: boolean;
+  contact: boolean;
+  mentions: boolean;
+  terms: boolean;
+  confidential: boolean;
+  cookies: boolean;
+  use: boolean;
 }
 
 export interface IModalProps {
@@ -38,7 +38,7 @@ export interface IModalProps {
 }
 
 export interface IPopupsState {
-  Cookies: boolean;
+  cookies: boolean;
 }
 
 export interface IPopupProps {

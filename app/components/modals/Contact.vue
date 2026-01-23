@@ -1,4 +1,4 @@
 <template lang="pug">
-ComponentModal(modalName="Contact")
+ComponentModal(modalName="contact")
   h1 Contact
 </template>

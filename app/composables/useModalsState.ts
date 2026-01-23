@@ -2,13 +2,13 @@ import type { IModalsState } from "~/assets/types/interfaces.d.ts";
 
 export const useModalsState = () => {
   const modalsState = useState<IModalsState>("stateModal", () => ({
-    Purchase: false,
-    Contact: false,
-    Mentions: false,
-    Terms: false,
-    Confidential: false,
-    Cookies: false,
-    Use: false,
+    purchase: false,
+    contact: false,
+    mentions: false,
+    terms: false,
+    confidential: false,
+    cookies: false,
+    use: false,
   }));
 
   const isAnyModalOpen = () => Object.values(modalsState.value).some(Boolean);

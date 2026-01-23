@@ -1,4 +1,4 @@
 <template lang="pug">
-ComponentModal(modalName="Mentions")
+ComponentModal(modalName="mentions")
   h1 Mentions
 </template>

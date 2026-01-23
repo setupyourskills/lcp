@@ -1,4 +1,4 @@
 <template lang="pug">
-ComponentModal(modalName="Cookies")
+ComponentModal(modalName="cookies")
   h1 Cookies
 </template>

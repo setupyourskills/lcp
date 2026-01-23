@@ -35,7 +35,7 @@ const copyright = "<span class='font-bold font-normal'>©</span> 2026 - <a href=
 const { setModalState } = useModalsState();
 
 const refFooterGroup = ref<HTMLElement | null>(null);
-const modals = ["Contact", "Mentions", "Terms", "Confidential", "Cookies", "Use"] as const satisfies readonly (keyof IModalsState)[];
+const modals = ["contact", "mentions", "terms", "confidential", "cookies", "use"] as const satisfies readonly (keyof IModalsState)[];
 
 const handler = (e: MouseEvent) => {
   const target = e.target as HTMLElement | null;
@@ -43,7 +43,7 @@ const handler = (e: MouseEvent) => {
   if (!target) return;
 
   for (const modal of modals) {
-    if (target.matches(`#${modal.toLowerCase()}`)) {
+    if (target.matches(`#${modal}`)) {
       e.preventDefault();
 
       setModalState(modal, true);
