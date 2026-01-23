@@ -15,7 +15,7 @@ section.purchase
         div.purchase__box-image-group
           NuxtImg(v-for="id in 2" :key="id" src="box.webp" :class="`purchase__box${(id).toString()}`")
         div.purchase__button-group
-          ComponentButton.purchase__button(title="Commander" @click="setModalState('Purchase', true)")
+          ComponentButton.purchase__button(title="Commander" @click="setModalState('purchase', true)")
       div.purchase__info
         p.font-xs(v-html="coupon")
 </template>

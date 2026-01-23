@@ -3,7 +3,7 @@ section.hero
   div.hero__group.margin-space
     h1.hero__title(v-html="hero.title") 
     p.hero__subtitle(v-html="hero.subtitle")
-    ComponentButton.hero__button-component(title="Commander" @click="setModalState('Purchase', true)")
+    ComponentButton.hero__button-component(title="Commander" @click="setModalState('purchase', true)")
   NuxtImg.hero__image(src="hero.webp")
 </template>
 
