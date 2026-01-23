@@ -19,15 +19,15 @@ import type { IInfoCardSection, IModalsState } from "~/assets/types/interfaces.d
 const footerItems: IInfoCardSection[] = [
   {
     title: "Laser Skills",
-    content: "Nous avons créé une poudre qui permet d’ajouter <span class='font-bold'>une dimension chromatique exceptionnelle et durable</span> à vos gravures lasers.<br /><br /><span class='font-accent'>✉</span> <a href='#' id='contact'>Nous contacter</a>",
+    content: "Nous avons créé une poudre qui permet d’ajouter <span class='font-bold'>une dimension chromatique exceptionnelle et durable</span> à vos gravures lasers.<br /><br /><span class='font-accent'>✉</span> <a href='#contact' class='modal'>Nous contacter</a>",
   },
   {
     title: "Notre Produit",
-    content: "<a href='#features'>Caractéristiques</a><br /><a href='#demo'>Démonstration</a><br /><a href='#colors'>Couleurs disponibles</a><br /><a href='#purchase'>Commander le lot Duo</a><br /><a href='#faq'>FAQ</a><br /><a href='#testimonials'>Témoignages</a><br /><a href='#newsletter'>Newsletter</a>",
+    content: "<a href='#features' class='inner-link'>Caractéristiques</a><br /><a href='#demo' class='inner-link'>Démonstration</a><br /><a href='#colors' class='inner-link'>Couleurs disponibles</a><br /><a href='#purchase' class='inner-link'>Commander le lot Duo</a><br /><a href='#faq' class='inner-link'>FAQ</a><br /><a href='#testimonials' class='inner-link'>Témoignages</a><br /><a href='#newsletter' class='inner-link'>Newsletter</a>",
   },
   {
     title: "Mentions",
-    content: "<a href='#' id='mentions'>Mentions légales</a><br /><a href='#' id='terms'>Conditions générales de vente</a><br /><a href='#' id='confidential'>Confidentialité / RGPD</a><br /><a href='#' id='cookies'>Gestion des cookies</a><br /><a href='#' id='use'>Conditions générales d'utilisation</a>",
+    content: "<a href='#mentions' class='modal'>Mentions légales</a><br /><a href='#terms' class='modal'>Conditions générales de vente</a><br /><a href='#confidential' class='modal'>Confidentialité / RGPD</a><br /><a href='#cookies' class='modal'>Gestion des cookies</a><br /><a href='#use' class='modal'>Conditions générales d'utilisation</a>",
   },
 ];
 const copyright = "<span class='font-bold font-normal'>©</span> 2026 - <a href='mailto:contact@setupyourskills'>SetupYourSkills</a>"
@@ -35,19 +35,26 @@ const copyright = "<span class='font-bold font-normal'>©</span> 2026 - <a href=
 const { setModalState } = useModalsState();
 
 const refFooterGroup = ref<HTMLElement | null>(null);
-const modals = ["contact", "mentions", "terms", "confidential", "cookies", "use"] as const satisfies readonly (keyof IModalsState)[];
 
 const handler = (e: MouseEvent) => {
   const target = e.target as HTMLElement | null;
 
   if (!target) return;
 
-  for (const modal of modals) {
-    if (target.matches(`#${modal}`)) {
-      e.preventDefault();
+  const href = target.getAttribute("href");
+  if (!href) return;
 
-      setModalState(modal, true);
-    }
+    e.preventDefault();
+
+  if (target.classList.contains("modal")) {
+    const modalKey = href.slice(1) as keyof IModalsState;
+
+    setModalState(modalKey, true);
+  } else if (target.classList.contains("inner-link")) {
+    const targetId = href.slice(1);
+    const targetEl = document.getElementById(targetId);
+
+    if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 };
 
