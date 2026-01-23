@@ -38,21 +38,22 @@ const refFooterGroup = ref<HTMLElement | null>(null);
 
 const handler = (e: MouseEvent) => {
   const target = e.target as HTMLElement | null;
-
   if (!target) return;
 
   const href = target.getAttribute("href");
   if (!href) return;
 
-    e.preventDefault();
-
   if (target.classList.contains("modal")) {
     const modalKey = href.slice(1) as keyof IModalsState;
+
+    e.preventDefault();
 
     setModalState(modalKey, true);
   } else if (target.classList.contains("inner-link")) {
     const targetId = href.slice(1);
     const targetEl = document.getElementById(targetId);
+
+    e.preventDefault();
 
     if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
