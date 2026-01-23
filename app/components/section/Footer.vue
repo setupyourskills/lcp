@@ -90,5 +90,6 @@ onMounted(() => {
   &__copyright
     z-index: 1
     position: relative
+    margin-bottom: $phi-1
     text-align: right
 </style>
