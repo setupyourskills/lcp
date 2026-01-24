@@ -12,20 +12,22 @@ div.contact-modal
     div.contact-modal__group
       form.contact-modal__form(@submit.prevent="send")
         div.contact-modal__input-name
-          ComponentInput(v-model="nameInput" placeholder="Nom" type="text" maxlength="255" required)
+          ComponentInput(v-model="contactNameInput" placeholder="Nom" type="text" maxlength="255" required)
         div.contact-modal__input-email
-          ComponentInput.contact-modal__input(v-model="emailInput" placeholder="Email" type="email" maxlength="255" required)
+          ComponentInput.contact-modal__input(v-model="contactEmailInput" placeholder="Email" type="email" maxlength="255" required)
         div.contact-modal__textarea-content
-          ComponentTextarea.contact-modal__textarea( v-model="contentTextarea" placeholder="Message" rows="6" maxlength="2500" required)
+          ComponentTextarea.contact-modal__textarea( v-model="contactContentTextarea" placeholder="Message" rows="6" maxlength="2500" required)
         div.contact-modal__buttons
           ComponentButton.contact-modal__button-cancel(title="Annuler" @click="closeModal()")
           ComponentButton.contact-modal__button-send(title="Envoyer" type="submit")
-        p.contact-modal__status.font-xs  {{ statusMessage }}
+        p.contact-modal__status.font-xs  {{ contactStatusMessage }}
 </template>
 
 <script setup lang="ts">
 import type { FormStatus } from "~/assets/types/types.d.ts";
 import type { ModalProps } from "~/assets/types/types.d.ts";
+
+const CLOSE_MODAL_TIMEOUT = 2000;
 
 const contact: ModalProps = {
   icon: "📨",
@@ -33,23 +35,37 @@ const contact: ModalProps = {
   content: "Veuillez remplir le formulaire ci-dessous pour nous laisser un message.",
 };
 
-const nameInput = ref();
-const emailInput = ref();
-const contentTextarea = ref();
-
 const { setModalState } = useModalsState();
 const closeModal = () => setModalState("contact", false);
 
-const statusMessage = ref();
-const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const status: FormStatus = {
   ok: "✅ Votre message a bien été envoyé !",
   failed: "❌ Une erreur s'est produite !",
   invalid: "❌ Votre formulaire est invalide !"
 };
 
+const contactNameInput = ref();
+const contactEmailInput = ref();
+const contactContentTextarea = ref();
+const contactStatusMessage = ref();
+
 const send = () => {
-  console.log("sent");
+  const { isInvalidRegex, isTooLong } = useCheckEmail(contactEmailInput.value);
+
+  if (isInvalidRegex || isTooLong) contactStatusMessage.value = status.invalid;
+  else if (contactNameInput.value.length > 255) contactStatusMessage.value = status.invalid;
+  else if (contactContentTextarea.value.length > 2500) contactStatusMessage.value = status.invalid;
+  else {
+    console.log("sent");
+    contactStatusMessage.value = status.ok;
+
+    setTimeout(() => {
+      contactEmailInput.value = "";
+      contactNameInput.value = "";
+      contactContentTextarea.value = "";
+      closeModal();
+    }, CLOSE_MODAL_TIMEOUT);
+  }
 }
 </script>
 

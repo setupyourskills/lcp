@@ -4,9 +4,9 @@ section.newsletter
     div.newsletter__group.margin-space
       ComponentArticleHeader.newsletter__title-component(:mark="false" :title="articleHeader.title" :content="articleHeader.content")
       form.newsletter__form(@submit.prevent="join")
-        ComponentInput.newsletter__input(v-model="emailInput" placeholder="Email" type="email" maxlength="255" required)
+        ComponentInput.newsletter__input(v-model="newsletterEmailInput" placeholder="Email" type="email" maxlength="255" required)
         ComponentButton.newsletter__button(title="S'abonner" type="submit")
-        p.newsletter__status.font-xs {{ statusMessage }}
+        p.newsletter__status.font-xs {{ newsletterStatusMessage }}
   div.newsletter__info
     p.font-xs(v-html="info.spam") 
     p.font-xs(v-html="info.confidential") 
@@ -17,9 +17,6 @@ import type { ArticleHeader, FormStatus } from "~/assets/types/types.d.ts";
 import type { InfoNewsletterSection } from "~/assets/types/types.d.ts";
 import type { IUserResponse } from "~/assets/types/interfaces.d.ts"
 
-const emailInput = ref();
-const statusMessage = ref();
-
 const articleHeader: ArticleHeader = {
   title: "Rejoignez <span class='font-accent'>la newsletter</span>",
   content: "<span class='font-bold'>Recevez</span> les dernières <span class='font-bold'>nouvelles</span> pour <span class='font-bold'>rester toujours informé !</span>",
@@ -29,31 +26,34 @@ const info: InfoNewsletterSection = {
   confidential: "<span class='font-accent font-bold font-normal'>🗹</span> Votre Email reste confidentiel"
 };
 
-const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const status: FormStatus = {
   ok: "✅ Vous êtes abonné !",
   failed: "❌ Une erreur s'est produite !",
   invalid: "❌ Email est invalide !"
 };
 
+const newsletterEmailInput = ref();
+const newsletterStatusMessage = ref();
+
 const join = async () => {
-  if (!emailRegex.test(emailInput.value)) statusMessage.value = status.invalid;
-  else if (emailInput.value.length > 255) statusMessage.value = status.invalid;
+  const { isInvalidRegex, isTooLong } = useCheckEmail(newsletterEmailInput.value);
+
+  if (isInvalidRegex || isTooLong) newsletterStatusMessage.value = status.invalid;
   else {
     try {
       const result = await $fetch<IUserResponse>("/api/addEmail", {
         method: "POST",
         body: {
-          email: emailInput.value
+          email: newsletterEmailInput.value
         }
       });
-      statusMessage.value = status.ok;
+      newsletterStatusMessage.value = status.ok;
     } catch (e: any) {
-      statusMessage.value = status.failed;
+      newsletterStatusMessage.value = status.failed;
     }
   }
 
-  emailInput.value = "";
+  newsletterEmailInput.value = "";
 };
 </script>
 
