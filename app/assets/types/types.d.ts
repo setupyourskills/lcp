@@ -13,10 +13,16 @@ export type InfoNewsletterSection = {
   confidential: string;
 };
 
-export type SubscriptionStatus = {
+export type FormStatus = {
   ok: string;
   failed: string;
   invalid: string;
 };
 
 export type YesNo = "yes" | "no";
+
+export type ModalProps = {
+  icon: string;
+  title: string;
+  content: string;
+};

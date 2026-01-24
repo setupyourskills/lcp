@@ -39,6 +39,7 @@ export interface IModalProps {
   content: string;
 }
 
+// Popups
 export interface IPopupsState {
   cookies: boolean;
 }
@@ -77,5 +78,9 @@ export interface IInfoCardProps {
 }
 
 export interface IInputProps {
+  placeholder: string;
+}
+
+export interface ITextareaProps {
   placeholder: string;
 }
