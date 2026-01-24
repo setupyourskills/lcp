@@ -1,4 +1,4 @@
-const COOKIE_POPUP_TIMEOUT = 2500;
+const COOKIE_POPUP_TIMEOUT = 1500;
 
 export default defineNuxtPlugin(() => {
   const { setPopupState } = usePopupsState();
