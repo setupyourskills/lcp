@@ -6,14 +6,14 @@ section.newsletter
       form.newsletter__form(@submit.prevent="join")
         ComponentInput.newsletter__input(v-model="emailInput" placeholder="Email" type="email" maxlength="255" required)
         ComponentButton.newsletter__button(title="S'abonner" type="submit")
-        p.newsletter__status.font-xs(v-html="statusMessage")
+        p.newsletter__status.font-xs {{ statusMessage }}
   div.newsletter__info
     p.font-xs(v-html="info.spam") 
     p.font-xs(v-html="info.confidential") 
 </template>
 
 <script setup lang="ts">
-import type { ArticleHeader, SubscriptionStatus } from "~/assets/types/types.d.ts";
+import type { ArticleHeader, FormStatus } from "~/assets/types/types.d.ts";
 import type { InfoNewsletterSection } from "~/assets/types/types.d.ts";
 import type { IUserResponse } from "~/assets/types/interfaces.d.ts"
 
@@ -30,7 +30,7 @@ const info: InfoNewsletterSection = {
 };
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const status: SubscriptionStatus = {
+const status: FormStatus = {
   ok: "✅ Vous êtes abonné !",
   failed: "❌ Une erreur s'est produite !",
   invalid: "❌ Email est invalide!"
