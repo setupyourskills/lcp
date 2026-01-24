@@ -1,8 +1,11 @@
 <template lang="pug">
 div.modal(v-if="isModalOpen")
   div.modal__container(ref="refModalContainer")
+    div.modal__icon
+      slot(name="icon")
+    h2.modal__title.font-xl {{ props.title }}
+    p.modal__content.font-m(v-html="props.content")
     slot
-    ComponentButton(title="Fermer" @click="closeModal()")
 </template>
 
 <script setup lang="ts">
@@ -12,6 +15,8 @@ const { setModalState, getModalState } = useModalsState();
 
 const props = withDefaults(defineProps<IModalProps>(), {
   modalName: "",
+  title: "Title",
+  content: "Content"
 });
 
 const refModalContainer = ref<HTMLElement | null>(null);
@@ -46,21 +51,31 @@ watch(isModalOpen, async (open) => {
   max-width: 1280px
   background-color: rgba(0,0,0,.25)
   backdrop-filter: blur(6px)
-
-.modal__container
-  display: flex
-  flex-direction: column
-  align-items: center
-  position: absolute
-  inset: 0
-  background-color: $element-background-color
   overflow-y: auto
 
-  @media screen and (min-width: 600px)
-    inset-block: $phi3
-    border-block: $border-section-framed solid $accent2
+  &__container
+    position: absolute
+    text-align: center
+    padding-block: 0 $phi3
+    border-bottom: $border-section-framed solid $accent2
+    background-color: $element-background-color
 
-  @media screen and (min-width: 850px)
-    @include frame
-    inset-inline: $phi3
+    @media screen and (min-width: 600px)
+      margin-top: $phi3
+      padding-inline: $phi2
+      border-block: $border-section-framed solid $accent2
+
+    @media screen and (min-width: 850px)
+      @include frame
+      inset-inline: $phi3
+      padding-inline: $phi3
+
+  &__icon
+    margin-block: $phi3 $phi2
+
+  &__title
+    margin-block: 0 $phi-1
+
+  &__content
+    margin-block: 0 $phi2
 </style>

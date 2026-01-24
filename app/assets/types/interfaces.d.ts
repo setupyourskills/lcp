@@ -35,6 +35,8 @@ export interface IModalsState {
 
 export interface IModalProps {
   modalName: string;
+  title: string;
+  content: string;
 }
 
 export interface IPopupsState {
