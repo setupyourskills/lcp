@@ -30,7 +30,6 @@ import type { ModalProps } from "~/assets/types/types.d.ts";
 const CLOSE_MODAL_TIMEOUT = 2000;
 
 const contact: ModalProps = {
-  icon: "📨",
   title: "Nous contacter",
   content: "Veuillez remplir le formulaire ci-dessous pour nous laisser un message.",
 };

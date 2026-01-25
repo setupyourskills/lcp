@@ -22,7 +22,6 @@ export type FormStatus = {
 export type YesNo = "yes" | "no";
 
 export type ModalProps = {
-  icon: string;
   title: string;
   content: string;
 };
