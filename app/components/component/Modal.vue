@@ -56,6 +56,7 @@ watch(isModalOpen, async (open) => {
   &__container
     position: absolute
     text-align: center
+    padding-inline: $phi1
     padding-block: 0 $phi3
     border-bottom: $border-section-framed solid $accent2
     background-color: $element-background-color
