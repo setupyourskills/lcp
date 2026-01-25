@@ -1,6 +1,6 @@
 <template lang="pug">
 div.cookies-modal
-  ComponentModal.cookies-modal__modal(modalName="cookies" :title="contact.title" :content="contact.content")
+  ComponentModal.cookies-modal__modal(modalName="cookies" :title="cookies.title" :content="cookies.content")
     template(#icon)
       svg(width="180" height="110" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg")
         path( d="M32 58C19.37 58 8 46.63 8 32C8 17.37 19.37 6 32 6C44.63 6 56 17.37 56 32C56 46.63 40.63 58 32 58Z" stroke="#FAD289" stroke-width="4")
@@ -40,7 +40,7 @@ div.cookies-modal
 import type { ModalProps } from "~/assets/types/types.d.ts";
 import type { YesNo } from "~/assets/types/types.d.ts";
 
-const contact: ModalProps = {
+const cookies: ModalProps = {
   title: "Politique des cookies",
   content: "Gestion transparente et respectueuse de votre vie privée",
 };
