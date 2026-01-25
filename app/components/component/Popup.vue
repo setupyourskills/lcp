@@ -1,5 +1,6 @@
 <template lang="pug">
 div.popup.popup--appear(v-if="isDisplay")
+  button.popup__close(@click="setPopupState(props.popupName, false)") ✖
   div.popup__group.margin-space
     h4.popup__title {{ props.title }}
     p.popup__content(v-html="props.content")
@@ -48,8 +49,24 @@ watch(isPopupOpen, (newVal) => {
   border-top: $border-section-framed solid $accent2
   background-color: $element-background-color
 
+  &__close
+    position: absolute
+    right: $phi1
+    top: $phi1
+    font-size: $phi2
+    color: $accent1
+    background: none
+    border: none
+    cursor: pointer
+
+    @media screen and (min-width: 600px)
+      right: $phi2
+
+    @media screen and (min-width: 850px)
+      right: $phi3
+    
   &__group
-    margin-bottom: $phi1
+    margin-bottom: $phi2
     text-align: center
 
     @media screen and (min-width: 600px)
@@ -57,7 +74,7 @@ watch(isPopupOpen, (newVal) => {
 
   &__title
     margin-inline: auto
-    margin-block: $phi1
+    margin-block: $phi2 $phi1
 
   &__content
     margin-block: 0 $phi2
