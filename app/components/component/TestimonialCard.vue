@@ -32,6 +32,7 @@ const props = withDefaults(defineProps<ITestimonialSection>(), {
 
   &__content
     text-align: center
+    font-style: italic
 
   &__user
     display: grid
@@ -51,4 +52,7 @@ const props = withDefaults(defineProps<ITestimonialSection>(), {
 
   &__name
     font-weight: bold
+
+  &__country
+    font-style: italic
 </style>

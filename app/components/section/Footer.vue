@@ -92,4 +92,5 @@ onMounted(() => {
     position: relative
     margin-bottom: $phi-1
     text-align: right
+    font-style: italic
 </style>
