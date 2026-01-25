@@ -30,6 +30,7 @@ export interface IModalsState {
   terms: boolean;
   confidential: boolean;
   cookies: boolean;
+  credits: boolean;
   use: boolean;
 }
 

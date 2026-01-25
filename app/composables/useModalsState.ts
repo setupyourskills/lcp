@@ -8,6 +8,7 @@ export const useModalsState = () => {
     terms: false,
     confidential: false,
     cookies: false,
+    credits: false,
     use: false,
   }));
 
