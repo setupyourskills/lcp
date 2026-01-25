@@ -1,6 +1,6 @@
 <template lang="pug">
 div.contact-modal
-  ComponentModal.contact-modal__modal(modalName="contact" :icon="contact.icon" :title="contact.title" :content="contact.content")
+  ComponentModal.contact-modal__modal(modalName="contact" :title="contact.title" :content="contact.content")
     template(#icon)
       svg(xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="180" height="110" viewBox="0 100 256 48")
         g(transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" style="stroke: none; stroke-width: 0; fill: #FAD289; opacity: 1;")
@@ -9,18 +9,14 @@ div.contact-modal
           path(d="M 25.423 46.5 H 7.539 c -0.829 0 -1.5 -0.671 -1.5 -1.5 s 0.671 -1.5 1.5 -1.5 h 17.885 c 0.829 0 1.5 0.671 1.5 1.5 S 26.252 46.5 25.423 46.5 z" style="fill: #FAD289; stroke: #FAD289; stroke-width: 1;")
           path(d="M 12.497 36.016 H 1.5 c -0.829 0 -1.5 -0.671 -1.5 -1.5 s 0.671 -1.5 1.5 -1.5 h 10.997 c 0.829 0 1.5 0.671 1.5 1.5 S 13.326 36.016 12.497 36.016 z" style="fill: #FAD289; stroke: #FAD289; stroke-width: 1;")
           path(d="M 12.497 56.984 H 4.394 c -0.829 0 -1.5 -0.672 -1.5 -1.5 s 0.671 -1.5 1.5 -1.5 h 8.104 c 0.829 0 1.5 0.672 1.5 1.5 S 13.326 56.984 12.497 56.984 z" style="fill: #FAD289; stroke: #FAD289; stroke-width: 1;")
-    div.contact-modal__group
-      form.contact-modal__form(@submit.prevent="send")
-        div.contact-modal__input-name
-          ComponentInput(v-model="contactNameInput" placeholder="Nom" type="text" maxlength="255" required)
-        div.contact-modal__input-email
-          ComponentInput.contact-modal__input(v-model="contactEmailInput" placeholder="Email" type="email" maxlength="255" required)
-        div.contact-modal__textarea-content
-          ComponentTextarea.contact-modal__textarea( v-model="contactContentTextarea" placeholder="Message" rows="6" maxlength="2500" required)
-        div.contact-modal__buttons
-          ComponentButton.contact-modal__button-cancel(title="Annuler" @click="closeModal()")
-          ComponentButton.contact-modal__button-send(title="Envoyer" type="submit")
-        p.contact-modal__status.font-xs  {{ contactStatusMessage }}
+    form.contact-modal__form(@submit.prevent="send")
+      ComponentInput.contact-modal__input-name(v-model="contactNameInput" placeholder="Nom" type="text" maxlength="255" required)
+      ComponentInput.contact-modal__input.contact-modal__input-email(v-model="contactEmailInput" placeholder="Email" type="email" maxlength="255" required)
+      ComponentTextarea.contact-modal__textarea.contact-modal__textarea-content( v-model="contactContentTextarea" placeholder="Message" rows="6" maxlength="2500" required)
+      div.contact-modal__buttons
+        ComponentButton.contact-modal__button-cancel(title="Annuler" @click="closeModal()")
+        ComponentButton.contact-modal__button-send(title="Envoyer" type="submit")
+      p.contact-modal__status.font-xs  {{ contactStatusMessage }}
 </template>
 
 <script setup lang="ts">
