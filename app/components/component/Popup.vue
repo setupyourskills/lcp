@@ -1,8 +1,8 @@
 <template lang="pug">
 div.popup.popup--appear(v-if="isDisplay")
   div.popup__group.margin-space
-    h4.popup__title.font-l {{ props.title }}
-    p.popup__content.font-s(v-html="props.content")
+    h4.popup__title {{ props.title }}
+    p.popup__content(v-html="props.content")
     slot
 </template>
 
