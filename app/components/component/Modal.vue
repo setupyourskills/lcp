@@ -1,7 +1,7 @@
 <template lang="pug">
 div.modal(v-if="isModalOpen")
   div.modal__container(ref="refModalContainer")
-    button.modal__close(@click="setModalState(props.modalName, false)") ✖
+    ComponentCloseModal(:modalName="props.modalName")
     div.modal__icon
       slot(name="icon")
     h2.modal__title.font-xl {{ props.title }}

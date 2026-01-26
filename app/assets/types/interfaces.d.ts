@@ -40,6 +40,10 @@ export interface IModalProps {
   content: string;
 }
 
+export interface ICloseModalProps {
+  modalName: string;
+}
+
 // Popups
 export interface IPopupsState {
   cookies: boolean;
