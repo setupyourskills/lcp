@@ -1,6 +1,7 @@
 <template lang="pug">
 div.modal(v-if="isModalOpen")
   div.modal__container(ref="refModalContainer")
+    button.modal__close(@click="setModalState(props.modalName, false)") ✖
     div.modal__icon
       slot(name="icon")
     h2.modal__title.font-xl {{ props.title }}
@@ -53,6 +54,22 @@ watch(isModalOpen, async (open) => {
   backdrop-filter: blur(6px)
   overflow-y: auto
 
+  &__close
+    position: absolute
+    right: $phi1
+    top: $phi2
+    font-size: $phi2
+    color: $accent1
+    background: none
+    border: none
+    cursor: pointer
+
+    @media screen and (min-width: 600px)
+      right: $phi2
+
+    @media screen and (min-width: 850px)
+      right: $phi3
+    
   &__container
     position: absolute
     text-align: center
