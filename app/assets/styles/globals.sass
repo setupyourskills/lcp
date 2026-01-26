@@ -55,7 +55,7 @@ h1
   @media screen and (min-width: 600px)
     font-size: $phi-0_75
 
-h4 + p,
+h4 ~ p,
 li p,
 .font-s
     margin-block: 0
@@ -95,6 +95,10 @@ h4,
 
   @media screen and (min-width: 850px)
     margin-inline: $phi3
+
+h4 ~ br
+  display: block
+  margin: $phi-2
 
 // Other
 li::marker
