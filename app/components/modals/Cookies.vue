@@ -19,17 +19,23 @@ div.cookies-modal
       ul
         li
           span.font-bold Obligatoires
-          p Essentiels au fonctionnement du site (sécurité, panier). Aucun consentement requis.
+          p Ils sont essentiels au fonctionnement du Site, ces cookies ne peuvent pas être désactivés ou paramétrés sous peine de ne plus pouvoir accéder au Site, aux services du Site et/ou d’en altérer l’affichage. Ils vous permettent d’utiliser les principales fonctionnalités du Site et de sécuriser votre connexion.
+          p Ainsi le dépôt de ces cookies ne requiert pas votre consentement préalable.
+
         li
           span.font-bold Fonctionnels / Statistiques 
-          p Recueillent des données anonymes (Matomo) pour optimiser le site et adapter l’affichage à votre appareil. Déposés sans consentement préalable mais modifiables via votre navigateur ou notre widget de gestion.
+          p Ils recueillent des données anonymes pour optimiser le Site et adapter l’affichage à votre appareil. Ils sont déposés sans consentement préalable mais modifiables à tout moment de votre navigation.
+
         li
           span.font-bold Tiers (publicités, réseaux sociaux)
-          p Déposés par des partenaires externes (YouTube, Facebook, etc.). Ils peuvent mémoriser vos visites et diffuser des publicités ciblées. Vous avez la possibilité d’accepter ou refuser ces cookies via le widget « Gestion des cookies » ou en ajustant les paramètres de votre navigateur.
+          p Ils sont déposés par des partenaires externes (YouTube, Facebook, etc.). Ils peuvent mémoriser vos visites et diffuser des publicités ciblées.
+          p Vous avez la possibilité d’accepter ou refuser ces cookies à tout moment de votre navigation.
 
       h4 Gérer vos préférences
-      p Cliquez sur le bouton « Gestion des cookies » dans le footer pour accepter ou refuser les catégories non‑obligatoires.
-      p Vous pouvez également désactiver ces traceurs directement dans les paramètres de votre navigateur (Chrome, Firefox, Safari, Edge, etc.).
+      p Vous pouvez accepter ou refuser les catégories non-obligatoires via la popup ou bien en cliquant sur le lien « Gestion des cookies » dans le footer.
+      br
+      p Vous pouvez également les désactiver directement dans les paramètres de votre navigateur.
+      p Nous attirons cependant votre attention sur le fait que la désactivation totale des cookies peut conduire à rendre certains de nos services inaccessibles ou entraîner leur utilisation moins performante, moins efficace ou moins adaptée.
 
       div.cookies-modal__buttons
         ComponentButton(title="Accepter" @click="choiceCookie('yes')")
@@ -58,7 +64,7 @@ const choiceCookie = (choice: YesNo) => {
 .cookies-modal
 
   &__container
-    text-align: left
+    text-align: justify
 
     h4
       margin-block: $phi2 $phi-1
