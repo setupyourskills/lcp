@@ -27,7 +27,7 @@ const footerItems: IInfoCardSection[] = [
   },
   {
     title: "Mentions",
-    content: "<a href='#mentions' class='modal'>Mentions légales</a><br /><a href='#terms' class='modal'>Conditions générales de vente</a><br /><a href='#confidential' class='modal'>Confidentialité / RGPD</a><br /><a href='#cookies' class='modal'>Gestion des cookies</a><br /><a href='#use' class='modal'>Conditions générales d'utilisation</a><a href='#credits' class='modal'>Crédits</a>",
+    content: "<a href='#mentions' class='modal'>Mentions légales</a><br /><a href='#terms' class='modal'>Conditions générales de vente</a><br /><a href='#confidential' class='modal'>Confidentialité / RGPD</a><br /><a href='#cookies' class='modal'>Gestion des cookies</a><br /><a href='#use' class='modal'>Conditions générales d'utilisation</a>",
   },
 ];
 const copyright = "<span class='font-bold font-normal'>©</span> 2026 - <a href='mailto:contact@setupyourskills'>SetupYourSkills</a>"
