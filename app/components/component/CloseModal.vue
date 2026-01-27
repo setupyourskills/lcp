@@ -23,7 +23,7 @@ const closeModal = () => {
   &__button
     position: absolute
     right: $phi1
-    top: $phi2
+    top: $phi1
     font-size: $phi2
     color: $accent1
     background: none
@@ -31,8 +31,6 @@ const closeModal = () => {
     cursor: pointer
 
     @media screen and (min-width: 600px)
+      top: $phi2
       right: $phi2
-
-    @media screen and (min-width: 850px)
-      right: $phi3
 </style>
