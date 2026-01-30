@@ -23,7 +23,7 @@ export const useCounterColorsState = () => {
     ),
   );
 
-  const isQuantityEven = () => total.value % 2 === 0;
+  const isQuantityEven = () => total.value && total.value % 2 === 0;
 
   const getCounterColorList = computed(() =>
     Object.entries(counterColorsState.value)
