@@ -1,6 +1,6 @@
 <template lang="pug">
 div.popup.popup--appear(v-if="isDisplay")
-  button.popup__close(@click="setPopupState(props.popupName, false)") ✖
+  ComponentCloseModal(:componentName="props.popupName" componentType="popup")
   div.popup__group.margin-space
     h4.popup__title {{ props.title }}
     p.popup__content(v-html="props.content")

@@ -40,8 +40,9 @@ export interface IModalProps {
   content: string;
 }
 
-export interface ICloseModalProps {
-  modalName: string;
+export interface ICloseComponentProps {
+  componentType: string;
+  componentName: string;
 }
 
 // Popups
