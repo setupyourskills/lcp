@@ -31,7 +31,7 @@ watch(isPopupOpen, (newVal) => {
     if (el) {
       el.classList.remove('popup--appear')
       el.classList.add('popup--disappear')
-      setTimeout(() => { isDisplay.value = false }, 500) // durée de l'animation
+      setTimeout(() => { isDisplay.value = false }, 500)
     }
   }
 });
