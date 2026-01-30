@@ -34,7 +34,7 @@ watch(isPopupOpen, (newVal) => {
       setTimeout(() => { isDisplay.value = false }, 500) // durée de l'animation
     }
   }
-})
+});
 </script>
 
 <style lang="sass" scoped>
