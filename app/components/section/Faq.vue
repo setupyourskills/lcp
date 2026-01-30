@@ -15,7 +15,7 @@ import type { ArticleHeader } from "~/assets/types/types.d.ts"
 import type { IFaqSection } from "~/assets/types/interfaces.d.ts"
 
 const articleHeader: ArticleHeader = {
-  title: "Les poudres <span class='font-accent'>Questions</span> fréquentes",
+  title: "<span class='font-accent'>Questions</span> fréquentes",
   content: "<span class='font-bold'>Trouvez les réponses</span> à toutes vos interrogations sur nos poudres laser, <span class='font-bold'>tout doit rester clair !</span>",
 };
 const faq: IFaqSection[] = [
