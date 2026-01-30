@@ -7,8 +7,17 @@
 .font-bold
   font-weight: bold
 
+.font-default-color
+  color: $primary!important
+
+.font-alert-color
+  color: $active!important
+
 .font-accent
-  color: $accent1
+  color: $accent1!important
+
+.font-deactivate
+  color: $accent2
 
 .font-title-accent
   color: #E59714
@@ -103,3 +112,16 @@ h4 ~ br
 // Other
 li::marker
   color: $accent1
+
+.deactivate-button
+  cursor: default
+
+.deactivate-button-background
+  background-color: $secondary
+
+.activate-button
+  cursor: pointer
+
+.activate-element
+  box-shadow: 4px 4px 4px 0px $secondary
+  transform: translate(-3px, -3px)
