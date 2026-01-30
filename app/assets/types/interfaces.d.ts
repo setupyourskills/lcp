@@ -56,6 +56,18 @@ export interface IPopupProps {
   content: string;
 }
 
+export interface ICounterColorsState {
+  red: number;
+  blue: number;
+  green: number;
+  purple: number;
+  gold: number;
+  orange: number;
+  white: number;
+  yellow: number;
+  black: number;
+}
+
 // Components
 export interface IArticleHeaderProps {
   title: string;
@@ -72,7 +84,8 @@ export interface IButtonProps {
 }
 
 export interface IColorCardProps {
-  colorName: string;
+  colorName: keyof ICounterColorsState;
+  componentType?: string;
 }
 
 export interface IInfoCardProps {

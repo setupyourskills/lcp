@@ -3,14 +3,19 @@ div.color-card-component
   div.color-card-component__component(
     @click="incColor"
     @contextmenu.prevent="decColor"
-    :class="{ 'activate-element': counterColor }"
+    :class="{ 'activate-element': counterColor, 'activate-button': props.componentType === 'modal'}"
   )
     p.color-card-component__color-name.font-m {{ props.colorName }}
 
-  p.color-card-component__label.font-deactivate.font-m(
-    v-if="props.componentType === 'modal'"
-    :class="{ 'font-accent font-bold': counterColor }"
-    ) {{ counterColor ? `x ${counterColor}` : 0 }}
+  div.color-card-component__counter-group.font-m(v-if="props.componentType === 'modal'")
+    div.color-card-component__moins(
+      @click="decColor"
+      :class="counterColor ? 'font-default-color activate-button' : 'deactivate-small-button'"
+      ) -
+    div.color-card-component__number(
+    :class="!counterColor ? 'font-deactivate' : isQuantityEven() ? 'font-validate-color' : 'font-alert-color'"
+     ) {{ counterColor ? `${counterColor}` : 0 }}
+    div.color-card-component__plus(@click="incColor") +
 </template>
 
 <script setup lang="ts">
@@ -21,7 +26,7 @@ const props = withDefaults(defineProps<IColorCardProps>(), {
   componentType: "normal",
 });
 
-const { getCounterColorsState, increaseColor, decreaseColor } = useCounterColorsState();
+const { isQuantityEven, getCounterColorsState, increaseColor, decreaseColor } = useCounterColorsState();
 
 const counterColor = computed(() => getCounterColorsState(props.colorName));
 
@@ -66,6 +71,26 @@ const decColor = () => {
       border-radius: 50%
       background-color: v-bind("props.colorName")
 
-  &__label
-    margin: 0
+  &__counter-group
+    display: flex
+    flex-direction: row
+    justify-content: space-around
+    align-items: center
+    margin-top: $phi-2
+    font-weight: bold
+    border-radius: 10px
+    border: 3px solid $accent2
+    background-color: $element-background-color
+
+  &__number
+    flex: 2
+    margin: auto
+    border-inline: 2px solid $accent2
+
+  &__moins,
+  &__plus
+    flex: 1
+
+  &__plus
+    cursor: pointer
 </style>
