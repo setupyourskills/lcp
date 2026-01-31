@@ -29,6 +29,7 @@ div.purchase-modal
     div.purchase-modal__button
       ComponentButton(title="Annuler" @click="closeModal")
       ComponentButton.purchase-modal__payButton(title="Commander" @click="goPay" :class="{ 'deactivate-big-button': deactivateButton }" )
+    p.purchase-modal__info-pay.font-xs Après avoir cliqué sur le bouton "payer", vous serez redirigé vers une page sécurisée pour effectuer votre paiement en toute tranquillité.
 </template>
 
 <script setup lang="ts">
@@ -106,4 +107,7 @@ const goPay = () => {
     p
       margin-block: 0
       font-style: normal
+
+  &__info-pay
+    margin-block: $phi-2 0
 </style>
