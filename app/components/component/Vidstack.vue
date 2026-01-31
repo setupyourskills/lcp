@@ -1,10 +1,10 @@
 <template>
-  <ClientOnly>
+  <client-only>
     <media-player :title="props.title" :src="props.videoSrc">
       <media-provider></media-provider>
       <media-video-layout :thumbnails="props.thumbnails"></media-video-layout>
     </media-player>
-  </ClientOnly>
+  </client-only>
 </template>
 
 <script setup lang="ts">
