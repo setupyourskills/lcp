@@ -17,3 +17,38 @@ const props = withDefaults(defineProps<IVidstackProps>(), {
   thumbnails: ""
 });
 </script>
+
+<style lang="sass">
+.vds-icon,
+.vds-time,
+.vds-time-divider,
+.vds-chapter-title,
+.vds-chapter-title::before,
+.vds-menu-section-title,
+.vds-menu-item-label
+  color: $accent1
+
+.vsd-slider-track
+  color: $accent2
+
+.vds-slider .vds-slider-track
+  background-color: $secondary
+
+.vds-time-slider .vds-slider-progress
+  background-color: $background-color
+
+.vds-slider .vds-slider-track-fill,
+.vds-menu-checkbox::after
+  background-color: $accent1
+
+.vds-menu-checkbox
+  background-color: $external-color
+
+.vds-slider-step,
+.vds-menu-checkbox[aria-checked="true"]
+  background-color: $accent2
+
+.vds-slider-thumb
+  background-color: $accent1
+  border-color: $accent1
+</style>
