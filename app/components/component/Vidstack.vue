@@ -1,0 +1,19 @@
+<template>
+  <ClientOnly>
+    <media-player :title="props.title" :src="props.videoSrc">
+      <media-provider></media-provider>
+      <media-video-layout thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"></media-video-layout>
+    </media-player>
+  </ClientOnly>
+</template>
+
+<script setup lang="ts">
+import 'vidstack/bundle';
+// import videoSrc from '~/assets/videos/720p.mp4';
+import type { IVidstackProps } from "~/assets/types/interfaces.d.ts"
+
+const props = withDefaults(defineProps<IVidstackProps>(), {
+  title: "Title",
+  videoSrc: "",
+});
+</script>

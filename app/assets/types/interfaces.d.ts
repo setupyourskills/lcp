@@ -103,3 +103,8 @@ export interface IInputProps {
 export interface ITextareaProps {
   placeholder: string;
 }
+
+export interface IVidstackProps {
+  title: string;
+  videoSrc: string;
+}

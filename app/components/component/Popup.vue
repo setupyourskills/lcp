@@ -39,7 +39,7 @@ watch(isPopupOpen, (newVal) => {
 
 <style lang="sass" scoped>
 .popup
-  z-index: 2
+  z-index: 20
   position: fixed
   bottom: 0
   margin-inline: auto

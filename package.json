@@ -23,6 +23,7 @@
     "@types/node": "^25.0.9",
     "sass": "^1.97.2",
     "typescript": "^5.9.3",
+    "vidstack": "^1.12.13",
     "vue-tsc": "^3.2.2"
   }
 }

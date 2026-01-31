@@ -1,4 +1,5 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import { vite as vidstack } from "vidstack/plugins";
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
@@ -26,7 +27,13 @@ export default defineNuxtConfig({
       styles: ["normal", "italic"],
     },
   },
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag.startsWith("media-"),
+    },
+  },
   vite: {
+    plugins: [vidstack()],
     css: {
       preprocessorOptions: {
         sass: {
