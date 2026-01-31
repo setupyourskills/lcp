@@ -107,4 +107,5 @@ export interface ITextareaProps {
 export interface IVidstackProps {
   title: string;
   videoSrc: string;
+  thumbnails?: string;
 }

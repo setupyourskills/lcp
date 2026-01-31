@@ -2,7 +2,7 @@
   <ClientOnly>
     <media-player :title="props.title" :src="props.videoSrc">
       <media-provider></media-provider>
-      <media-video-layout thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"></media-video-layout>
+      <media-video-layout :thumbnails="props.thumbnails"></media-video-layout>
     </media-player>
   </ClientOnly>
 </template>
@@ -15,5 +15,6 @@ import type { IVidstackProps } from "~/assets/types/interfaces.d.ts"
 const props = withDefaults(defineProps<IVidstackProps>(), {
   title: "Title",
   videoSrc: "",
+  thumbnails: ""
 });
 </script>
