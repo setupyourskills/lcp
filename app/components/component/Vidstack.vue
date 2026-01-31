@@ -8,8 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import 'vidstack/bundle';
-// import videoSrc from '~/assets/videos/720p.mp4';
+import "vidstack/bundle";
 import type { IVidstackProps } from "~/assets/types/interfaces.d.ts"
 
 const props = withDefaults(defineProps<IVidstackProps>(), {
