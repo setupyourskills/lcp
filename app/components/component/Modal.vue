@@ -1,6 +1,6 @@
 <template lang="pug">
 div.modal(v-if="isModalOpen")
-  div.modal__container(ref="refModalContainer")
+  div.modal__container
     ComponentCloseModal(:componentName="props.modalName" componentType="modal")
     div.modal__icon
       slot(name="icon")
@@ -12,34 +12,15 @@ div.modal(v-if="isModalOpen")
 <script setup lang="ts">
 import type { IModalProps, IModalsState } from "~/assets/types/interfaces.d.ts"
 
-const { setModalState, getModalState } = useModalsState();
-
 const props = withDefaults(defineProps<IModalProps>(), {
   modalName: "",
   title: "Title",
   content: "Content"
 });
 
-const refModalContainer = ref<HTMLElement | null>(null);
+const { getModalState } = useModalsState();
+
 const isModalOpen = computed(() => getModalState(props.modalName as keyof IModalsState));
-const closeModal = () => setModalState(props.modalName as keyof IModalsState, false);
-
-const handleClickOutsideModal = (e: MouseEvent) => {
-  if (!refModalContainer.value) return
-
-  const clickedInsideModal = refModalContainer.value.contains(e.target as Node)
-
-  if (!clickedInsideModal) closeModal();
-}
-
-watch(isModalOpen, async (open) => {
-  if (!open) return
-  await nextTick();
-
-  document.addEventListener('mousedown', handleClickOutsideModal)
-
-  return () => document.removeEventListener('mousedown', handleClickOutsideModal)
-});
 </script>
 
 <style lang="sass" scoped>
