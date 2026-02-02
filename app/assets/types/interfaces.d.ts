@@ -69,6 +69,13 @@ export interface ICounterColorsState {
 }
 
 // Components
+export interface IPspsState {
+  mollie: boolean;
+  paypal: boolean;
+  stripe: boolean;
+  transfert: boolean;
+}
+
 export interface IArticleHeaderProps {
   title: string;
   content: string;

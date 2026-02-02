@@ -1,5 +1,8 @@
 <template lang="pug">
-div.box-component
+div.box-component(
+  @click="setPspState(props.boxName)"
+  :class="{ 'activate-element': getPspState(props.boxName)}"
+)
   p.box-component__content.font-m {{ props.boxName }}
 </template>
 
@@ -7,8 +10,10 @@ div.box-component
 import type { IBoxProps } from "~/assets/types/interfaces.d.ts"
 
 const props = withDefaults(defineProps<IBoxProps>(), {
-  boxName: "red",
+  boxName: "stripe",
 });
+
+const { getPspState, setPspState } = usePspsState();
 </script>
 
 <style lang="sass" scoped>

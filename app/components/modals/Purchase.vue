@@ -71,10 +71,10 @@ const goPay = () => {
 const info = "Notre lot Duos fonctionne par <span class='font-bold'>carton de 2 boîtes</span> de 300g chaque.<br />Veuillez donc choisir <span class='font-bold'>une quantité de couleurs paires</span> pour valider votre commande."
 
 const psp: string[] = [
-  "Stripe",
-  "Paypal",
-  "Mollie",
-  "Virement bancaire",
+  "stripe",
+  "paypal",
+  "mollie",
+  "transfert",
 ];
 
 const infoPay = "Après avoir cliqué sur le bouton 'payer', vous serez redirigé vers <span class='font-bold'>une page sécurisée</span> pour effectuer votre paiement en toute tranquillité."
