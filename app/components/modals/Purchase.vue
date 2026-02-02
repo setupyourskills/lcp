@@ -27,7 +27,6 @@ div.purchase-modal
         )
           p {{ item }}
     div.purchase-modal__button
-      ComponentButton(title="Annuler" @click="closeModal")
       ComponentButton.purchase-modal__payButton(title="Commander" @click="goPay" :class="{ 'deactivate-big-button': deactivateButton }" )
     p.purchase-modal__info-pay.font-xs(v-html="infoPay")
 </template>
@@ -35,8 +34,6 @@ div.purchase-modal
 <script setup lang="ts">
 import type { ModalProps } from "~/assets/types/types.d.ts";
 import type { IFaqSection } from "~/assets/types/interfaces.d.ts"
-
-const CLOSE_MODAL_TIMEOUT = 2000;
 
 const purchase: ModalProps = {
   title: "Préparez votre commander",
@@ -54,9 +51,6 @@ const colors: string[] = [
   "yellow",
   "black",
 ];
-
-const { setModalState } = useModalsState();
-const closeModal = () => setModalState("purchase", false);
 
 const { isQuantityEven, getCounterColorsState, getCounterColorList } = useCounterColorsState();
 const deactivateButton = computed(() => isQuantityEven() ? false : true);
