@@ -109,3 +109,7 @@ export interface IVidstackProps {
   videoSrc: string;
   thumbnails?: string;
 }
+
+export interface IBoxProps {
+  boxName: string;
+}
