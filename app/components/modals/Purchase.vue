@@ -36,7 +36,7 @@ div.purchase-modal
         )
       
     div.purchase-modal__button
-      ComponentButton.purchase-modal__payButton(title="Commander" @click="goPay" :class="{ 'deactivate-big-button': deactivateButton }" )
+      ComponentButton.purchase-modal__payButton(title="Payer" @click="goPay" :class="{ 'deactivate-big-button': deactivateButton }" )
     p.purchase-modal__info-pay.font-xs(v-html="infoPay")
 </template>
 
