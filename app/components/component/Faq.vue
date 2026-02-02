@@ -66,6 +66,7 @@ onMounted(() => {
     &[open]
       box-shadow: 4px 4px 4px 0px $secondary
       transform: translate(-3px, -3px)
+      border-bottom: 6px solid $accent1
 
     &[open] summary::before
       content: "-"
