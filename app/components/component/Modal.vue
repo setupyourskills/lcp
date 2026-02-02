@@ -25,7 +25,7 @@ const isModalOpen = computed(() => getModalState(props.modalName as keyof IModal
 
 <style lang="sass" scoped>
 .modal
-  z-index: 2
+  z-index: 19
   position: fixed
   inset: 0
   margin-inline: auto
