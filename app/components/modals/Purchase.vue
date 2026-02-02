@@ -26,6 +26,15 @@ div.purchase-modal
           :key="item"
         )
           p {{ item }}
+    div.purchase-modal__psp
+      h4 Votre moyen de paiement
+      div.purchase-modal__psp-component
+        ComponentBox(
+          v-for="service in psp"
+          :key="service"
+          :box-name="service"
+        )
+      
     div.purchase-modal__button
       ComponentButton.purchase-modal__payButton(title="Commander" @click="goPay" :class="{ 'deactivate-big-button': deactivateButton }" )
     p.purchase-modal__info-pay.font-xs(v-html="infoPay")
@@ -61,6 +70,13 @@ const goPay = () => {
 
 const info = "Notre lot Duos fonctionne par <span class='font-bold'>carton de 2 boîtes</span> de 300g chaque.<br />Veuillez donc choisir <span class='font-bold'>une quantité de couleurs paires</span> pour valider votre commande."
 
+const psp: string[] = [
+  "Stripe",
+  "Paypal",
+  "Mollie",
+  "Virement bancaire",
+];
+
 const infoPay = "Après avoir cliqué sur le bouton 'payer', vous serez redirigé vers <span class='font-bold'>une page sécurisée</span> pour effectuer votre paiement en toute tranquillité."
 </script>
 
@@ -94,7 +110,7 @@ const infoPay = "Après avoir cliqué sur le bouton 'payer', vous serez redirig�
     text-align: left
 
     h4
-      margin-block: $phi2 $phi-1
+      margin-block: $phi2 0
 
     li
       margin-block: $phi1
@@ -108,4 +124,13 @@ const infoPay = "Après avoir cliqué sur le bouton 'payer', vous serez redirig�
 
   &__info-pay
     margin-block: $phi-2 0
+
+  &__psp
+
+    h4
+      margin-block: $phi2 0
+  
+  &__psp-component
+    @include flexbox-wrap
+    margin-block: $phi-1
 </style>
