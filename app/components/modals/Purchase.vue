@@ -17,7 +17,7 @@ div.purchase-modal
         componentType="modal"
       )
     div.purchase-modal__info.font-xs
-      p Notre lot Duos fonctionne par carton de 2 boîtes de 300g chaque. Veuillez donc choisir une quantité de couleurs paires pour valider votre commande.
+      p(v-html="info")
     div.purchase-modal__list
       h4 Votre commande
       ul
@@ -29,7 +29,7 @@ div.purchase-modal
     div.purchase-modal__button
       ComponentButton(title="Annuler" @click="closeModal")
       ComponentButton.purchase-modal__payButton(title="Commander" @click="goPay" :class="{ 'deactivate-big-button': deactivateButton }" )
-    p.purchase-modal__info-pay.font-xs Après avoir cliqué sur le bouton "payer", vous serez redirigé vers une page sécurisée pour effectuer votre paiement en toute tranquillité.
+    p.purchase-modal__info-pay.font-xs(v-html="infoPay")
 </template>
 
 <script setup lang="ts">
@@ -64,6 +64,10 @@ const deactivateButton = computed(() => isQuantityEven() ? false : true);
 const goPay = () => {
   console.log("pay");
 };
+
+const info = "Notre lot Duos fonctionne par <span class='font-bold'>carton de 2 boîtes</span> de 300g chaque.<br />Veuillez donc choisir <span class='font-bold'>une quantité de couleurs paires</span> pour valider votre commande."
+
+const infoPay = "Après avoir cliqué sur le bouton 'payer', vous serez redirigé vers <span class='font-bold'>une page sécurisée</span> pour effectuer votre paiement en toute tranquillité."
 </script>
 
 <style lang="sass" scoped>
