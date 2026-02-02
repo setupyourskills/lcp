@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<IInfoCardProps>(), {
   title: "Title",
   content: "Content",
   style: "normal",
-  transition: false
+  transition: true
 });
 </script>
 

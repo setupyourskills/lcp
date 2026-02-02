@@ -9,6 +9,7 @@ section.footer
         :title="item.title"
         :content="item.content"
         :style="idx ? 'normal' : 'italic'" 
+        :transition="false"
       )
     div.footer__copyright.margin-space(v-html="copyright")
 </template>
