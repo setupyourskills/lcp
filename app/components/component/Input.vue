@@ -28,7 +28,7 @@ const inputContent = defineModel();
   &:active
     border: 4px solid $accent1
     outline: none
-    background-color: $element-background-color
+    background-color: $second-background-color
 
   &::placeholder
     color: $secondary

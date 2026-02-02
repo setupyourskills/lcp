@@ -52,7 +52,7 @@ const decColor = () => {
     justify-content: center
     width: 120px
     border-radius: 25px
-    background-color: $element-background-color
+    background-color: $second-background-color
 
   &__color-name
     margin-block: 0 $phi1
@@ -80,7 +80,7 @@ const decColor = () => {
     font-weight: bold
     border-radius: 10px
     border: 3px solid $accent2
-    background-color: $element-background-color
+    background-color: $second-background-color
 
   &__number
     flex: 2

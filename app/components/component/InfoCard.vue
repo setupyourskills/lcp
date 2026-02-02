@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<IInfoCardProps>(), {
     transition: background-color .2s ease-out
 
     &:hover
-      background-color: $element-background-color
+      background-color: $second-background-color
 
   &__number
     display: flex

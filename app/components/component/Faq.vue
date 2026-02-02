@@ -52,7 +52,7 @@ onMounted(() => {
     @include transition
     border-radius: 0 25px 25px 25px
     border-bottom: 6px solid $accent2
-    background-color: $element-background-color
+    background-color: $second-background-color
     cursor: pointer
 
     &::details-content
