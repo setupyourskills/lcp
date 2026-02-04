@@ -55,4 +55,7 @@ const { setModalState } = useModalsState();
 
     @media screen and (min-width: 1024px)
       height: 800px
+
+  &__button-component:hover
+    box-shadow: 4px 4px 4px 0px gray
 </style>
