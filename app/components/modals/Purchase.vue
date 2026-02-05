@@ -99,7 +99,7 @@ const infoPay = "Après avoir cliqué sur le bouton 'payer', vous serez redirig�
     @media screen and (min-width: 600px)
       width: 480px
 
-    @media screen and (min-width: 850px)
+    @media screen and (min-width: 1024px)
       width: 750px
 
   &__info
