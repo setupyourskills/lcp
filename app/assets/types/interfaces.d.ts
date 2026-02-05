@@ -119,4 +119,5 @@ export interface IVidstackProps {
 
 export interface IBoxProps {
   boxName: string;
+  showName: string;
 }

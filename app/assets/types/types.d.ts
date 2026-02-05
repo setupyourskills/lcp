@@ -25,3 +25,8 @@ export type ModalProps = {
   title: string;
   content: string;
 };
+
+export type pspProps = {
+  boxName: string;
+  showName: string;
+};

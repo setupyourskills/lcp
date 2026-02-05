@@ -32,7 +32,8 @@ div.purchase-modal
         ComponentBox(
           v-for="service in psp"
           :key="service"
-          :box-name="service"
+          :box-name="service.boxName"
+          :show-name="service.showName"
         )
       
     div.purchase-modal__button
@@ -41,7 +42,7 @@ div.purchase-modal
 </template>
 
 <script setup lang="ts">
-import type { ModalProps } from "~/assets/types/types.d.ts";
+import type { ModalProps, pspProps } from "~/assets/types/types.d.ts";
 import type { IFaqSection } from "~/assets/types/interfaces.d.ts"
 
 const purchase: ModalProps = {
@@ -70,11 +71,19 @@ const goPay = () => {
 
 const info = "Notre lot Duos fonctionne par <span class='font-bold'>carton de 2 boîtes</span> de 300g chaque.<br />Veuillez donc choisir <span class='font-bold'>une quantité de couleurs paires</span> pour valider votre commande."
 
-const psp: string[] = [
-  "stripe",
-  "paypal",
-  "mollie",
-  "transfert",
+const psp: pspProps[] = [
+  {
+    boxName: "stripe",
+    showName: "",
+  },
+  {
+    boxName: "paypal",
+    showName: "",
+  },
+  {
+    boxName: "card",
+    showName: "",
+  },
 ];
 
 const infoPay = "Après avoir cliqué sur le bouton 'payer', vous serez redirigé vers <span class='font-bold'>une page sécurisée</span> pour effectuer votre paiement en toute tranquillité."
