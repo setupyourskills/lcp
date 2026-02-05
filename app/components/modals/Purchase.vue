@@ -116,28 +116,15 @@ const infoPay = "Après avoir cliqué sur le bouton 'payer', vous serez redirig�
     margin-top: $phi2
 
   &__list
+    @include style-text
     text-align: left
-
-    h4
-      margin-block: $phi2 0
-
-    li
-      margin-block: $phi1
-
-    li > p
-      margin-block: $phi-1
-
-    p
-      margin-block: 0
-      font-style: normal
 
   &__info-pay
     margin-block: $phi-2 0
 
   &__psp
+    @include style-text
 
-    h4
-      margin-block: $phi2 0
   
   &__psp-component
     @include flexbox-wrap
