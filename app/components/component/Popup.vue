@@ -2,7 +2,10 @@
 div.popup.popup--appear(v-if="isDisplay")
   ComponentCloseModal(:componentName="props.popupName" componentType="popup")
   div.popup__group.margin-space
-    h4.popup__title {{ props.title }}
+    div.popup__group-title
+      div.popup__icon
+        slot(name="icon")
+      h4.popup__title {{ props.title }}
     p.popup__content(v-html="props.content")
     slot
 </template>
@@ -66,15 +69,33 @@ watch(isPopupOpen, (newVal) => {
       right: $phi3
     
   &__group
+    display: flex
+    flex-direction: column
+    justify-content: center
     margin-bottom: $phi2
     text-align: center
 
     @media screen and (min-width: 600px)
       text-align: left
 
+  &__group-title
+    display: flex
+    flex-direction: column
+    align-items: center
+
+    @media screen and (min-width: 600px)
+      flex-direction: row
+      gap: $gap-space
+    
+  &__icon
+    @include svg-icon
+    margin-block: $phi2 $phi-2
+
   &__title
-    margin-inline: auto
-    margin-block: $phi2 $phi1
+    margin-block: 0 $phi1
+
+    @media screen and (min-width: 600px)
+      margin-block: $phi2 $phi1
 
   &__content
     margin-block: 0 $phi2

@@ -70,7 +70,9 @@ const isModalOpen = computed(() => getModalState(props.modalName as keyof IModal
       padding-inline: $phi3
 
   &__icon
+    @include svg-icon
     margin-block: $phi3 $phi2
+    margin-inline: auto
 
   &__title
     margin-block: 0 $phi-1
