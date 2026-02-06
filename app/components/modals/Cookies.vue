@@ -44,7 +44,7 @@ div.cookies-modal
 
 <script setup lang="ts">
 import type { ModalProps } from "~/assets/types/types.d.ts";
-import type { YesNo } from "~/assets/types/types.d.ts";
+import type { YesNoMore } from "~/assets/types/types.d.ts";
 
 const cookies: ModalProps = {
   title: "Politique des cookies",
@@ -54,7 +54,7 @@ const cookies: ModalProps = {
 const { setCookie } = useCookies();
 const { setModalState } = useModalsState();
 
-const choiceCookie = (choice: YesNo) => {
+const choiceCookie = (choice: YesNoMore) => {
   setCookie(choice);
   setModalState("cookies", false);
 }

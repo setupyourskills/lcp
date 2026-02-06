@@ -19,7 +19,7 @@ export type FormStatus = {
   invalid: string;
 };
 
-export type YesNo = "yes" | "no";
+export type YesNoMore = "yes" | "no" | "more";
 
 export type ModalProps = {
   title: string;

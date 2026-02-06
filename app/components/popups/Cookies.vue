@@ -2,13 +2,15 @@
 div.cookie-popup
   ComponentPopup(popupName="cookies" :title="cookies.title" :content="cookies.content")
     div.cookie-popup__buttons
+      ComponentButton(title="En savoir plus..." @click="choiceCookie('more')")
       ComponentButton(title="Accepter" @click="choiceCookie('yes')")
-      ComponentButton(title="Refuser" @click="choiceCookie('no')")
 </template>
 
 <script setup lang="ts">
 import type { ArticleHeader } from "~/assets/types/types.d.ts";
-import type { YesNo } from "~/assets/types/types.d.ts";
+import type { YesNoMore } from "~/assets/types/types.d.ts";
+
+const OPEN_MODAL_TIMEOUT = 400;
 
 const cookies: ArticleHeader = {
   title: "🍪 Cookies",
@@ -17,9 +19,16 @@ const cookies: ArticleHeader = {
 
 const { setCookie } = useCookies();
 const { setPopupState } = usePopupsState();
+const { setModalState } = useModalsState();
 
-const choiceCookie = (choice: YesNo) => {
-  setCookie(choice);
+const choiceCookie = (choice: YesNoMore) => {
+  if (choice === "yes") setCookie(choice);
+  else {
+    setTimeout(() => {
+      setModalState("cookies", true);
+    }, OPEN_MODAL_TIMEOUT);
+  }
+
   setPopupState("cookies", false);
 }
 </script>
