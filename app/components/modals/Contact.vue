@@ -22,7 +22,7 @@ const CLOSE_MODAL_TIMEOUT = 2000;
 
 const contact: ModalProps = {
   title: "Nous contacter",
-  content: "Veuillez remplir le formulaire ci-dessous pour nous laisser un message.",
+  content: "Veuillez remplir le formulaire ci-dessous pour nous laisser un message.<br />Vous pouvez aussi nous écrire à <a href='mailto:setupyourskills@gmail.com'>setupyourskills@gmail.com</a>",
 };
 
 const { setModalState } = useModalsState();
