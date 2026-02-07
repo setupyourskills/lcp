@@ -39,15 +39,50 @@ const contactEmailInput = ref();
 const contactContentTextarea = ref();
 const contactStatusMessage = ref();
 
-const send = () => {
+const isSubmitting = ref(false);
+const wasSent = ref(false);
+const serverMessage = ref();
+
+const send = async () => {
   const { isInvalidRegex, isTooLong } = useCheckEmail(contactEmailInput.value);
 
   if (isInvalidRegex || isTooLong) contactStatusMessage.value = status.invalid;
   else if (contactNameInput.value.length > 255) contactStatusMessage.value = status.invalid;
   else if (contactContentTextarea.value.length > 2500) contactStatusMessage.value = status.invalid;
   else {
-    console.log("sent");
     contactStatusMessage.value = status.ok;
+
+    if (isSubmitting.value) return;
+
+    isSubmitting.value = true;
+    serverMessage.value = '';
+
+    try {
+      const data = await $fetch('/api/sendMail', {
+        method: 'POST',
+
+        body: {
+          name: contactNameInput.value,
+          email: contactEmailInput.value,
+          message: contactContentTextarea.value
+        }
+      });
+
+      if (data.sent) {
+        wasSent.value = true;
+        serverMessage.value = data.message;
+      } else {
+        serverMessage.value = data.message;
+      }
+
+    } catch (error: any) {
+      console.error('Error submitting form: ', error);
+
+      serverMessage.value = error.message as string;
+    } finally {
+      isSubmitting.value = false;
+      console.log("message", serverMessage.value);
+    }
 
     setTimeout(() => {
       contactEmailInput.value = "";
@@ -57,6 +92,12 @@ const send = () => {
     }, CLOSE_MODAL_TIMEOUT);
   }
 }
+
+
+
+
+
+
 </script>
 
 <style lang="sass" scoped>
