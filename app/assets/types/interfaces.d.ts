@@ -121,3 +121,9 @@ export interface IBoxProps {
   boxName: string;
   showName: string;
 }
+
+export interface ISwitchProps {
+  label: string;
+  modelValue: boolean;
+  deactivated?: boolean;
+}

@@ -22,8 +22,8 @@ div.cookies-modal
       h4 Consentement
       p Dès votre première visite, un bandeau clair apparaît en bas de page avec deux options :
       ul
-        li <strong>« Accepter tout »</strong> – active tous les cookies, y compris ceux à des fins publicitaires.
-        li <strong>« Gérer mes préférences »</strong> – ouvre cette fenêtre modale où vous pouvez cocher ou décocher chaque catégorie.
+        li <strong>« Accepter »</strong> – active tous les cookies, y compris ceux à des fins publicitaires.
+        li <strong>« En savoir plus... »</strong> – ouvre cette fenêtre modale où vous pouvez cocher ou décocher chaque catégorie.
       p Le cookie <code>cookie_consent</code> est créé après votre décision et contient la valeur (<code>true/false</code>) pour chaque catégorie de cookies. Si vous choisissez de refuser les cookies publicitaires, le cookie <code>adsense_optin</code> n’est pas déposé et Google AdSense affichera alors des annonces non ciblées (cookies strictement nécessaires uniquement).
 
       h4 Cookies tiers et publicité
@@ -31,36 +31,89 @@ div.cookies-modal
 
       h4 Politique d’utilisation des cookies
       ul 
+        li <strong>Cookies nécessaires</strong> : obligatoires pour assurer le bon fonctionnement du Site.
         li <strong>Cookies fonctionnels</strong> : essentiels pour la navigation et l’interaction avec les services du Site.
         li <strong>Cookies publicitaires</strong> : permettent d’afficher des annonces pertinentes mais ne compromettent pas votre confidentialité.
-        li <strong>Cookies analytiques</strong> (Matomo) : aident à améliorer la performance et l’expérience utilisateur sans transfert de données vers des sites tiers.
+        li <strong>Cookies analytiques</strong> : aident à améliorer la performance et l’expérience utilisateur sans transfert de données vers des sites tiers.
 
       h4 Modifications
       p Cette politique peut être mise à jour pour refléter l’évolution législative ou technique. Toute modification sera publiée sur le Site et prendra effet dès sa mise en ligne.
       br
       p En continuant votre navigation sans modifier vos préférences, vous acceptez implicitement le dépôt des cookies décrits ci‑dessus.
 
+      h4 Paramètres des cookies
+      div.cookies-modal__consent-group
+        div.cookies-modal__consent(v-for="cat in categories" :key="cat.key")
+          ComponentSwitch(
+            :label="cat.label"
+            v-model="consent[cat.key]"
+            :deactivated="!cat.mutable"
+          )
+
       div.cookies-modal__buttons
-        ComponentButton(title="Accepter" @click="choiceCookie('yes')")
-        ComponentButton(title="Refuser" @click="choiceCookie('no')")
+        ComponentButton(title="Accepter et Fermer" @click="choiceCookie('yes')")
 </template>
 
 <script setup lang="ts">
-import type { ModalProps } from "~/assets/types/types.d.ts";
-import type { YesNoMore } from "~/assets/types/types.d.ts";
+import type { ModalProps, YesNoMore } from "~/assets/types/types.d.ts";
 
 const cookies: ModalProps = {
   title: "Gestion des cookies",
   content: "Consentement, finalités et contrôle de votre expérience en ligne",
 };
 
-const { setCookie } = useCookies();
+const { COOKIES_ACCEPTED_KEY, COOKIES_CAT_KEYS, setCookie } = useCookies();
 const { setModalState } = useModalsState();
 
 const choiceCookie = (choice: YesNoMore) => {
-  setCookie(choice);
+  setCookie(COOKIES_ACCEPTED_KEY, choice);
   setModalState("cookies", false);
-}
+};
+
+const categories = [
+  {
+    key: "functional",
+    label: "Fonctionnels",
+    mutable: false,
+  },
+  {
+    key: "advertising",
+    label: "Publicitaires",
+    mutable: true,
+  },
+  {
+    key: "analytics",
+    label: "Analytiques",
+    mutable: true,
+  },
+];
+
+const consent = reactive(
+  Object.fromEntries(COOKIES_CAT_KEYS.map(k => [k, true]))
+);
+
+let prevVal = { ...consent };
+watch(() => consent, (newVal) => {
+  for (const key in newVal) {
+    if (newVal[key] !== prevVal[key]) {
+      setCookie(key, newVal[key] ? "yes" : "no");
+
+      switch (key) {
+        case "functional": {
+          break;
+        }
+        case "advertising": {
+          break;
+        }
+        case "analytics": {
+          break;
+        }
+      }
+    }
+  }
+
+  prevVal = { ...newVal };
+}, { deep: true });
 </script>
 
 <style lang="sass" scoped>
@@ -70,7 +123,12 @@ const choiceCookie = (choice: YesNoMore) => {
     @include style-text
     text-align: justify
 
+  &__consent-group
+    margin-bottom: $phi2
+
+  &__consent
+    margin-bottom: $phi-1
+
   &__buttons
     @include flexbox-wrap
-    margin-top: $phi2
 </style>

@@ -1,31 +1,52 @@
 <template lang="pug">
-div.switch-component(@click="handleSwitchButton" :class="{ 'switch-component--back-on' : buttonState }")
-  button.switch-component__button(:class="{ 'switch-component__button--on' : buttonState }")
+div.switch-component
+  div.switch-component__container(@click="handleSwitchButton" :class="{ 'switch-component__container--back-on': props.modelValue, 'switch-component__container--deactivated': props.deactivated, }")
+    button.switch-component__button(:class="{ 'switch-component__button--on' : props.modelValue, 'switch-component__button--deactivated': props.deactivated, }")
+  div.switch-component__label.font-m {{ props.label }}
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits();
+import type { ISwitchProps } from '~/assets/types/interfaces.d.ts'
 
-const buttonState = ref(false)
+const props = withDefaults(defineProps<ISwitchProps>(), {
+  label: 'Label',
+  modelValue: false,
+  deactivated: false,
+});
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: boolean): void
+}>();
 
 const handleSwitchButton = () => {
-  buttonState.value = !buttonState.value
+  if (props.deactivated) return;
 
-  emit("update:modelValue", buttonState.value);
-}
+  const newVal = !props.modelValue;
+  emit('update:modelValue', newVal);
+};
 </script>
 
 <style lang="sass">
 .switch-component
-  position: relative
-  width: 56px
-  height: 28px
-  border-radius: 25px
-  background-color: $deactivate-button-text
-  cursor: pointer
+  display: flex
+  justify-content: left
+  align-items: center
+  gap: $gap_space
 
-  &--back-on
-    background-color: $accent2
+  &__container
+    position: relative
+    width: 56px
+    height: 28px
+    border-radius: 25px
+    background-color: $deactivate-button-text
+    cursor: pointer
+
+    &--back-on
+      background-color: $accent2
+
+    &--deactivated
+      background-color: $deactivate
+      cursor: default
 
   &__button
     position: absolute
@@ -42,4 +63,8 @@ const handleSwitchButton = () => {
     &--on
       transform: translate(28px, 0)
       transition: transform .1s ease-out
+
+    &--deactivated
+      background-color: $deactivate-button-text
+      cursor: default
 </style>

@@ -1,23 +1,31 @@
 import type { YesNoMore } from "~/assets/types/types.d.ts";
 
-const COOKIES_ACCEPTED_KEY = "cookies_accepted";
+const PREFIX = "sys-lcp";
 const MAX_AGE = 30 * 24 * 60 * 60;
 
+const COOKIES_ACCEPTED_KEY = "consent_done";
+const COOKIES_CAT_KEYS = [
+  "functional",
+  "advertising",
+  "analytics",
+];
+
 export const useCookies = () => {
-  const cookie = useCookie(COOKIES_ACCEPTED_KEY, {
-    default: () => "",
-    maxAge: MAX_AGE,
-  });
+  const _cookie = (cat: string, defaultValue?: string) =>
+    useCookie(`${PREFIX}_${cat}`, {
+      default: () => defaultValue ?? "",
+      maxAge: MAX_AGE,
+    });
 
-  function setCookie(status: YesNoMore) {
-    cookie.value = status;
+  function setCookie(cat: string, status: YesNoMore) {
+    _cookie(cat).value = status;
   }
 
-  function getCookie() {
-    return cookie.value;
+  function getCookie(cat: string, defaultValue?: string) {
+    return _cookie(cat, defaultValue).value;
   }
 
-  const isCookieAccepted = computed(() => cookie.value === "yes");
+  const isCookieAccepted = computed(() => getCookie(COOKIES_ACCEPTED_KEY) === "yes");
 
-  return { getCookie, setCookie, isCookieAccepted };
+  return { COOKIES_ACCEPTED_KEY, COOKIES_CAT_KEYS, getCookie, setCookie, isCookieAccepted };
 };

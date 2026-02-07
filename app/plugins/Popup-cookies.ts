@@ -2,9 +2,13 @@ const COOKIE_POPUP_TIMEOUT = 1500;
 
 export default defineNuxtPlugin(() => {
   const { setPopupState } = usePopupsState();
-  const { getCookie } = useCookies();
+  const { COOKIES_CAT_KEYS, isCookieAccepted, setCookie } = useCookies();
 
-  if (!getCookie()) {
+  if (!isCookieAccepted.value) {
+    for (const key of COOKIES_CAT_KEYS) {
+      setCookie(key, "yes");
+    }
+
     setTimeout(() => {
       setPopupState("cookies", true);
     }, COOKIE_POPUP_TIMEOUT);

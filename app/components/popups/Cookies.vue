@@ -10,9 +10,10 @@ div.cookie-popup
 </template>
 
 <script setup lang="ts">
-import type { ArticleHeader } from "~/assets/types/types.d.ts";
-import type { YesNoMore } from "~/assets/types/types.d.ts";
+import type { ArticleHeader, YesNoMore } from "~/assets/types/types.d.ts";
+import type {  } from "~/assets/types/types.d.ts";
 
+const COOKIES_ACCEPTED_KEY = "accepted";
 const OPEN_MODAL_TIMEOUT = 400;
 
 const cookies: ArticleHeader = {
@@ -25,7 +26,7 @@ const { setPopupState } = usePopupsState();
 const { setModalState } = useModalsState();
 
 const choiceCookie = (choice: YesNoMore) => {
-  if (choice === "yes") setCookie(choice);
+  if (choice === "yes") setCookie(COOKIES_ACCEPTED_KEY, choice);
   else {
     setTimeout(() => {
       setModalState("cookies", true);
