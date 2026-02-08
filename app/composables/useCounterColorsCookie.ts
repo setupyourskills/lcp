@@ -1,11 +1,21 @@
 import type { ICounterColorsCookie } from "~/assets/types/interfaces.d.ts";
 
+const MAX_AGE = 30 * 24 * 60 * 60;
+
 export const useCounterColorsCookie = () => {
-  const counterColorsCookie = useCookie<ICounterColorsCookie>('counterColors', {
+  const counterColorsCookie = useCookie<ICounterColorsCookie>("counterColors", {
     default: () => ({
-      red: 0, blue: 0, green: 0, purple: 0,
-      gold: 0, orange: 0, white: 0, yellow: 0, black: 0
-    })
+      red: 0,
+      blue: 0,
+      green: 0,
+      purple: 0,
+      gold: 0,
+      orange: 0,
+      white: 0,
+      yellow: 0,
+      black: 0,
+    }),
+    maxAge: MAX_AGE,
   });
 
   const total: ComputedRef<number> = computed(() =>
