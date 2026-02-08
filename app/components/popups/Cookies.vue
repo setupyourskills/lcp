@@ -18,7 +18,7 @@ const OPEN_MODAL_TIMEOUT = 400;
 
 const cookies: ArticleHeader = {
   title: "Cookies",
-  content: "Nous utilisons des cookies pour améliorer votre expérience et analyser le trafic. Vous pouvez accepter ou refuser les cookies non essentiels.",
+  content: "Nous utilisons des cookies pour améliorer votre expérience et analyser le trafic de manière anonyme. Vous pouvez accepter ou refuser les cookies non essentiels.",
 };
 
 const { setCookie } = useCookies();
