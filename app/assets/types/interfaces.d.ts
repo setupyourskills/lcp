@@ -127,3 +127,8 @@ export interface ISwitchProps {
   modelValue: boolean;
   deactivated?: boolean;
 }
+
+export interface ISendMailResponse {
+  sent: boolean;
+  message: string;
+}

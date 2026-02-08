@@ -15,10 +15,10 @@ div.contact-modal
 </template>
 
 <script setup lang="ts">
-import type { FormStatus } from "~/assets/types/types.d.ts";
-import type { ModalProps } from "~/assets/types/types.d.ts";
+import type { FormStatus, ModalProps } from "~/assets/types/types.d.ts";
+import type { ISendMailResponse } from "~/assets/types/interfaces.d.ts"
 
-const CLOSE_MODAL_TIMEOUT = 2000;
+const CLOSE_MODAL_TIMEOUT = 3000;
 
 const contact: ModalProps = {
   title: "Nous contacter",
@@ -40,8 +40,6 @@ const contactContentTextarea = ref();
 const contactStatusMessage = ref();
 
 const isSubmitting = ref(false);
-const wasSent = ref(false);
-const serverMessage = ref();
 
 const send = async () => {
   const { isInvalidRegex, isTooLong } = useCheckEmail(contactEmailInput.value);
@@ -55,11 +53,12 @@ const send = async () => {
     if (isSubmitting.value) return;
 
     isSubmitting.value = true;
-    serverMessage.value = '';
+    contactStatusMessage.value = "";
 
+    let data: ISendMailResponse | undefined;
     try {
-      const data = await $fetch('/api/sendMail', {
-        method: 'POST',
+      data = await $fetch<ISendMailResponse>("/api/sendMail", {
+        method: "POST",
 
         body: {
           name: contactNameInput.value,
@@ -67,37 +66,26 @@ const send = async () => {
           message: contactContentTextarea.value
         }
       });
-
-      if (data.sent) {
-        wasSent.value = true;
-        serverMessage.value = data.message;
-      } else {
-        serverMessage.value = data.message;
-      }
-
     } catch (error: any) {
-      console.error('Error submitting form: ', error);
-
-      serverMessage.value = error.message as string;
+      contactStatusMessage.value = status.failed;
+      console.error("Error submitting form: ", error);
     } finally {
       isSubmitting.value = false;
-      console.log("message", serverMessage.value);
+      console.log("message", contactStatusMessage.value);
     }
 
-    setTimeout(() => {
-      contactEmailInput.value = "";
-      contactNameInput.value = "";
-      contactContentTextarea.value = "";
-      closeModal();
-    }, CLOSE_MODAL_TIMEOUT);
+    if (data?.sent) {
+      contactStatusMessage.value = status.ok;
+
+      setTimeout(() => {
+        contactEmailInput.value = "";
+        contactNameInput.value = "";
+        contactContentTextarea.value = "";
+        closeModal();
+      }, CLOSE_MODAL_TIMEOUT);
+    }
   }
 }
-
-
-
-
-
-
 </script>
 
 <style lang="sass" scoped>
