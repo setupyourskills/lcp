@@ -2,10 +2,9 @@ import type { IPspsState } from "~/assets/types/interfaces.d.ts";
 
 export const usePspsState = () => {
   const pspsState = useState<IPspsState>("statePsp", () => ({
-    mollie: false,
     paypal: false,
     stripe: true,
-    transfert: false,
+    card: false,
   }));
 
   function resetPspsState() {

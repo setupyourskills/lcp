@@ -70,10 +70,9 @@ export interface ICounterColorsCookie {
 
 // Components
 export interface IPspsState {
-  mollie: boolean;
   paypal: boolean;
   stripe: boolean;
-  transfert: boolean;
+  card: boolean;
 }
 
 export interface IArticleHeaderProps {
