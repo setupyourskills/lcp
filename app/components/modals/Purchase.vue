@@ -57,7 +57,7 @@ const colors: string[] = [
   "black",
 ];
 
-const { isQuantityEven, getCounterColorsState, getCounterColorList } = useCounterColorsState();
+const { isQuantityEven, getCounterColorsCookie, getCounterColorList } = useCounterColorsCookie();
 const deactivateButton = computed(() => isQuantityEven() ? false : true);
 
 const goPay = () => {

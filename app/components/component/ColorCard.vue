@@ -26,9 +26,9 @@ const props = withDefaults(defineProps<IColorCardProps>(), {
   componentType: "normal",
 });
 
-const { isQuantityEven, getCounterColorsState, increaseColor, decreaseColor } = useCounterColorsState();
+const { isQuantityEven, getCounterColorsCookie, increaseColor, decreaseColor } = useCounterColorsCookie();
 
-const counterColor = computed(() => getCounterColorsState(props.colorName));
+const counterColor = computed(() => getCounterColorsCookie(props.colorName));
 
 const incColor = () => {
   if (props.componentType === "modal") {

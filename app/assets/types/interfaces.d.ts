@@ -56,7 +56,7 @@ export interface IPopupProps {
   content: string;
 }
 
-export interface ICounterColorsState {
+export interface ICounterColorsCookie {
   red: number;
   blue: number;
   green: number;
@@ -91,7 +91,7 @@ export interface IButtonProps {
 }
 
 export interface IColorCardProps {
-  colorName: keyof ICounterColorsState;
+  colorName: keyof ICounterColorsCookie;
   componentType?: string;
 }
 
