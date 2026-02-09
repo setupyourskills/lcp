@@ -11,7 +11,6 @@ div.cookie-popup
 
 <script setup lang="ts">
 import type { ArticleHeader, YesNoMore } from "~/assets/types/types.d.ts";
-import type {  } from "~/assets/types/types.d.ts";
 
 const COOKIES_ACCEPTED_KEY = "accepted";
 const OPEN_MODAL_TIMEOUT = 400;
