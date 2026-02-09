@@ -18,7 +18,11 @@ export const useModalsState = () => {
     modalSection: K,
     modalState: boolean,
   ) {
-    modalsState.value[modalSection] = modalState;
+    for (const key of Object.keys(modalsState.value)) {
+      modalsState.value[key as keyof IModalsState] = false;
+    }
+
+    if (modalState) modalsState.value[modalSection] = modalState;
   }
 
   function getModalState<K extends keyof IModalsState>(
