@@ -1,9 +1,11 @@
 import type { ICounterColorsCookie } from "~/assets/types/interfaces.d.ts";
 
+const PREFIX = "sys-lcp";
+const COUNTER_COLORS_KEY = "counter_colors"
 const MAX_AGE = 30 * 24 * 60 * 60;
 
 export const useCounterColorsCookie = () => {
-  const counterColorsCookie = useCookie<ICounterColorsCookie>("counterColors", {
+  const counterColorsCookie = useCookie<ICounterColorsCookie>(`${PREFIX}_${COUNTER_COLORS_KEY}`, {
     default: () => ({
       red: 0,
       blue: 0,
