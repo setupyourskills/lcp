@@ -12,7 +12,6 @@ div.cookie-popup
 <script setup lang="ts">
 import type { ArticleHeader, YesNoMore } from "~/assets/types/types.d.ts";
 
-const COOKIES_ACCEPTED_KEY = "accepted";
 const OPEN_MODAL_TIMEOUT = 400;
 
 const cookies: ArticleHeader = {
@@ -20,7 +19,7 @@ const cookies: ArticleHeader = {
   content: "Nous utilisons des cookies pour améliorer votre expérience et analyser le trafic de manière anonyme. Vous pouvez accepter ou refuser les cookies non essentiels.",
 };
 
-const { setCookie } = useCookies();
+const { COOKIES_ACCEPTED_KEY, setCookie } = useCookies();
 const { setPopupState } = usePopupsState();
 const { setModalState } = useModalsState();
 
