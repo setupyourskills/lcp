@@ -45,7 +45,7 @@ const handleSwitchButton = () => {
       background-color: $accent2
 
     &--deactivated
-      background-color: $deactivate
+      opacity: .35
       cursor: default
 
   &__button
@@ -56,15 +56,15 @@ const handleSwitchButton = () => {
     height: 20px
     border: none
     border-radius: 50%
-    background-color: $accent1
+    background-color: $deactivate
     transition: transform .1s ease-out
     cursor: pointer
 
     &--on
+      background-color: $accent1
       transform: translate(28px, 0)
       transition: transform .1s ease-out
 
     &--deactivated
-      background-color: $deactivate-button-text
       cursor: default
 </style>
