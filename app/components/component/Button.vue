@@ -18,10 +18,12 @@ const props = withDefaults(defineProps<IButtonProps>(), {
   min-width: 240px
   border: none
   border-radius: 25px
-  background-color: $accent1
+  border-bottom: 6px solid $accent1
+  background-color: $accent2
   cursor: pointer
 
   &:active
+    background-color: $accent1
     box-shadow: none
     transform: translate(0, 0)
     transition: none

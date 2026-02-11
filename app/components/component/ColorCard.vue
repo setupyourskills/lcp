@@ -3,7 +3,7 @@ div.color-card-component
   div.color-card-component__component(
     @click="incColor"
     @contextmenu.prevent="decColor"
-    :class="{ 'activate-element': counterColor, 'activate-button': props.componentType === 'modal'}"
+    :class="{ 'activate-element': props.componentType === 'modal' && counterColor, 'activate-button': props.componentType === 'modal'}"
   )
     p.color-card-component__color-name.font-m {{ props.colorName }}
 
@@ -52,6 +52,7 @@ const decColor = () => {
     justify-content: center
     width: 120px
     border-radius: 25px
+    border-bottom: 6px solid $accent2
     background-color: $second-background-color
 
   &__color-name
@@ -66,9 +67,11 @@ const decColor = () => {
       display: block
       margin-inline: auto
       margin-block: $phi1
+      box-sizing: border-box;
       width: $phi3
       aspect-ratio: 1 / 1;
       border-radius: 50%
+      border: 4px solid $second-background-color
       background-color: v-bind("props.colorName")
 
   &__counter-group

@@ -30,7 +30,7 @@ const { getPspState, setPspState } = usePspsState();
   width: 160px
   height: 62px
   border-radius: 15px
-  border: 3px solid $accent2
+  border-bottom: 6px solid $accent2
   background-color: $second-background-color
   cursor: pointer
 

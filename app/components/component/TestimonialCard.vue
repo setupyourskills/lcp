@@ -28,6 +28,7 @@ const props = withDefaults(defineProps<ITestimonialSection>(), {
   width: 230px
   padding: $phi1
   border-radius: 25px 25px 25px 0
+  border-bottom: 6px solid $accent2
   background-color: $second-background-color
 
   &__content
