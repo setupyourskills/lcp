@@ -1,0 +1,349 @@
+export const VIEW_NAMES = [
+  {
+    view: "hero_view",
+    template: `
+CREATE OR REPLACE VIEW hero_view AS
+
+SELECT s.lang,
+       "component_article_header" AS component_type,
+       ah.title        AS component_name,
+       ah.subtitle     AS component_content,
+       ah.mark         AS component_boolean
+FROM   sections s
+JOIN   component_article_header ah ON s.component_id = ah.id
+WHERE  s.name = "hero"
+  AND  s.component_type = "component_article_header"
+
+UNION ALL
+
+SELECT s.lang,
+       "component_button"      AS component_type,
+       b.title         AS component_name,
+       NULL,
+       NULL
+FROM   sections s
+JOIN   component_button b ON s.component_id = b.id
+WHERE  s.name = "hero"
+  AND  s.component_type = "component_button"
+
+UNION ALL
+
+SELECT s.lang,
+       "component_image"      AS component_type,
+       i.filename      AS component_name,
+       NULL,
+       NULL
+FROM   sections s
+JOIN   component_image i ON s.component_id = i.id
+WHERE  s.name = "hero"
+  AND  s.component_type = "component_image";
+`,
+  },
+
+  {
+    view: "features_view",
+    template: `
+CREATE OR REPLACE VIEW features_view AS
+
+SELECT s.lang,
+       "component_info_card" AS component_type,
+       ic.title        AS component_name,
+       ic.content      AS component_content
+FROM   sections s
+JOIN   component_info_card ic ON s.component_id = ic.id
+WHERE  s.name = "features"
+  AND  s.component_type = "component_info_card";
+`,
+  },
+
+  {
+    view: "video_view",
+    template: `
+CREATE OR REPLACE VIEW video_view AS
+
+SELECT s.lang,
+       "component_article_header" AS component_type,
+       ah.title        AS component_name,
+       ah.subtitle     AS component_content,
+       ah.mark         AS component_boolean
+FROM   sections s
+JOIN   component_article_header ah ON s.component_id = ah.id
+WHERE  s.name = "video"
+  AND  s.component_type = "component_article_header";
+`,
+  },
+
+  {
+    view: "colors_view",
+    template: `
+CREATE OR REPLACE VIEW colors_view AS
+
+SELECT s.lang,
+       "component_article_header" AS component_type,
+       ah.title        AS component_name,
+       ah.subtitle     AS component_content,
+       ah.mark         AS component_boolean
+FROM   sections s
+JOIN   component_article_header ah ON s.component_id = ah.id
+WHERE  s.name = "colors"
+  AND  s.component_type = "component_article_header"
+
+UNION ALL
+
+SELECT s.lang,
+       "component_color_card"      AS component_type,
+       cc.name         AS component_name,
+       NULL,
+       NULL
+FROM   sections s
+JOIN   component_color_card cc ON s.component_id = cc.id
+WHERE  s.name = "colors"
+  AND  s.component_type = "component_color_card";
+`,
+  },
+
+  {
+    view: "purchase_view",
+    template: `
+CREATE OR REPLACE VIEW purchase_view AS
+
+SELECT s.lang,
+       "component_article_header" AS component_type,
+       NULL,
+       ah.title        AS component_name,
+       ah.subtitle     AS component_content,
+       ah.mark         AS component_boolean
+FROM   sections s
+JOIN   component_article_header ah ON s.component_id = ah.id
+WHERE  s.name = "purchase"
+  AND  s.component_type = "component_article_header"
+
+UNION ALL
+
+SELECT s.lang,
+       "component_info_card" AS component_type,
+       ic.number       AS component_number,
+       ic.title        AS component_name,
+       ic.content      AS component_content,
+       NULL
+FROM   sections s
+JOIN   component_info_card ic ON s.component_id = ic.id
+WHERE  s.name = "purchase"
+  AND  s.component_type = "component_info_card"
+
+UNION ALL
+
+SELECT s.lang,
+       "component_image"      AS component_type,
+       NULL,
+       i.filename      AS component_name,
+       NULL,
+       NULL
+FROM   sections s
+JOIN   component_image i ON s.component_id = i.id
+WHERE  s.name = "purchase"
+  AND  s.component_type = "component_image"
+
+UNION ALL
+
+SELECT s.lang,
+       "component_button"      AS component_type,
+       NULL,
+       b.title         AS component_name,
+       NULL,
+       NULL
+FROM   sections s
+JOIN   component_button b ON s.component_id = b.id
+WHERE  s.name = "purchase"
+  AND  s.component_type = "component_button"
+
+UNION ALL
+
+SELECT s.lang,
+       "component_info"      AS component_type,
+       NULL,
+       i.content         AS component_name,
+       NULL,
+       NULL
+FROM   sections s
+JOIN   component_info i ON s.component_id = i.id
+WHERE  s.name = "purchase"
+  AND  s.component_type = "component_info";
+`,
+  },
+
+  {
+    view: "faq_view",
+    template: `
+CREATE OR REPLACE VIEW faq_view AS
+
+SELECT s.lang,
+       "component_article_header" AS component_type,
+       ah.title        AS component_name,
+       ah.subtitle     AS component_content,
+       ah.mark         AS component_boolean
+FROM   sections s
+JOIN   component_article_header ah ON s.component_id = ah.id
+WHERE  s.name = "faq"
+  AND  s.component_type = "component_article_header"
+
+UNION ALL
+
+SELECT s.lang,
+       "component_faq"      AS component_type,
+       f.question         AS component_name,
+       f.answer         AS component_content,
+       f.height         AS component_number
+FROM   sections s
+JOIN   component_faq f ON s.component_id = f.id
+WHERE  s.name = "faq"
+  AND  s.component_type = "component_faq";
+`,
+  },
+
+  {
+    view: "testimonials_view",
+    template: `
+CREATE OR REPLACE VIEW testimonials_view AS
+
+SELECT
+    s.lang,
+    'component_article_header'      AS component_type,
+    ah.title                       AS component_name,
+    ah.subtitle                    AS component_content,
+    NULL                           AS component_avatar,
+    NULL                           AS component_country,
+    ah.mark                        AS component_boolean
+FROM
+    sections s
+JOIN
+    component_article_header ah ON s.component_id = ah.id
+WHERE
+    s.name            = 'testimonials'
+    AND s.component_type = 'component_article_header'
+
+UNION ALL
+
+-- 2️⃣  component_testimonial_card (card d’un témoignage)
+SELECT
+    s.lang,
+    'component_testimonial_card'    AS component_type,
+    tc.name                        AS component_name,
+    tc.content                     AS component_content,
+    tc.avatar                      AS component_avatar,
+    tc.country                     AS component_country,
+    NULL                           AS component_boolean
+FROM
+    sections s
+JOIN
+    component_testimonial_card tc ON s.component_id = tc.id
+WHERE
+    s.name            = 'testimonials'
+    AND s.component_type = 'component_testimonial_card';
+`,
+  },
+
+  {
+    view: "newsletter_view",
+    template: `
+CREATE OR REPLACE VIEW newsletter_view AS
+
+SELECT s.lang,
+       "component_article_header" AS component_type,
+       ah.title        AS component_name,
+       ah.subtitle     AS component_content,
+       ah.mark         AS component_boolean,
+       NULL,
+       NULL
+FROM   sections s
+JOIN   component_article_header ah ON s.component_id = ah.id
+WHERE  s.name = "newsletter"
+  AND  s.component_type = "component_article_header"
+
+UNION ALL
+
+SELECT s.lang,
+       "component_input"      AS component_type,
+       i.placeholder      AS component_name,
+       NULL,
+       NULL,
+       NULL,
+       NULL
+FROM   sections s
+JOIN   component_input i ON s.component_id = i.id
+WHERE  s.name = "newsletter"
+  AND  s.component_type = "component_input"
+
+UNION ALL
+
+SELECT s.lang,
+       "component_button"      AS component_type,
+       b.title         AS component_name,
+       NULL,
+       NULL,
+       NULL,
+       NULL
+FROM   sections s
+JOIN   component_button b ON s.component_id = b.id
+WHERE  s.name = "newsletter"
+  AND  s.component_type = "component_button"
+
+UNION ALL
+
+SELECT s.lang,
+       "component_info"      AS component_type,
+       i.content         AS component_name,
+       NULL,
+       NULL,
+       NULL,
+       NULL
+FROM   sections s
+JOIN   component_info i ON s.component_id = i.id
+WHERE  s.name = "newsletter"
+  AND  s.component_type = "component_info"
+
+UNION ALL
+
+SELECT s.lang,
+       "component_status"      AS component_type,
+       NULL,
+       st.ok         AS component_content,
+       NULL,
+       st.failed         AS component_failed,
+       st.invalid         AS component_invalid
+FROM   sections s
+JOIN   component_status st ON s.component_id = st.id
+WHERE  s.name = "newsletter"
+  AND  s.component_type = "component_status";
+`,
+  },
+
+  {
+    view: "footer_view",
+    template: `
+CREATE OR REPLACE VIEW footer_view AS
+
+SELECT s.lang,
+       "component_info_card" AS component_type,
+       ic.title        AS component_name,
+       ic.content      AS component_content,
+       ic.style      AS component_style
+FROM   sections s
+JOIN   component_info_card ic ON s.component_id = ic.id
+WHERE  s.name = "footer"
+  AND  s.component_type = "component_info_card"
+
+UNION ALL
+
+SELECT s.lang,
+       "component_info"      AS component_type,
+       i.content         AS component_name,
+       NULL,
+       NULL
+FROM   sections s
+JOIN   component_info i ON s.component_id = i.id
+WHERE  s.name = "footer"
+  AND  s.component_type = "component_info";
+`,
+  },
+];
