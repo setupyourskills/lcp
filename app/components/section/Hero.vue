@@ -1,21 +1,27 @@
 <template lang="pug">
 section.hero
   div.hero__group.margin-space
-    h1.hero__title(v-html="hero.title") 
-    p.hero__subtitle(v-html="hero.subtitle")
-    ComponentButton.hero__button-component(title="Commander" @click="setModalState('purchase', true)")
-  NuxtImg.hero__image(src="hero.webp")
+    h1.hero__title(v-html="component_article_header.component_name") 
+    p.hero__subtitle(v-html="component_article_header.component_content")
+    ComponentButton.hero__button-component(:title="component_button.component_name" @click="setModalState('purchase', true)")
+  NuxtImg.hero__image(:src="component_image.component_name")
 </template>
 
 <script setup lang="ts">
-import type { HeroSection } from "~/assets/types/types.d.ts"
-
-const hero: HeroSection = {
-  title: "La <span class='font-title-accent'>Couleur</span> au service de vos gravures !",
-  subtitle: "Sublimez vos gravures lasers avec nos poudres de couleurs intenses, durables et faciles à utiliser.",
-};
+import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
 
 const { setModalState } = useModalsState();
+const { getLanguage } = useLanguageCookie();
+
+const { data: sectionBlocks } = await useFetch<SectionFullRow[]>(
+  `/api/view/hero_view?lang=${getLanguage()}`
+);
+
+const {
+  component_article_header,
+  component_button,
+  component_image,
+} = useComponents(sectionBlocks);
 </script>
 
 <style lang="sass" scoped>

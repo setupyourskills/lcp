@@ -1,3 +1,5 @@
+import type { KnownComponent } from "~/assets/types/types.d.ts"
+
 // Sections
 export interface IFaqSection {
   question: string;
@@ -130,4 +132,36 @@ export interface ISwitchProps {
 export interface ISendMailResponse {
   sent: boolean;
   message: string;
+}
+
+export interface SectionFullRow {
+  section_id:   number;
+  section_name: string;
+  lang:        string;
+
+  component_id: number;
+  component_name?:   string;
+  component_content?: string;
+  component_boolean?:    boolean;
+  number?:      number;
+  style?:       string;
+  transition?:  boolean;
+  question?:    string;
+  answer?:      string;
+  height?:      number;
+  colorName?:   string;
+  component_type?: KnownComponent;
+  avatar?:      string;
+  name?:        string;
+  country?:     string;
+  label?:       string;
+  modelValue?:  any;
+  popupName?:   string;
+  modalName?:   string;
+  placeholder?: string;
+  thumbnails?:  string[];
+  section?:     string;
+  boxName?:     string;
+  showName?:    boolean;
+  text?:        string;
 }
