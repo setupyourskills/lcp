@@ -1,17 +1,12 @@
-import type { KnownComponent } from "~/assets/types/types.d.ts"
-import type { SectionFullRow } from '~/assets/types/interfaces.d.ts';
+import type { KnownComponent, ComponentsMap } from "~/assets/types/types.d.ts"
 
-export function useComponents<T extends readonly KnownComponent[]>(
-  blocks: Ref<SectionFullRow[] | undefined>,
-  types: T
-) {
-  const result = {} as { [K in T[number]]: ComputedRef<SectionFullRow | undefined> };
+export function useComponents(blocks: any) {
+  const components: ComponentsMap = {};
 
-  for (const type of types) {
-    (result as any)[type] = computed(() =>
-      blocks.value?.find(b => b.component_type === type)
-    );
+  for (const element of blocks.value) {
+    const { component_type, ...rest } = element;
+    components[component_type as KnownComponent] = rest;
   }
 
-  return result;
+  return components;
 }

@@ -1,6 +1,19 @@
+export type ArticleHeader_view = {
+  component_name: string;
+  component_content: string;
+};
+
 export type ArticleHeader = {
   title: string;
   content: string;
+};
+
+export type ButtonComponent = {
+  title: string;
+};
+
+export type ImageComponent = {
+  filename: string;
 };
 
 export type HeroSection = {
@@ -30,3 +43,26 @@ export type pspProps = {
   boxName: string;
   showName: string;
 };
+
+type KnownComponent =
+  | "component_article_header"
+  | "component_button"
+  | "component_image"
+  | "component_vidstack"
+  | "component_textarea"
+  | "component_testimonialcard"
+  | "component_switch"
+  | "component_popup"
+  | "component_modal"
+  | "component_input"
+  | "component_info_card"
+  | "component_faq"
+  | "component_color_card"
+  | "component_close_modal"
+  | "component_bubbles"
+  | "component_box"
+  | "component_info";
+
+export type ComponentsMap = { [K in KnownComponent]?: object };
+
+export type LanguageCookie = "fr" | "en" | "zh";
