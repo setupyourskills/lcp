@@ -1,32 +1,28 @@
 <template lang="pug">
 section.colors
-  ComponentArticleHeader(:title="articleHeader.title" :content="articleHeader.content")
+  ComponentArticleHeader(
+    :mark="Boolean(component_article_header.component_boolean)"
+    :title="component_article_header.component_name"
+    :content="component_article_header.component_content"
+  )
   div.colors__group
     ComponentColorCard.colors__color-card(
-      v-for="color in colors"
+      v-for="color in component_color_card"
       :key="color"
-      :color-name="color"
+      :color-name="color.component_name"
     )
 </template>
 
 <script setup lang="ts">
-import type { ArticleHeader } from "~/assets/types/types.d.ts"
+import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
 
-const articleHeader: ArticleHeader = {
-  title: "<span class='font-accent'>9 couleurs</span> et des millions d'idées !",
-  content: "<span class='font-bold'>Sélectionnez</span> les couleurs <span class='font-bold'> parfaites</span> pour <span class='font-bold'> vos projets uniques !</span>",
-};
-const colors: string[] = [
-  "red",
-  "blue",
-  "green",
-  "purple",
-  "gold",
-  "orange",
-  "white",
-  "yellow",
-  "black",
-];
+const { getLanguage } = useLanguageCookie();
+
+const { data: sectionBlocks } = await useFetch<SectionFullRow[]>(
+  `/api/view/colors_view?lang=${getLanguage()}`
+);
+
+const { component_article_header, component_color_card } = useComponents(sectionBlocks);
 </script>
 
 <style lang="sass" scoped>

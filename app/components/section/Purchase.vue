@@ -3,44 +3,49 @@ section.purchase
   div.purchase__frame
     ComponentBubbles(section="purchase")
     div.purchase__group.margin-space
-      ComponentArticleHeader.purchase__title-component(:mark="false" :title="articleHeader.title" :content="articleHeader.content")
+      ComponentArticleHeader.purchase__title-component(
+        :mark="Boolean(component_article_header.component_boolean)"
+        :title="component_article_header.component_name"
+        :content="component_article_header.component_content"
+      )
       div.purchase__form
         ComponentInfoCard.purchase__info-card(
-          v-for="(item, idx) in purchaseForm"
-          :key="idx"
-          :number="idx+1"
-          :title="item.title"
-          :content="item.content"
+          v-for="item in component_info_card"
+          :key="item"
+          :number="item.component_number"
+          :title="item.component_name"
+          :content="item.component_content"
         )
         div.purchase__box-image-group
-          NuxtImg(v-for="id in 2" :key="id" src="box.webp" :class="`purchase__box${(id).toString()}`")
+          NuxtImg(
+            v-for="(image, id) in component_image"
+            :key="id"
+            :src="image.component_name"
+            :class="`purchase__box${(id+1).toString()}`"
+          )
         div.purchase__button-group
-          ComponentButton.purchase__button(title="Commander" @click="setModalState('purchase', true)")
+          ComponentButton.purchase__button(:title="component_button.component_name" @click="setModalState('purchase', true)")
       div.purchase__info
-        p.font-xs(v-html="coupon")
+        p.font-xs(v-html="component_info.component_name")
 </template>
 
 <script setup lang="ts">
-import type { ArticleHeader } from "~/assets/types/types.d.ts"
-import type { IInfoCardSection } from "~/assets/types/interfaces.d.ts"
-
-const articleHeader: ArticleHeader = {
-  title: "<span class='font-accent'>Commander</span> le lot Duo",
-  content: "<span class='font-bold'>Béneficier</span> de la <span class='font-bold'>couleur</span> pour <span class='font-bold'>plus de créativité !</span>",
-};
-const purchaseForm: IInfoCardSection[] = [
-  {
-    title: "Quantités",
-    content: "Nos poudres laser sont vendues par lot de deux boîtes de 300g, idéal pour tous vos projets.",
-  },
-  {
-    title: "Couleurs",
-    content: "Choisissez parmi une palette de 9 couleurs pour donner vie à vos créations.",
-  },
-];
-const coupon: string = "Le coupon <span class='font-accent font-bold'>FIRST</span> vous permet de bénéficiez d'une réduction de 10% sur votre 1er achat.";
+import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
 
 const { setModalState } = useModalsState();
+const { getLanguage } = useLanguageCookie();
+
+const { data: sectionBlocks } = await useFetch<SectionFullRow[]>(
+  `/api/view/purchase_view?lang=${getLanguage()}`
+);
+
+const {
+  component_article_header,
+  component_info_card,
+  component_image,
+  component_button,
+  component_info,
+} = useComponents(sectionBlocks);
 </script>
 
 <style lang="sass" scoped>

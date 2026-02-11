@@ -4,34 +4,26 @@ section.footer
     ComponentBubbles(section="footer")
     div.footer__group.margin-space(ref="refFooterGroup")
       ComponentInfoCard.footer__info-card(
-        v-for="(item, idx) in footerItems"
-        :key="idx"
-        :title="item.title"
-        :content="item.content"
-        :style="idx ? 'normal' : 'italic'" 
+        v-for="item in component_info_card"
+        :key="item"
+        :title="item.component_name"
+        :content="item.component_content"
+        :style="item.component_style" 
         :transition="false"
       )
-    div.footer__copyright.margin-space(v-html="copyright")
+    div.footer__copyright.margin-space(v-html="component_info.component_name")
 </template>
 
 <script setup lang="ts">
-import type { IInfoCardSection, IModalsState } from "~/assets/types/interfaces.d.ts"
+import type { SectionFullRow, IModalsState } from "~/assets/types/interfaces.d.ts"
 
-const footerItems: IInfoCardSection[] = [
-  {
-    title: "Laser Skills",
-    content: "Nous avons créé une poudre qui permet d’ajouter <span class='font-bold'>une dimension chromatique exceptionnelle et durable</span> à vos gravures lasers.<br /><br /><span class='font-accent'>✉</span> <a href='#contact' class='modal'>Nous contacter</a>",
-  },
-  {
-    title: "Notre Produit",
-    content: "<a href='#features' class='inner-link'>Caractéristiques</a><br /><a href='#demo' class='inner-link'>Démonstration</a><br /><a href='#colors' class='inner-link'>Couleurs disponibles</a><br /><a href='#purchase' class='inner-link'>Commander le lot Duo</a><br /><a href='#faq' class='inner-link'>FAQ</a><br /><a href='#testimonials' class='inner-link'>Témoignages</a><br /><a href='#newsletter' class='inner-link'>Newsletter</a>",
-  },
-  {
-    title: "Mentions",
-    content: "<a href='#mentions' class='modal'>Mentions légales</a><br /><a href='#terms' class='modal'>Conditions générales de vente</a><br /><a href='#confidential' class='modal'>Confidentialité / RGPD</a><br /><a href='#cookies' class='modal'>Gestion des cookies</a><br /><a href='#use' class='modal'>Conditions générales d'utilisation</a>",
-  },
-];
-const copyright = "<span class='font-bold font-normal'>©</span> 2026 - <a href='mailto:contact@setupyourskills'>SetupYourSkills</a>"
+const { getLanguage } = useLanguageCookie();
+
+const { data: sectionBlocks } = await useFetch<SectionFullRow[]>(
+  `/api/view/footer_view?lang=${getLanguage()}`
+);
+
+const { component_article_header, component_info_card, component_info } = useComponents(sectionBlocks);
 
 const { setModalState } = useModalsState();
 

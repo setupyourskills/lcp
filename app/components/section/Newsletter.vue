@@ -2,35 +2,37 @@
 section.newsletter
   div.newsletter__frame
     div.newsletter__group.margin-space
-      ComponentArticleHeader.newsletter__title-component(:mark="false" :title="articleHeader.title" :content="articleHeader.content")
+      ComponentArticleHeader.newsletter__title-component(
+        :mark="Boolean(component_article_header.component_boolean)"
+        :title="component_article_header.component_name"
+        :content="component_article_header.component_content"
+      )
       form.newsletter__form(@submit.prevent="join")
-        ComponentInput.newsletter__input(v-model="newsletterEmailInput" placeholder="Email" type="email" maxlength="255" required)
-        ComponentButton.newsletter__button(title="S'abonner" type="submit")
+        ComponentInput.newsletter__input(v-model="newsletterEmailInput" :placeholder="component_input.component_name" type="email" maxlength="255" required)
+        ComponentButton.newsletter__button(:title="component_button.component_name" type="submit")
         p.newsletter__status.font-xs {{ newsletterStatusMessage }}
   div.newsletter__info
-    p.font-xs(v-html="info.spam") 
-    p.font-xs(v-html="info.confidential") 
+    p.font-xs(v-html="component_info[0].component_name") 
+    p.font-xs(v-html="component_info[1].component_name") 
 </template>
 
 <script setup lang="ts">
-import type { ArticleHeader, FormStatus } from "~/assets/types/types.d.ts";
-import type { InfoNewsletterSection } from "~/assets/types/types.d.ts";
-import type { IUserResponse } from "~/assets/types/interfaces.d.ts"
+import type { IUserResponse, SectionFullRow } from "~/assets/types/interfaces.d.ts"
 
-const articleHeader: ArticleHeader = {
-  title: "Rejoignez <span class='font-accent'>la newsletter</span>",
-  content: "<span class='font-bold'>Recevez</span> les dernières <span class='font-bold'>nouvelles</span> pour <span class='font-bold'>rester toujours informé !</span>",
-};
-const info: InfoNewsletterSection = {
-  spam: "<span class='font-accent font-bold font-normal'>🗹</span> Pas de Spam",
-  confidential: "<span class='font-accent font-bold font-normal'>🗹</span> Votre Email reste confidentiel"
+const { getLanguage } = useLanguageCookie();
+
+const { data: sectionBlocks } = await useFetch<SectionFullRow[]>(
+  `/api/view/newsletter_view?lang=${getLanguage()}`
+);
+
+type ComponentStatus = {
+  component_content: string;
+  component_failed: string;
+  component_invalid: string;
 };
 
-const status: FormStatus = {
-  ok: "✅ Vous êtes abonné !",
-  failed: "❌ Une erreur s'est produite !",
-  invalid: "❌ Email est invalide !"
-};
+const { component_article_header, component_input, component_button, component_info, component_status } = useComponents(sectionBlocks);
+const status = component_status as ComponentStatus;
 
 const newsletterEmailInput = ref();
 const newsletterStatusMessage = ref();
@@ -38,7 +40,7 @@ const newsletterStatusMessage = ref();
 const join = async () => {
   const { isInvalidRegex, isTooLong } = useCheckEmail(newsletterEmailInput.value);
 
-  if (isInvalidRegex || isTooLong) newsletterStatusMessage.value = status.invalid;
+  if (isInvalidRegex || isTooLong) newsletterStatusMessage.value = status?.component_invalid;
   else {
     try {
       const result = await $fetch<IUserResponse>("/api/addEmail", {
@@ -47,9 +49,9 @@ const join = async () => {
           email: newsletterEmailInput.value
         }
       });
-      newsletterStatusMessage.value = status.ok;
+      newsletterStatusMessage.value = status?.component_content;
     } catch (e: any) {
-      newsletterStatusMessage.value = status.failed;
+      newsletterStatusMessage.value = status?.component_failed;
     }
   }
 

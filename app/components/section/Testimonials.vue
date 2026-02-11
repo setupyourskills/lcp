@@ -1,45 +1,31 @@
 <template lang="pug">
 section.testimonials
-  ComponentArticleHeader.testimonials__title-component(:title="articleHeader.title" :content="articleHeader.content")
+  ComponentArticleHeader.testimonials__title-component(
+    :mark="Boolean(component_article_header.component_boolean)"
+    :title="component_article_header.component_name"
+    :content="component_article_header.component_content"
+  )
   div.testimonials__group
     ComponentTestimonialCard.testimonials__testimonial-card(
-      v-for="testimonial in testimonials"
+      v-for="testimonial in component_testimonial_card"
       :key="testimonial"
-      :content="testimonial.content"
-      :avatar="testimonial.avatar"
-      :name="testimonial.name"
-      :country="testimonial.country"
+      :content="testimonial.component_content"
+      :avatar="testimonial.component_avatar"
+      :name="testimonial.component_name"
+      :country="testimonial.component_country"
     )
 </template>
 
 <script setup lang="ts">
-import type { ArticleHeader } from "~/assets/types/types.d.ts"
-import type { ITestimonialSection } from "~/assets/types/interfaces.d.ts"
+import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
 
-const articleHeader: ArticleHeader = {
-  title: "Les <span class='font-accent'>avis</span> de nos clients",
-  content: "Votre <span class='font-bold'>satisfaction</span> est <span class='font-bold'>notre priorité !</span>",
-};
-const testimonials: ITestimonialSection[] = [
-  {
-    content: "Merci beaucoup pour ces belles couleurs ! Je les utilise maintenant dans toutes mes gravures !",
-    avatar: "",
-    name: "Yang",
-    country: "Taïwan",
-  },
-  {
-    content: "Il faut un petit temps d'adaptation mais ça vaut le coup car ça ajoute une véritable touche vivante à mes produits.",
-    avatar: "",
-    name: "Léa",
-    country: "France",
-  },
-  {
-    content: "Merci, j'apprécie vraiment les quantités disponibles et bien protégées dans leur boîte, c'est assez facile d'emploi !",
-    avatar: "",
-    name: "John",
-    country: "USA",
-  },
-];
+const { getLanguage } = useLanguageCookie();
+
+const { data: sectionBlocks } = await useFetch<SectionFullRow[]>(
+  `/api/view/testimonials_view?lang=${getLanguage()}`
+);
+
+const { component_article_header, component_testimonial_card } = useComponents(sectionBlocks);
 </script>
 
 <style lang="sass" scoped>

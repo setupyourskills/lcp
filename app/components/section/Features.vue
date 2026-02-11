@@ -2,30 +2,23 @@
 section.features
   div.features__group
     ComponentInfoCard.features__info-card(
-      v-for="feature in features"
+      v-for="feature in component_info_card"
       :key="feature"
-      :title="feature.title"
-      :content="feature.content"
+      :title="feature.component_name"
+      :content="feature.component_content"
     )
 </template>
 
 <script setup lang="ts">
-import type { IInfoCardSection } from "~/assets/types/interfaces.d.ts"
+import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
 
-const features: IInfoCardSection[] = [
-  {
-    title: "Couleurs",
-    content: "Des couleurs <span class='font-bold'>vibrantes</span> qui embélissent vos œuvres et <span class='font-bold'>résistent</span> à l'épreuve du temps.",
-  },
-  {
-    title: "Adaptable",
-    content: "Nos poudres peuvent adhérer à <span class='font-bold'>tous types de matériaux</span> (bois, métal, verre, plastique...), laissez parler votre créativité.",
-  },
-  {
-    title: "Compatible",
-    content: "Que vous utilisiez un laser Diode, CO2 ou Fibre, nos poudres sont conçues pour fonctionner <span class='font-bold'>sur la majorité des machines.</span>",
-  },
-];
+const { getLanguage } = useLanguageCookie();
+
+const { data: sectionBlocks } = await useFetch<SectionFullRow[]>(
+  `/api/view/features_view?lang=${getLanguage()}`
+);
+
+const { component_info_card } = useComponents(sectionBlocks);
 </script>
 
 <style lang="sass" scoped>

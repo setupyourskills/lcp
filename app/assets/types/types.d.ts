@@ -50,7 +50,7 @@ type KnownComponent =
   | "component_image"
   | "component_vidstack"
   | "component_textarea"
-  | "component_testimonialcard"
+  | "component_testimonial_card"
   | "component_switch"
   | "component_popup"
   | "component_modal"
@@ -61,7 +61,8 @@ type KnownComponent =
   | "component_close_modal"
   | "component_bubbles"
   | "component_box"
-  | "component_info";
+  | "component_info"
+  | "component_status";
 
 export type ComponentsMap = { [K in KnownComponent]?: object };
 

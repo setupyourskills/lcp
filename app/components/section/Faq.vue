@@ -1,45 +1,29 @@
 <template lang="pug">
 section.faq
-  ComponentArticleHeader.faq__title-component(:title="articleHeader.title" :content="articleHeader.content")
+  ComponentArticleHeader.faq__title-component(
+    :mark="Boolean(component_article_header.component_boolean)"
+    :title="component_article_header.component_name"
+    :content="component_article_header.component_content"
+  )
   ComponentFaq.faq__faq-component(
-  v-for="item in faq"
+  v-for="item in component_faq"
   :key="item"
-  :question="item.question"
-  :answer="item.answer"
-  :height="item.height"
+  :question="item.component_name"
+  :answer="item.component_content"
+  :height="item.component_number"
   )
 </template>
 
 <script setup lang="ts">
-import type { ArticleHeader } from "~/assets/types/types.d.ts"
-import type { IFaqSection } from "~/assets/types/interfaces.d.ts"
+import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
 
-const articleHeader: ArticleHeader = {
-  title: "<span class='font-accent'>Questions</span> fréquentes",
-  content: "<span class='font-bold'>Trouvez les réponses</span> à toutes vos interrogations sur nos poudres laser, <span class='font-bold'>tout doit rester clair !</span>",
-};
-const faq: IFaqSection[] = [
-  {
-    question: "Choix des couleurs",
-    answer: "Vous pouvez choisir entre <span class='font-bold'>9 couleurs</span> différentes que vous pouvez commander par lot de deux boîtes de 300g",
-    height: 200
-  },
-  {
-    question: "Quelle quantité utiliser par application ?",
-    answer: "Vous n'avez besoin que de seulement quelques grammes par application.",
-    height: 200
-  },
-  {
-    question: "Délais de livraison",
-    answer: "Cela dépend de là où vous résider, mais en général, il faudra compte 2 semaines maximum pour recevoir votre colis. Les poudres sont envoyées de Taïwan.",
-    height: 230
-  },
-  {
-    question: "Configuration et installation du laser",
-    answer: "Il vous faudra trouver la meilleur configuration en fonction de votre laser. Quelqes tests seront nécessaires les premières fois jusqu'à trouver les bons paramètres.",
-    height: 240
-  },
-];
+const { getLanguage } = useLanguageCookie();
+
+const { data: sectionBlocks } = await useFetch<SectionFullRow[]>(
+  `/api/view/faq_view?lang=${getLanguage()}`
+);
+
+const { component_article_header, component_faq } = useComponents(sectionBlocks);
 </script>
 
 <style lang="sass" scoped>
