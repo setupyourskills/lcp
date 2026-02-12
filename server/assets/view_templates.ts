@@ -346,4 +346,326 @@ WHERE  s.name = "footer"
   AND  s.component_type = "component_info";
 `,
   },
+
+  {
+    view: "cookies_popup_view",
+    template: `
+CREATE OR REPLACE VIEW cookies_popup_view AS
+
+SELECT p.lang,
+       "component_article_header" AS component_type,
+       ah.title        AS component_name,
+       ah.subtitle     AS component_content,
+       ah.mark         AS component_boolean
+FROM   popups p
+JOIN   component_article_header ah ON p.component_id = ah.id
+WHERE  p.name = "cookies"
+  AND  p.component_type = "component_article_header"
+
+UNION ALL
+
+SELECT p.lang,
+       "component_button"      AS component_type,
+       b.title         AS component_name,
+       NULL,
+       NULL
+FROM   popups p
+JOIN   component_button b ON p.component_id = b.id
+WHERE  p.name = "cookies"
+  AND  p.component_type = "component_button";
+`,
+  },
+
+
+  {
+    view: "contact_modal_view",
+    template: `
+CREATE OR REPLACE VIEW contact_modal_view AS
+
+SELECT m.lang,
+       "component_article_header" AS component_type,
+       ah.title        AS component_name,
+       ah.subtitle     AS component_content,
+       ah.mark         AS component_boolean,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_article_header ah ON m.component_id = ah.id
+WHERE  m.name = "contact"
+  AND  m.component_type = "component_article_header"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_input"      AS component_type,
+       i.placeholder      AS component_name,
+       NULL,
+       NULL,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_input i ON m.component_id = i.id
+WHERE  m.name = "contact"
+  AND  m.component_type = "component_input"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_textarea"      AS component_type,
+       t.placeholder      AS component_name,
+       NULL,
+       NULL,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_textarea t ON m.component_id = t.id
+WHERE  m.name = "contact"
+  AND  m.component_type = "component_textarea"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_button"      AS component_type,
+       b.title         AS component_name,
+       NULL,
+       NULL,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_button b ON m.component_id = b.id
+WHERE  m.name = "contact"
+  AND  m.component_type = "component_button"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_status"      AS component_type,
+       NULL,
+       st.ok         AS component_content,
+       NULL,
+       st.failed         AS component_failed,
+       st.invalid         AS component_invalid
+FROM   modals m
+JOIN   component_status st ON m.component_id = st.id
+WHERE  m.name = "contact"
+  AND  m.component_type = "component_status";
+`,
+  },
+
+  {
+    view: "confidential_modal_view",
+    template: `
+CREATE OR REPLACE VIEW confidential_modal_view AS
+
+SELECT m.lang,
+       "component_article_header" AS component_type,
+       ah.title        AS component_name,
+       ah.subtitle     AS component_content,
+       ah.mark         AS component_boolean
+FROM   modals m
+JOIN   component_article_header ah ON m.component_id = ah.id
+WHERE  m.name = "confidential"
+  AND  m.component_type = "component_article_header"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_info"      AS component_type,
+       i.content         AS component_name,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_info i ON m.component_id = i.id
+WHERE  m.name = "confidential"
+  AND  m.component_type = "component_info"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_button"      AS component_type,
+       b.title         AS component_name,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_button b ON m.component_id = b.id
+WHERE  m.name = "confidential"
+  AND  m.component_type = "component_button";
+`,
+  },
+
+  {
+    view: "use_modal_view",
+    template: `
+CREATE OR REPLACE VIEW use_modal_view AS
+
+SELECT m.lang,
+       "component_article_header" AS component_type,
+       ah.title        AS component_name,
+       ah.subtitle     AS component_content,
+       ah.mark         AS component_boolean
+FROM   modals m
+JOIN   component_article_header ah ON m.component_id = ah.id
+WHERE  m.name = "use"
+  AND  m.component_type = "component_article_header"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_info"      AS component_type,
+       i.content         AS component_name,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_info i ON m.component_id = i.id
+WHERE  m.name = "use"
+  AND  m.component_type = "component_info"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_button"      AS component_type,
+       b.title         AS component_name,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_button b ON m.component_id = b.id
+WHERE  m.name = "use"
+  AND  m.component_type = "component_button";
+`,
+  },
+
+  {
+    view: "mentions_modal_view",
+    template: `
+CREATE OR REPLACE VIEW mentions_modal_view AS
+
+SELECT m.lang,
+       "component_article_header" AS component_type,
+       ah.title        AS component_name,
+       ah.subtitle     AS component_content,
+       ah.mark         AS component_boolean
+FROM   modals m
+JOIN   component_article_header ah ON m.component_id = ah.id
+WHERE  m.name = "mentions"
+  AND  m.component_type = "component_article_header"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_info"      AS component_type,
+       i.content         AS component_name,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_info i ON m.component_id = i.id
+WHERE  m.name = "mentions"
+  AND  m.component_type = "component_info"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_button"      AS component_type,
+       b.title         AS component_name,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_button b ON m.component_id = b.id
+WHERE  m.name = "mentions"
+  AND  m.component_type = "component_button";
+`,
+  },
+
+  {
+    view: "terms_modal_view",
+    template: `
+CREATE OR REPLACE VIEW terms_modal_view AS
+
+SELECT m.lang,
+       "component_article_header" AS component_type,
+       ah.title        AS component_name,
+       ah.subtitle     AS component_content,
+       ah.mark         AS component_boolean
+FROM   modals m
+JOIN   component_article_header ah ON m.component_id = ah.id
+WHERE  m.name = "terms"
+  AND  m.component_type = "component_article_header"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_info"      AS component_type,
+       i.content         AS component_name,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_info i ON m.component_id = i.id
+WHERE  m.name = "terms"
+  AND  m.component_type = "component_info"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_button"      AS component_type,
+       b.title         AS component_name,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_button b ON m.component_id = b.id
+WHERE  m.name = "terms"
+  AND  m.component_type = "component_button";
+`,
+  },
+
+  {
+    view: "cookies_modal_view",
+    template: `
+CREATE OR REPLACE VIEW cookies_modal_view AS
+
+SELECT m.lang,
+       "component_article_header" AS component_type,
+       ah.title        AS component_name,
+       ah.subtitle     AS component_content,
+       ah.mark         AS component_boolean
+FROM   modals m
+JOIN   component_article_header ah ON m.component_id = ah.id
+WHERE  m.name = "cookies"
+  AND  m.component_type = "component_article_header"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_info"      AS component_type,
+       i.content         AS component_name,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_info i ON m.component_id = i.id
+WHERE  m.name = "cookies"
+  AND  m.component_type = "component_info"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_button"      AS component_type,
+       b.title         AS component_name,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_button b ON m.component_id = b.id
+WHERE  m.name = "cookies"
+  AND  m.component_type = "component_button"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_cookies_parameters"      AS component_type,
+       cp.cookie_key         AS component_name,
+       cp.label         AS component_content,
+       cp.mutable         AS component_boolean
+FROM   modals m
+JOIN   component_cookies_parameters cp ON m.component_id = cp.id
+WHERE  m.name = "cookies"
+  AND  m.component_type = "component_cookies_parameters";
+`,
+  },
 ];
