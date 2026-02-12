@@ -17,19 +17,14 @@ section.newsletter
 </template>
 
 <script setup lang="ts">
-import type { IUserResponse, SectionFullRow } from "~/assets/types/interfaces.d.ts"
+import type { IUserResponse, SectionFullRow } from "~/assets/types/interfaces.d.ts";
+import type { ComponentStatus } from "~/assets/types/types.d.ts";
 
 const { getLanguage } = useLanguageCookie();
 
 const { data: sectionBlocks } = await useFetch<SectionFullRow[]>(
   `/api/view/newsletter_view?lang=${getLanguage()}`
 );
-
-type ComponentStatus = {
-  component_content: string;
-  component_failed: string;
-  component_invalid: string;
-};
 
 const { component_article_header, component_input, component_button, component_info, component_status } = useComponents(sectionBlocks);
 const status = component_status as ComponentStatus;
