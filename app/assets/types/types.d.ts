@@ -62,7 +62,8 @@ type KnownComponent =
   | "component_bubbles"
   | "component_box"
   | "component_info"
-  | "component_status";
+  | "component_status"
+  | "component_cookies_parameters";
 
 export type ComponentsMap = { [K in KnownComponent]?: object };
 
