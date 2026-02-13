@@ -1,5 +1,5 @@
 import mysql from "mysql2/promise";
-import db from "../utils/db";
+import { db } from "../utils/db";
 
 export default defineEventHandler(async (event) => {
   const { email } = await readBody(event);
@@ -15,7 +15,10 @@ export default defineEventHandler(async (event) => {
 
     console.log(result.insertId, email);
   } catch (err: any) {
-    console.error("Insertion Error", err.message);
-    throw new Error(err.message);
+    throw createError({
+      statusCode: 500,
+      message: 'Database insertion failed',
+      data: { err },
+    });
   }
 });

@@ -1,5 +1,5 @@
 import mysql from "mysql2/promise";
-import db from "../../utils/db";
+import { db } from "../../utils/db";
 
 export default defineEventHandler(async (event) => {
   const componentName = event.context.params?.name;
@@ -18,18 +18,16 @@ export default defineEventHandler(async (event) => {
   `;
 
   try {
-    const [rows] = await db.execute<mysql.RowDataPacket[]>(sql, [
-      lang
-    ]);
+    const [rows] = await db.execute<mysql.RowDataPacket[]>(sql, [lang]);
     if (!Array.isArray(rows) || rows.length === 0) {
       throw createError({ statusCode: 404, message: "Section not found" });
     }
     return rows;
   } catch (err: any) {
-    console.error("Query error!", err.message);
     throw createError({
       statusCode: 500,
-      message: err.message || "Database query failed",
+      message: "Database querry failed",
+      data: { err },
     });
   }
 });
