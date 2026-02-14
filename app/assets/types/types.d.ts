@@ -41,7 +41,6 @@ export type ModalProps = {
 
 export type pspProps = {
   boxName: string;
-  showName: string;
 };
 
 type KnownComponent =

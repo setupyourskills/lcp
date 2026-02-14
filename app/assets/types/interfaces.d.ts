@@ -121,7 +121,6 @@ export interface IVidstackProps {
 
 export interface IBoxProps {
   boxName: string;
-  showName: string;
 }
 
 export interface ISwitchProps {
@@ -163,6 +162,5 @@ export interface SectionFullRow {
   thumbnails?:  string[];
   section?:     string;
   boxName?:     string;
-  showName?:    boolean;
   text?:        string;
 }

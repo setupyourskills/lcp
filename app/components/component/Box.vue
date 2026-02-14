@@ -5,7 +5,6 @@ div.box-component(
 )
   div.box-component__logo
     NuxtImg.box-component__logo-img(:src="`${props.boxName}.png`")
-  p.box-component__content.font-s {{ props.showName }}
 </template>
 
 <script setup lang="ts">
@@ -13,7 +12,6 @@ import type { IBoxProps } from "~/assets/types/interfaces.d.ts"
 
 const props = withDefaults(defineProps<IBoxProps>(), {
   boxName: "paypal",
-  showName: "Paypal",
 });
 
 const { getPspState, setPspState } = usePspsState();
