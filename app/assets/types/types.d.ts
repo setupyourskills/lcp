@@ -62,6 +62,7 @@ type KnownComponent =
   | "component_box"
   | "component_info"
   | "component_status"
+  | "component_psp"
   | "component_cookies_parameters";
 
 export type ComponentsMap = { [K in KnownComponent]?: object };

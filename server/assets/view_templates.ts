@@ -668,4 +668,69 @@ WHERE  m.name = "cookies"
   AND  m.component_type = "component_cookies_parameters";
 `,
   },
+
+  {
+    view: "purchase_modal_view",
+    template: `
+CREATE OR REPLACE VIEW purchase_modal_view AS
+
+SELECT m.lang,
+       "component_article_header" AS component_type,
+       ah.title        AS component_name,
+       ah.subtitle     AS component_content,
+       ah.mark         AS component_boolean
+FROM   modals m
+JOIN   component_article_header ah ON m.component_id = ah.id
+WHERE  m.name = "purchase"
+  AND  m.component_type = "component_article_header"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_color_card"      AS component_type,
+       cc.name         AS component_name,
+       cc.label        AS component_content,
+       NULL
+FROM   modals m
+JOIN   component_color_card cc ON m.component_id = cc.id
+WHERE  m.name = "purchase"
+  AND  m.component_type = "component_color_card"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_info"      AS component_type,
+       i.content         AS component_name,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_info i ON m.component_id = i.id
+WHERE  m.name = "purchase"
+  AND  m.component_type = "component_info"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_psp"   AS component_type,
+       p.name         AS component_name,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_psp p ON m.component_id = p.id
+WHERE  m.name = "purchase"
+  AND  m.component_type = "component_psp"
+
+UNION ALL
+
+SELECT m.lang,
+       "component_button"      AS component_type,
+       b.title         AS component_name,
+       NULL,
+       NULL
+FROM   modals m
+JOIN   component_button b ON m.component_id = b.id
+WHERE  m.name = "purchase"
+  AND  m.component_type = "component_button";
+`,
+  },
 ];
