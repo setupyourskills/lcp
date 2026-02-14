@@ -49,8 +49,8 @@ PRIMARY KEY (id))
     table: "component_article_header",
     template: `
 (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-title TEXT NOT NULL,
-subtitle TEXT NOT NULL,
+title LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+subtitle LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
 mark TINYINT(1) DEFAULT NULL,
 PRIMARY KEY (id))
 `,
@@ -60,7 +60,7 @@ PRIMARY KEY (id))
     table: "component_button",
     template: `
 (id INT(11) NOT NULL AUTO_INCREMENT,
-title VARCHAR(255) NOT NULL,
+title LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
 PRIMARY KEY (id))
 `,
   },
@@ -70,6 +70,7 @@ PRIMARY KEY (id))
     template: `
 (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 name VARCHAR(255) NOT NULL,
+label LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
 type VARCHAR(255) DEFAULT NULL,
 PRIMARY KEY (id))
 `,
@@ -80,7 +81,7 @@ PRIMARY KEY (id))
     template: `
 (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 cookie_key VARCHAR(255) NOT NULL,
-label TEXT NOT NULL,
+label LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
 mutable TINYINT(1) NOT NULL,
 PRIMARY KEY (id))
 `,
@@ -90,8 +91,8 @@ PRIMARY KEY (id))
     table: "component_faq",
     template: `
 (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-question TEXT NOT NULL,
-answer TEXT NOT NULL,
+question LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+answer LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
 height SMALLINT(6) NOT NULL,
 PRIMARY KEY (id))
 `,
@@ -110,7 +111,7 @@ PRIMARY KEY (id))
     table: "component_info",
     template: `
 (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-content TEXT NOT NULL,
+content LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
 PRIMARY KEY (id))
 `,
   },
@@ -120,8 +121,8 @@ PRIMARY KEY (id))
     template: `
 (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 number TINYINT(4) DEFAULT NULL,
-title VARCHAR(255) NOT NULL,
-content TEXT NOT NULL,
+title LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+content LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
 style VARCHAR(255) DEFAULT NULL,
 transition TINYINT(1) DEFAULT NULL,
 PRIMARY KEY (id))
@@ -132,7 +133,7 @@ PRIMARY KEY (id))
     table: "component_input",
     template: `
 (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-placeholder VARCHAR(255) NOT NULL,
+placeholder LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
 PRIMARY KEY (id))
 `,
   },
@@ -141,9 +142,9 @@ PRIMARY KEY (id))
     table: "component_status",
     template: `
 (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-ok TEXT NOT NULL,
-failed TEXT NOT NULL,
-invalid TEXT NOT NULL,
+ok LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+failed LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+invalid LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
 PRIMARY KEY (id))
 `,
   },
@@ -152,10 +153,10 @@ PRIMARY KEY (id))
     table: "component_testimonial_card",
     template: `
 (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-content TEXT NOT NULL,
+content LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
 avatar TEXT NOT NULL,
-name TEXT NOT NULL,
-country TEXT NOT NULL,
+name LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+country LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
 PRIMARY KEY (id))
 `,
   },
@@ -164,8 +165,18 @@ PRIMARY KEY (id))
     table: "component_textarea",
     template: `
 (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-placeholder VARCHAR(255) NOT NULL,
+placeholder LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
 PRIMARY KEY (id))
 `,
   },
+
+  {
+    table: "component_psp",
+    template: `
+(id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+name VARCHAR(255) NOT NULL,
+PRIMARY KEY (id))
+`,
+  },
+
 ];
