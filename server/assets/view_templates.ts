@@ -639,8 +639,7 @@ WHERE  m.name = "purchase"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_color_card"      AS component_type,
+SELECT "component_color_card"      AS component_type,
        cc.name         AS component_name,
        cc.label        AS component_content,
        NULL
@@ -651,8 +650,7 @@ WHERE  m.name = "purchase"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_info"      AS component_type,
+SELECT "component_info"      AS component_type,
        i.content         AS component_name,
        NULL,
        NULL
@@ -663,8 +661,7 @@ WHERE  m.name = "purchase"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_psp"   AS component_type,
+SELECT "component_psp"   AS component_type,
        p.name         AS component_name,
        NULL,
        NULL
@@ -675,8 +672,7 @@ WHERE  m.name = "purchase"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_button"      AS component_type,
+SELECT "component_button"      AS component_type,
        b.title         AS component_name,
        NULL,
        NULL
