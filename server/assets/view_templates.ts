@@ -109,7 +109,7 @@ CREATE OR REPLACE VIEW purchase_view AS
 
 SELECT s.lang,
        "component_article_header" AS component_type,
-       NULL,
+       NULL            AS component_number,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
        ah.mark         AS component_boolean
