@@ -10,6 +10,7 @@ section.colors
       v-for="color in component_color_card"
       :key="color"
       :color-name="color.component_name"
+      :color-label="color.component_content"
     )
 </template>
 

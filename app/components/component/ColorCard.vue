@@ -5,7 +5,7 @@ div.color-card-component
     @contextmenu.prevent="decColor"
     :class="{ 'activate-element': props.componentType === 'modal' && counterColor, 'activate-button': props.componentType === 'modal'}"
   )
-    p.color-card-component__color-name.font-m {{ props.colorName }}
+    p.color-card-component__color-name.font-m {{ props.colorLabel }}
 
   div.color-card-component__counter-group.font-m(v-if="props.componentType === 'modal'")
     div.color-card-component__moins(
@@ -23,6 +23,7 @@ import type { IColorCardProps } from "~/assets/types/interfaces.d.ts"
 
 const props = withDefaults(defineProps<IColorCardProps>(), {
   colorName: "red",
+  colorLabel: "red",
   componentType: "normal",
 });
 

@@ -93,6 +93,7 @@ export interface IButtonProps {
 
 export interface IColorCardProps {
   colorName: keyof ICounterColorsCookie;
+  colorLabel: string;
   componentType?: string;
 }
 

@@ -93,7 +93,7 @@ UNION ALL
 SELECT s.lang,
        "component_color_card"      AS component_type,
        cc.name         AS component_name,
-       NULL,
+       cc.label        AS component_content,
        NULL
 FROM   sections s
 JOIN   component_color_card cc ON s.component_id = cc.id
