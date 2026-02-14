@@ -8,17 +8,13 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, message: "Component name missing" });
   }
 
-  const query = getQuery(event);
-  const lang = Array.isArray(query.lang) ? query.lang[0] : (query.lang ?? "en");
-
   const sql = `
     SELECT *
     FROM  ${mysql.escapeId(componentName)}
-    WHERE lang = ?
   `;
 
   try {
-    const [rows] = await db.execute<mysql.RowDataPacket[]>(sql, [lang]);
+    const [rows] = await db.execute<mysql.RowDataPacket[]>(sql);
     if (!Array.isArray(rows) || rows.length === 0) {
       throw createError({ statusCode: 404, message: "Section not found" });
     }

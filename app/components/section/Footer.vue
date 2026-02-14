@@ -6,22 +6,20 @@ section.footer
       ComponentInfoCard.footer__info-card(
         v-for="item in component_info_card"
         :key="item"
-        :title="item.component_name"
-        :content="item.component_content"
+        :title="JSON.parse(item.component_name)[lang]"
+        :content="JSON.parse(item.component_content)[lang]"
         :style="item.component_style" 
         :transition="false"
       )
-    div.footer__copyright.margin-space(v-html="component_info.component_name")
+    div.footer__copyright.margin-space(v-html="JSON.parse(component_info.component_name)[lang]")
 </template>
 
 <script setup lang="ts">
 import type { SectionFullRow, IModalsState } from "~/assets/types/interfaces.d.ts"
 
-const { getLanguage } = useLanguageCookie();
+const { lang } = useLanguageCookie();
 
-const { data: sectionBlocks } = await useFetch<SectionFullRow[]>(
-  `/api/view/footer_view?lang=${getLanguage()}`
-);
+const { data: sectionBlocks } = await useFetch<SectionFullRow[]>("/api/view/footer_view");
 
 const { component_article_header, component_info_card, component_info } = useComponents(sectionBlocks);
 

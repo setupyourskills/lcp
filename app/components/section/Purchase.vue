@@ -5,16 +5,16 @@ section.purchase
     div.purchase__group.margin-space
       ComponentArticleHeader.purchase__title-component(
         :mark="Boolean(component_article_header.component_boolean)"
-        :title="component_article_header.component_name"
-        :content="component_article_header.component_content"
+        :title="JSON.parse(component_article_header.component_name)[lang]"
+        :content="JSON.parse(component_article_header.component_content)[lang]"
       )
       div.purchase__form
         ComponentInfoCard.purchase__info-card(
           v-for="item in component_info_card"
           :key="item"
           :number="item.component_number"
-          :title="item.component_name"
-          :content="item.component_content"
+          :title="JSON.parse(item.component_name)[lang]"
+          :content="JSON.parse(item.component_content)[lang]"
         )
         div.purchase__box-image-group
           NuxtImg(
@@ -24,20 +24,18 @@ section.purchase
             :class="`purchase__box${(id+1).toString()}`"
           )
         div.purchase__button-group
-          ComponentButton.purchase__button(:title="component_button.component_name" @click="setModalState('purchase', true)")
+          ComponentButton.purchase__button(:title="JSON.parse(component_button.component_name)[lang]" @click="setModalState('purchase', true)")
       div.purchase__info
-        p.font-xs(v-html="component_info.component_name")
+        p.font-xs(v-html="JSON.parse(component_info.component_name)[lang]")
 </template>
 
 <script setup lang="ts">
 import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
 
 const { setModalState } = useModalsState();
-const { getLanguage } = useLanguageCookie();
+const { lang } = useLanguageCookie();
 
-const { data: sectionBlocks } = await useFetch<SectionFullRow[]>(
-  `/api/view/purchase_view?lang=${getLanguage()}`
-);
+const { data: sectionBlocks } = await useFetch<SectionFullRow[]>("/api/view/purchase_view");
 
 const {
   component_article_header,

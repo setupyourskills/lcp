@@ -2,26 +2,24 @@
 section.colors
   ComponentArticleHeader(
     :mark="Boolean(component_article_header.component_boolean)"
-    :title="component_article_header.component_name"
-    :content="component_article_header.component_content"
+    :title="JSON.parse(component_article_header.component_name)[lang]"
+    :content="JSON.parse(component_article_header.component_content)[lang]"
   )
   div.colors__group
     ComponentColorCard.colors__color-card(
       v-for="color in component_color_card"
       :key="color"
       :color-name="color.component_name"
-      :color-label="color.component_content"
+      :color-label="JSON.parse(color.component_content)[lang]"
     )
 </template>
 
 <script setup lang="ts">
 import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
 
-const { getLanguage } = useLanguageCookie();
+const { lang } = useLanguageCookie();
 
-const { data: sectionBlocks } = await useFetch<SectionFullRow[]>(
-  `/api/view/colors_view?lang=${getLanguage()}`
-);
+const { data: sectionBlocks } = await useFetch<SectionFullRow[]>("/api/view/colors_view");
 
 const { component_article_header, component_color_card } = useComponents(sectionBlocks);
 </script>

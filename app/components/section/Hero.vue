@@ -1,9 +1,9 @@
 <template lang="pug">
 section.hero
   div.hero__group.margin-space
-    h1.hero__title(v-html="component_article_header.component_name") 
-    p.hero__subtitle(v-html="component_article_header.component_content")
-    ComponentButton.hero__button-component(:title="component_button.component_name" @click="setModalState('purchase', true)")
+    h1.hero__title(v-html="JSON.parse(component_article_header.component_name)[lang]") 
+    p.hero__subtitle(v-html="JSON.parse(component_article_header.component_content)[lang]")
+    ComponentButton.hero__button-component(:title="JSON.parse(component_button.component_name)[lang]" @click="setModalState('purchase', true)")
   NuxtImg.hero__image(:src="component_image.component_name")
 </template>
 
@@ -11,11 +11,9 @@ section.hero
 import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
 
 const { setModalState } = useModalsState();
-const { getLanguage } = useLanguageCookie();
+const { lang } = useLanguageCookie();
 
-const { data: sectionBlocks } = await useFetch<SectionFullRow[]>(
-  `/api/view/hero_view?lang=${getLanguage()}`
-);
+const { data: sectionBlocks } = await useFetch<SectionFullRow[]>("/api/view/hero_view");
 
 const {
   component_article_header,

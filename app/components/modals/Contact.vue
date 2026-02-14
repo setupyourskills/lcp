@@ -2,8 +2,8 @@
 div.contact-modal
   ComponentModal.contact-modal__modal(
     modalName="contact"
-    :title="component_article_header.component_name"
-    :content="component_article_header.component_content"
+    :title="JSON.parse(component_article_header.component_name)[lang]"
+    :content="JSON.parse(component_article_header.component_content)[lang]"
   )
     template(#icon)
       svg(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640")
@@ -11,27 +11,27 @@ div.contact-modal
     form.contact-modal__form(@submit.prevent="send")
       ComponentInput.contact-modal__input-name(
         v-model="contactNameInput"
-        :placeholder="component_input[0].component_name"
+        :placeholder="JSON.parse(component_input[0].component_name)[lang]"
         type="text"
         maxlength="255"
         required
       )
       ComponentInput.contact-modal__input.contact-modal__input-email(
         v-model="contactEmailInput"
-        :placeholder="component_input[1].component_name"
+        :placeholder="JSON.parse(component_input[1].component_name)[lang]"
         type="email"
         maxlength="255"
         required
       )
       ComponentTextarea.contact-modal__textarea.contact-modal__textarea-content(
         v-model="contactContentTextarea"
-        :placeholder="component_textarea.component_name"
+        :placeholder="JSON.parse(component_textarea.component_name)[lang]"
         rows="6"
         maxlength="2500"
         required
       )
       ComponentButton.contact-modal__button-send(
-        :title="component_button.component_name"
+        :title="JSON.parse(component_button.component_name)[lang]"
         type="submit"
       )
       p.contact-modal__status.font-xs  {{ contactStatusMessage }}
@@ -41,11 +41,10 @@ div.contact-modal
 import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
 import type { ComponentStatus } from "~/assets/types/types.d.ts";
 
-const { getLanguage } = useLanguageCookie();
+const { lang } = useLanguageCookie();
+// console.log(lang);
 
-const { data: modalsBlocks } = await useFetch<SectionFullRow[]>(
-  `/api/view/contact_modal_view?lang=${getLanguage()}`
-);
+const { data: modalsBlocks } = await useFetch<SectionFullRow[]>("/api/view/contact_modal_view");
 
 const { component_article_header, component_input, component_textarea, component_button, component_status } = useComponents(modalsBlocks);
 const status = component_status as ComponentStatus;

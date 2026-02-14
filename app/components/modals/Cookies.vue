@@ -2,27 +2,27 @@
 div.cookies-modal
   ComponentModal.cookies-modal__modal(
     modalName="cookies"
-    :title="component_article_header.component_name"
-    :content="component_article_header.component_content"
+    :title="JSON.parse(component_article_header.component_name)[lang]"
+    :content="JSON.parse(component_article_header.component_content)[lang]"
   )
     template(#icon)
       svg(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640")
         path(style="fill:#F6AE2D;" d="M 272.16797 208.41211 C 266.49079 208.37331 263.36542 209.08579 257.98633 211.64648 C 249.7333 215.5753 242.89416 224.32838 240.99805 233.39062 C 238.78542 243.96563 241.88697 254.40572 249.5293 262.10938 C 254.7119 267.33354 260.52738 270.36696 267.44922 271.45898 C 270.32938 271.91337 276.29594 271.61516 279.5293 270.85547 C 282.96649 270.0479 289.33476 266.81027 292.08789 264.4707 C 299.71445 257.98979 303.58008 249.69384 303.58008 239.80664 C 303.58008 227.89871 297.191 217.48919 286.41406 211.83984 C 281.88346 209.46487 277.66713 208.44971 272.16797 208.41211 z M 432.53125 336.44727 C 429.2048 336.35972 425.93139 336.66009 423.58984 337.37109 C 404.0374 343.3082 394.83318 364.19837 403.77734 382.3418 C 407.56264 390.02037 415.94372 396.77343 424.15625 398.76172 C 428.09773 399.71572 435.98626 399.72021 439.71484 398.76953 C 451.36036 395.80026 460.82207 385.84162 463.11914 374.13477 C 464.03417 369.47137 463.50953 361.76888 462 357.69922 C 458.43691 348.0933 451.14097 340.92711 441.78906 337.84961 C 439.2371 337.00982 435.8577 336.53481 432.53125 336.44727 z M 239.77148 368.42383 C 234.25839 368.46152 230.05535 369.47684 225.48438 371.87305 C 209.87653 380.05504 203.98545 398.44256 211.82031 414.52148 C 213.04517 417.03516 214.59966 419.0552 217.67188 422.125 C 223.12191 427.57073 228.43618 430.34919 235.54492 431.4707 C 238.72463 431.97235 244.25914 431.6206 247.95508 430.68164 C 259.16583 427.83352 268.3917 418.17709 270.96875 406.59375 C 272.71219 398.75734 270.9712 389.33838 266.54492 382.66992 C 263.64637 378.30306 258.52468 373.8345 253.89453 371.63086 C 248.57314 369.09823 245.434 368.38513 239.77148 368.42383 z")
         path(d="M321.5 91.6C320.7 86.2 316.6 81.8 311.2 81C289.1 77.9 266.6 81.9 246.8 92.4L172.8 131.9C153.1 142.4 137.2 158.9 127.4 179L90.7 254.6C80.9 274.7 77.7 297.5 81.6 319.5L96.1 402.3C100 424.4 110.7 444.6 126.8 460.2L187.1 518.6C203.2 534.2 223.7 544.2 245.8 547.3L328.8 559C350.9 562.1 373.4 558.1 393.2 547.6L467.2 508.1C486.9 497.6 502.8 481.1 512.6 460.9L549.3 385.4C559.1 365.3 562.3 342.5 558.4 320.5C557.5 315.2 553.1 311.2 547.8 310.4C496.3 302.2 455 263.3 443.3 213C441.5 205.4 435.3 199.6 427.6 198.4C373 189.7 329.9 146.4 321.4 91.6zM272 208C289.7 208 304 222.3 304 240C304 257.7 289.7 272 272 272C254.3 272 240 257.7 240 240C240 222.3 254.3 208 272 208zM208 400C208 382.3 222.3 368 240 368C257.7 368 272 382.3 272 400C272 417.7 257.7 432 240 432C222.3 432 208 417.7 208 400zM432 336C449.7 336 464 350.3 464 368C464 385.7 449.7 400 432 400C414.3 400 400 385.7 400 368C400 350.3 414.3 336 432 336z")
-    div.cookies-modal__container(v-html="component_info.component_name")
+    div.cookies-modal__container(v-html="JSON.parse(component_info.component_name)[lang]")
     div.cookies-modal__consent-group
       div.cookies-modal__consent(
         v-for="param in component_cookies_parameters"
         :key="param"
       )
         ComponentSwitch(
-          :label="param.component_content"
+          :label="JSON.parse(param.component_content)[lang]"
           v-model="consent[param.component_name]"
           :deactivated="Boolean(!param.component_boolean)"
         )
     div.cookies-modal__buttons
       ComponentButton(
-        :title="component_button.component_name"
+        :title="JSON.parse(component_button.component_name)[lang]"
         @click="choiceCookie('yes')"
       )
 </template>
@@ -30,11 +30,9 @@ div.cookies-modal
 <script setup lang="ts">
 import type { SectionFullRow } from "~/assets/types/interfaces.d.ts";
 
-const { getLanguage } = useLanguageCookie();
+const { lang } = useLanguageCookie();
 
-const { data: modalBlocks } = await useFetch<SectionFullRow[]>(
-  `/api/view/cookies_modal_view?lang=${getLanguage()}`
-);
+const { data: modalBlocks } = await useFetch<SectionFullRow[]>("/api/view/cookies_modal_view");
 
 const { component_article_header, component_info, component_button, component_cookies_parameters } = useComponents(modalBlocks);
 

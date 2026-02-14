@@ -4,8 +4,7 @@ export const VIEW_NAMES = [
     template: `
 CREATE OR REPLACE VIEW hero_view AS
 
-SELECT s.lang,
-       "component_article_header" AS component_type,
+SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
        ah.mark         AS component_boolean
@@ -16,8 +15,7 @@ WHERE  s.name = "hero"
 
 UNION ALL
 
-SELECT s.lang,
-       "component_button"      AS component_type,
+SELECT "component_button"      AS component_type,
        b.title         AS component_name,
        NULL,
        NULL
@@ -28,8 +26,7 @@ WHERE  s.name = "hero"
 
 UNION ALL
 
-SELECT s.lang,
-       "component_image"      AS component_type,
+SELECT "component_image"      AS component_type,
        i.filename      AS component_name,
        NULL,
        NULL
@@ -45,8 +42,7 @@ WHERE  s.name = "hero"
     template: `
 CREATE OR REPLACE VIEW features_view AS
 
-SELECT s.lang,
-       "component_info_card" AS component_type,
+SELECT "component_info_card" AS component_type,
        ic.title        AS component_name,
        ic.content      AS component_content
 FROM   sections s
@@ -61,8 +57,7 @@ WHERE  s.name = "features"
     template: `
 CREATE OR REPLACE VIEW video_view AS
 
-SELECT s.lang,
-       "component_article_header" AS component_type,
+SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
        ah.mark         AS component_boolean
@@ -78,8 +73,7 @@ WHERE  s.name = "video"
     template: `
 CREATE OR REPLACE VIEW colors_view AS
 
-SELECT s.lang,
-       "component_article_header" AS component_type,
+SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
        ah.mark         AS component_boolean
@@ -90,8 +84,7 @@ WHERE  s.name = "colors"
 
 UNION ALL
 
-SELECT s.lang,
-       "component_color_card"      AS component_type,
+SELECT "component_color_card"      AS component_type,
        cc.name         AS component_name,
        cc.label        AS component_content,
        NULL
@@ -107,8 +100,7 @@ WHERE  s.name = "colors"
     template: `
 CREATE OR REPLACE VIEW purchase_view AS
 
-SELECT s.lang,
-       "component_article_header" AS component_type,
+SELECT "component_article_header" AS component_type,
        NULL            AS component_number,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
@@ -120,8 +112,7 @@ WHERE  s.name = "purchase"
 
 UNION ALL
 
-SELECT s.lang,
-       "component_info_card" AS component_type,
+SELECT "component_info_card" AS component_type,
        ic.number       AS component_number,
        ic.title        AS component_name,
        ic.content      AS component_content,
@@ -133,8 +124,7 @@ WHERE  s.name = "purchase"
 
 UNION ALL
 
-SELECT s.lang,
-       "component_image"      AS component_type,
+SELECT "component_image"      AS component_type,
        NULL,
        i.filename      AS component_name,
        NULL,
@@ -146,8 +136,7 @@ WHERE  s.name = "purchase"
 
 UNION ALL
 
-SELECT s.lang,
-       "component_button"      AS component_type,
+SELECT "component_button"      AS component_type,
        NULL,
        b.title         AS component_name,
        NULL,
@@ -159,8 +148,7 @@ WHERE  s.name = "purchase"
 
 UNION ALL
 
-SELECT s.lang,
-       "component_info"      AS component_type,
+SELECT "component_info"      AS component_type,
        NULL,
        i.content         AS component_name,
        NULL,
@@ -177,8 +165,7 @@ WHERE  s.name = "purchase"
     template: `
 CREATE OR REPLACE VIEW faq_view AS
 
-SELECT s.lang,
-       "component_article_header" AS component_type,
+SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
        ah.mark         AS component_boolean
@@ -189,8 +176,7 @@ WHERE  s.name = "faq"
 
 UNION ALL
 
-SELECT s.lang,
-       "component_faq"      AS component_type,
+SELECT "component_faq"      AS component_type,
        f.question         AS component_name,
        f.answer         AS component_content,
        f.height         AS component_number
@@ -201,13 +187,12 @@ WHERE  s.name = "faq"
 `,
   },
 
-  {
+{
     view: "testimonials_view",
     template: `
 CREATE OR REPLACE VIEW testimonials_view AS
 
 SELECT
-    s.lang,
     'component_article_header'      AS component_type,
     ah.title                       AS component_name,
     ah.subtitle                    AS component_content,
@@ -226,7 +211,6 @@ UNION ALL
 
 -- 2️⃣  component_testimonial_card (card d’un témoignage)
 SELECT
-    s.lang,
     'component_testimonial_card'    AS component_type,
     tc.name                        AS component_name,
     tc.content                     AS component_content,
@@ -248,8 +232,7 @@ WHERE
     template: `
 CREATE OR REPLACE VIEW newsletter_view AS
 
-SELECT s.lang,
-       "component_article_header" AS component_type,
+SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
        ah.mark         AS component_boolean,
@@ -262,8 +245,7 @@ WHERE  s.name = "newsletter"
 
 UNION ALL
 
-SELECT s.lang,
-       "component_input"      AS component_type,
+SELECT "component_input"      AS component_type,
        i.placeholder      AS component_name,
        NULL,
        NULL,
@@ -276,8 +258,7 @@ WHERE  s.name = "newsletter"
 
 UNION ALL
 
-SELECT s.lang,
-       "component_button"      AS component_type,
+SELECT "component_button"      AS component_type,
        b.title         AS component_name,
        NULL,
        NULL,
@@ -290,8 +271,7 @@ WHERE  s.name = "newsletter"
 
 UNION ALL
 
-SELECT s.lang,
-       "component_info"      AS component_type,
+SELECT "component_info"      AS component_type,
        i.content         AS component_name,
        NULL,
        NULL,
@@ -304,8 +284,7 @@ WHERE  s.name = "newsletter"
 
 UNION ALL
 
-SELECT s.lang,
-       "component_status"      AS component_type,
+SELECT "component_status"      AS component_type,
        NULL,
        st.ok         AS component_content,
        NULL,
@@ -323,8 +302,7 @@ WHERE  s.name = "newsletter"
     template: `
 CREATE OR REPLACE VIEW footer_view AS
 
-SELECT s.lang,
-       "component_info_card" AS component_type,
+SELECT "component_info_card" AS component_type,
        ic.title        AS component_name,
        ic.content      AS component_content,
        ic.style      AS component_style
@@ -335,8 +313,7 @@ WHERE  s.name = "footer"
 
 UNION ALL
 
-SELECT s.lang,
-       "component_info"      AS component_type,
+SELECT "component_info"      AS component_type,
        i.content         AS component_name,
        NULL,
        NULL
@@ -352,8 +329,7 @@ WHERE  s.name = "footer"
     template: `
 CREATE OR REPLACE VIEW cookies_popup_view AS
 
-SELECT p.lang,
-       "component_article_header" AS component_type,
+SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
        ah.mark         AS component_boolean
@@ -364,8 +340,7 @@ WHERE  p.name = "cookies"
 
 UNION ALL
 
-SELECT p.lang,
-       "component_button"      AS component_type,
+SELECT "component_button"      AS component_type,
        b.title         AS component_name,
        NULL,
        NULL
@@ -382,8 +357,7 @@ WHERE  p.name = "cookies"
     template: `
 CREATE OR REPLACE VIEW contact_modal_view AS
 
-SELECT m.lang,
-       "component_article_header" AS component_type,
+SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
        ah.mark         AS component_boolean,
@@ -396,8 +370,7 @@ WHERE  m.name = "contact"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_input"      AS component_type,
+SELECT "component_input"      AS component_type,
        i.placeholder      AS component_name,
        NULL,
        NULL,
@@ -410,8 +383,7 @@ WHERE  m.name = "contact"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_textarea"      AS component_type,
+SELECT "component_textarea"      AS component_type,
        t.placeholder      AS component_name,
        NULL,
        NULL,
@@ -424,8 +396,7 @@ WHERE  m.name = "contact"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_button"      AS component_type,
+SELECT "component_button"      AS component_type,
        b.title         AS component_name,
        NULL,
        NULL,
@@ -438,8 +409,7 @@ WHERE  m.name = "contact"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_status"      AS component_type,
+SELECT "component_status"      AS component_type,
        NULL,
        st.ok         AS component_content,
        NULL,
@@ -457,8 +427,7 @@ WHERE  m.name = "contact"
     template: `
 CREATE OR REPLACE VIEW confidential_modal_view AS
 
-SELECT m.lang,
-       "component_article_header" AS component_type,
+SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
        ah.mark         AS component_boolean
@@ -469,8 +438,7 @@ WHERE  m.name = "confidential"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_info"      AS component_type,
+SELECT "component_info"      AS component_type,
        i.content         AS component_name,
        NULL,
        NULL
@@ -481,8 +449,7 @@ WHERE  m.name = "confidential"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_button"      AS component_type,
+SELECT "component_button"      AS component_type,
        b.title         AS component_name,
        NULL,
        NULL
@@ -498,8 +465,7 @@ WHERE  m.name = "confidential"
     template: `
 CREATE OR REPLACE VIEW use_modal_view AS
 
-SELECT m.lang,
-       "component_article_header" AS component_type,
+SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
        ah.mark         AS component_boolean
@@ -510,8 +476,7 @@ WHERE  m.name = "use"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_info"      AS component_type,
+SELECT "component_info"      AS component_type,
        i.content         AS component_name,
        NULL,
        NULL
@@ -522,8 +487,7 @@ WHERE  m.name = "use"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_button"      AS component_type,
+SELECT "component_button"      AS component_type,
        b.title         AS component_name,
        NULL,
        NULL
@@ -539,8 +503,7 @@ WHERE  m.name = "use"
     template: `
 CREATE OR REPLACE VIEW mentions_modal_view AS
 
-SELECT m.lang,
-       "component_article_header" AS component_type,
+SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
        ah.mark         AS component_boolean
@@ -551,8 +514,7 @@ WHERE  m.name = "mentions"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_info"      AS component_type,
+SELECT "component_info"      AS component_type,
        i.content         AS component_name,
        NULL,
        NULL
@@ -563,8 +525,7 @@ WHERE  m.name = "mentions"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_button"      AS component_type,
+SELECT "component_button"      AS component_type,
        b.title         AS component_name,
        NULL,
        NULL
@@ -580,8 +541,7 @@ WHERE  m.name = "mentions"
     template: `
 CREATE OR REPLACE VIEW terms_modal_view AS
 
-SELECT m.lang,
-       "component_article_header" AS component_type,
+SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
        ah.mark         AS component_boolean
@@ -592,8 +552,7 @@ WHERE  m.name = "terms"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_info"      AS component_type,
+SELECT "component_info"      AS component_type,
        i.content         AS component_name,
        NULL,
        NULL
@@ -604,8 +563,7 @@ WHERE  m.name = "terms"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_button"      AS component_type,
+SELECT "component_button"      AS component_type,
        b.title         AS component_name,
        NULL,
        NULL
@@ -621,8 +579,7 @@ WHERE  m.name = "terms"
     template: `
 CREATE OR REPLACE VIEW cookies_modal_view AS
 
-SELECT m.lang,
-       "component_article_header" AS component_type,
+SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
        ah.mark         AS component_boolean
@@ -633,8 +590,7 @@ WHERE  m.name = "cookies"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_info"      AS component_type,
+SELECT "component_info"      AS component_type,
        i.content         AS component_name,
        NULL,
        NULL
@@ -645,8 +601,7 @@ WHERE  m.name = "cookies"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_button"      AS component_type,
+SELECT "component_button"      AS component_type,
        b.title         AS component_name,
        NULL,
        NULL
@@ -657,8 +612,7 @@ WHERE  m.name = "cookies"
 
 UNION ALL
 
-SELECT m.lang,
-       "component_cookies_parameters"      AS component_type,
+SELECT "component_cookies_parameters"      AS component_type,
        cp.cookie_key         AS component_name,
        cp.label         AS component_content,
        cp.mutable         AS component_boolean
@@ -674,8 +628,7 @@ WHERE  m.name = "cookies"
     template: `
 CREATE OR REPLACE VIEW purchase_modal_view AS
 
-SELECT m.lang,
-       "component_article_header" AS component_type,
+SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
        ah.mark         AS component_boolean

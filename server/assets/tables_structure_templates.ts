@@ -17,7 +17,6 @@ UNIQUE KEY uq_email (email))
     template: `
 (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 name VARCHAR(255) NOT NULL,
-lang VARCHAR(16) NOT NULL,
 component_type VARCHAR(255) NOT NULL,
 component_id INT(11) NOT NULL,
 PRIMARY KEY (id))
@@ -29,7 +28,6 @@ PRIMARY KEY (id))
     template: `
 (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 name VARCHAR(255) NOT NULL,
-lang VARCHAR(16) NOT NULL,
 component_type VARCHAR(255) NOT NULL,
 component_id INT(11) NOT NULL,
 PRIMARY KEY (id))
@@ -41,7 +39,6 @@ PRIMARY KEY (id))
     template: `
 (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 name VARCHAR(255) NOT NULL,
-lang VARCHAR(16) NOT NULL,
 component_type VARCHAR(255) NOT NULL,
 component_id INT(11) NOT NULL,
 PRIMARY KEY (id))

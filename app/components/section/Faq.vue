@@ -2,14 +2,14 @@
 section.faq
   ComponentArticleHeader.faq__title-component(
     :mark="Boolean(component_article_header.component_boolean)"
-    :title="component_article_header.component_name"
-    :content="component_article_header.component_content"
+    :title="JSON.parse(component_article_header.component_name)[lang]"
+    :content="JSON.parse(component_article_header.component_content)[lang]"
   )
   ComponentFaq.faq__faq-component(
   v-for="item in component_faq"
   :key="item"
-  :question="item.component_name"
-  :answer="item.component_content"
+  :question="JSON.parse(item.component_name)[lang]"
+  :answer="JSON.parse(item.component_content)[lang]"
   :height="item.component_number"
   )
 </template>
@@ -17,11 +17,9 @@ section.faq
 <script setup lang="ts">
 import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
 
-const { getLanguage } = useLanguageCookie();
+const { lang } = useLanguageCookie();
 
-const { data: sectionBlocks } = await useFetch<SectionFullRow[]>(
-  `/api/view/faq_view?lang=${getLanguage()}`
-);
+const { data: sectionBlocks } = await useFetch<SectionFullRow[]>("/api/view/faq_view");
 
 const { component_article_header, component_faq } = useComponents(sectionBlocks);
 </script>

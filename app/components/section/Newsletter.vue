@@ -4,27 +4,34 @@ section.newsletter
     div.newsletter__group.margin-space
       ComponentArticleHeader.newsletter__title-component(
         :mark="Boolean(component_article_header.component_boolean)"
-        :title="component_article_header.component_name"
-        :content="component_article_header.component_content"
+        :title="JSON.parse(component_article_header.component_name)[lang]"
+        :content="JSON.parse(component_article_header.component_content)[lang]"
       )
       form.newsletter__form(@submit.prevent="join")
-        ComponentInput.newsletter__input(v-model="newsletterEmailInput" :placeholder="component_input.component_name" type="email" maxlength="255" required)
-        ComponentButton.newsletter__button(:title="component_button.component_name" type="submit")
+        ComponentInput.newsletter__input(
+          v-model="newsletterEmailInput"
+          :placeholder="JSON.parse(component_input.component_name)[lang]"
+          type="email"
+          maxlength="255"
+          required
+        )
+        ComponentButton.newsletter__button(
+          :title="JSON.parse(component_button.component_name)[lang]"
+          type="submit"
+        )
         p.newsletter__status.font-xs {{ newsletterStatusMessage }}
   div.newsletter__info
-    p.font-xs(v-html="component_info[0].component_name") 
-    p.font-xs(v-html="component_info[1].component_name") 
+    p.font-xs(v-html="JSON.parse(component_info[0].component_name)[lang]") 
+    p.font-xs(v-html="JSON.parse(component_info[1].component_name)[lang]") 
 </template>
 
 <script setup lang="ts">
 import type { IUserResponse, SectionFullRow } from "~/assets/types/interfaces.d.ts";
 import type { ComponentStatus } from "~/assets/types/types.d.ts";
 
-const { getLanguage } = useLanguageCookie();
+const { lang } = useLanguageCookie();
 
-const { data: sectionBlocks } = await useFetch<SectionFullRow[]>(
-  `/api/view/newsletter_view?lang=${getLanguage()}`
-);
+const { data: sectionBlocks } = await useFetch<SectionFullRow[]>("/api/view/newsletter_view");
 
 const { component_article_header, component_input, component_button, component_info, component_status } = useComponents(sectionBlocks);
 const status = component_status as ComponentStatus;

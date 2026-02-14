@@ -2,8 +2,8 @@
 div.cookie-popup
   ComponentPopup(
     popupName="cookies"
-    :title="component_article_header.component_name"
-    :content="component_article_header.component_content"
+    :title="JSON.parse(component_article_header.component_name)[lang]"
+    :content="JSON.parse(component_article_header.component_content)[lang]"
   )
     template(#icon)
       svg(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640")
@@ -11,11 +11,11 @@ div.cookie-popup
         path(d="M321.5 91.6C320.7 86.2 316.6 81.8 311.2 81C289.1 77.9 266.6 81.9 246.8 92.4L172.8 131.9C153.1 142.4 137.2 158.9 127.4 179L90.7 254.6C80.9 274.7 77.7 297.5 81.6 319.5L96.1 402.3C100 424.4 110.7 444.6 126.8 460.2L187.1 518.6C203.2 534.2 223.7 544.2 245.8 547.3L328.8 559C350.9 562.1 373.4 558.1 393.2 547.6L467.2 508.1C486.9 497.6 502.8 481.1 512.6 460.9L549.3 385.4C559.1 365.3 562.3 342.5 558.4 320.5C557.5 315.2 553.1 311.2 547.8 310.4C496.3 302.2 455 263.3 443.3 213C441.5 205.4 435.3 199.6 427.6 198.4C373 189.7 329.9 146.4 321.4 91.6zM272 208C289.7 208 304 222.3 304 240C304 257.7 289.7 272 272 272C254.3 272 240 257.7 240 240C240 222.3 254.3 208 272 208zM208 400C208 382.3 222.3 368 240 368C257.7 368 272 382.3 272 400C272 417.7 257.7 432 240 432C222.3 432 208 417.7 208 400zM432 336C449.7 336 464 350.3 464 368C464 385.7 449.7 400 432 400C414.3 400 400 385.7 400 368C400 350.3 414.3 336 432 336z")
     div.cookie-popup__buttons
       ComponentButton(
-        :title="component_button[0].component_name"
+        :title="JSON.parse(component_button[0].component_name)[lang]"
         @click="choiceCookie('more')"
       )
       ComponentButton(
-        :title="component_button[1].component_name"
+        :title="JSON.parse(component_button[1].component_name)[lang]"
         @click="choiceCookie('yes')"
       )
 </template>
@@ -24,11 +24,9 @@ div.cookie-popup
 import type { YesNoMore } from "~/assets/types/types.d.ts";
 import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
 
-const { getLanguage } = useLanguageCookie();
+const { lang } = useLanguageCookie();
 
-const { data: popupBlocks } = await useFetch<SectionFullRow[]>(
-  `/api/view/cookies_popup_view?lang=${getLanguage()}`
-);
+const { data: popupBlocks } = await useFetch<SectionFullRow[]>("/api/view/cookies_popup_view");
 
 const { component_article_header, component_button } = useComponents(popupBlocks);
 
