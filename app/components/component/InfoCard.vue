@@ -51,4 +51,5 @@ const props = withDefaults(defineProps<IInfoCardProps>(), {
 
   &__content
     font-style: v-bind("props.style")
+    padding: 0 $phi-1 $phi-1
 </style>
