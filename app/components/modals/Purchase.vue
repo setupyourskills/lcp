@@ -19,7 +19,7 @@ div.purchase-modal
     div.purchase-modal__info.font-xs
       p(v-html="JSON.parse(component_info[0].component_name)[lang]")
     div.purchase-modal__list
-      h4 Votre commande
+      h4 {{ JSON.parse(component_info[1].component_name)[lang] }}
       ul
         li(
           v-for="item in getCounterColorList"
@@ -27,7 +27,7 @@ div.purchase-modal
         )
           p {{ item }}
     div.purchase-modal__psp
-      h4 Votre moyen de paiement
+      h4 {{ JSON.parse(component_info[2].component_name)[lang] }}
       div.purchase-modal__psp-component
         ComponentBox(
           v-for="service in component_psp"
@@ -40,7 +40,7 @@ div.purchase-modal
         @click="goPay"
         :class="{ 'deactivate-big-button': deactivateButton }"
       )
-    p.purchase-modal__info-pay.font-xs(v-html="JSON.parse(component_info[1].component_name)[lang]")
+    p.purchase-modal__info-pay.font-xs(v-html="JSON.parse(component_info[3].component_name)[lang]")
 </template>
 
 <script setup lang="ts">
