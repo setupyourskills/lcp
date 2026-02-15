@@ -58,6 +58,12 @@ const deactivateButton = computed(() => isQuantityEven() ? false : true);
 const goPay = () => {
   console.log("pay");
 };
+
+const { setPopupState } = usePopupsState();
+
+watch(isQuantityEven, (newVal) => {
+  if (!newVal) setPopupState("alertOdd", true);
+});
 </script>
 
 <style lang="sass" scoped>
