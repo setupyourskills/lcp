@@ -106,6 +106,10 @@ const {
     @media screen and (max-width: 899.99px)
       width: 50%
 
+    @media screen and (min-width: 1200px)
+      top: 10px
+      left: 140px
+
   &__box2
     position: absolute
     top: 50px
@@ -115,6 +119,10 @@ const {
 
     @media screen and (max-width: 899.99px)
       width: 55%
+
+    @media screen and (min-width: 1200px)
+      top: 70px
+      left: 50px
 
   &__button-group
     display: flex
