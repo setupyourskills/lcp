@@ -10,7 +10,6 @@ section.faq
   :key="item"
   :question="JSON.parse(item.component_name)[lang]"
   :answer="JSON.parse(item.component_content)[lang]"
-  :height="item.component_number"
   )
 </template>
 

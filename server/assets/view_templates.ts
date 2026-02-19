@@ -179,7 +179,7 @@ UNION ALL
 SELECT "component_faq"      AS component_type,
        f.question         AS component_name,
        f.answer         AS component_content,
-       f.height         AS component_number
+       NULL
 FROM   sections s
 JOIN   component_faq f ON s.component_id = f.id
 WHERE  s.name = "faq"

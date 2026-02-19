@@ -1,8 +1,10 @@
 <template lang="pug">
 div.faq-component
-  details.faq-component__details
-    summary.faq-component__question.font-m {{ props.question }}
-    p.faq-component__answer.font-s(v-html="props.answer")
+  details
+    summary
+      span {{ props.question }}
+  div.content
+    p(v-html="props.answer")
 </template>
 
 <script setup lang="ts">
@@ -11,90 +13,78 @@ import type { IFaqSection } from "~/assets/types/interfaces.d.ts"
 const props = withDefaults(defineProps<IFaqSection>(), {
   question: "Question",
   answer: "Answer",
-  height: 200,
-});
-const height = ref(`${props.height}px`);
-
-function calculateHeight() {
-  let h = props.height;
-
-  if (typeof window !== 'undefined') {
-    if (window.matchMedia("(min-width: 700px)").matches) h = props.height - 60 * 2;
-    else if (window.matchMedia("(min-width: 400px)").matches) h = props.height - 60;
-  }
-
-  return `${h}px`;
-}
-
-onMounted(() => {
-  height.value = calculateHeight();
-
-  const w700 = window.matchMedia('(min-width: 700px)');
-  const w400 = window.matchMedia('(min-width: 400px)');
-
-  const handler = () => height.value = calculateHeight();
-
-  w700.addEventListener('change', handler);
-  w400.addEventListener('change', handler);
-
-  onUnmounted(() => {
-    w700.removeEventListener('change', handler);
-    w400.removeEventListener('change', handler);
-  });
 });
 </script>
 
 <style lang="sass" scoped>
 .faq-component
   position: relative
+  cursor: pointer
 
-  &__details
-    @include transition
-    border-radius: 0 25px 25px 25px
-    border-bottom: 6px solid $accent2
+  details
+    border-radius: 25px 25px 0 0
+    border-top: 6px solid $accent2
     background-color: $second-background-color
-    cursor: pointer
+    overflow: hidden
+    transition: border-top .5s ease-out
 
-    &::details-content
-      height: 0
-      overflow: clip
-      transition: all 0.5s ease, content-visibility 0.5s ease allow-discrete;
+    &:hover
+      border-top: 6px solid $accent1
+      transition: border-top .4s ease-out
 
-    &[open]::details-content
-      height: v-bind(height)
-
-    &[open]
-      box-shadow: 4px 4px 4px 0px $secondary
-      transform: translate(-3px, -3px)
-      border-bottom: 6px solid $accent1
-
-    &[open] summary::before
-      content: "-"
-      font-size: $phi2
-      font-weight: bold
-      color: $accent1
-
-  &__question
-    display: flex
+  summary
+    display: block
     align-items: center
     padding-block: $phi-1
     padding-inline: $phi1_5 $phi3
     font-weight: bold
 
-    &::before
-      content: '+'
-      position: absolute
-      right: $phi1
-      font-size: $phi2
-      color: $accent1
+  summary::-webkit-details-marker
+    display: none
 
-  &__answer 
+  summary::marker
+    content: none
+
+  span
+    position: relative
+    display: flex
+    align-items: center
+
+  span::before
+    content: '+'
+    position: absolute
+    right: -$phi1
+    font-size: $phi2
+    color: $accent1
+
+  div.content
     text-align: center
-    margin-inline: $phi1_5
+    box-sizing: border-box
+    max-height: 0
+    border-radius: 0 0 25px 25px
+    background-color: $second-background-color
+    overflow: hidden
+    padding-inline: $phi1_5
+    transition: max-height 400ms ease-out
 
     @media screen and (min-width: 600px)
       text-align: left
 
-  summary::marker
-    content: none
+  details[open] + div.content
+    max-height: 300px
+    box-shadow: 4px 4px 4px 0px $secondary
+    transform: translate(-3px, -3px)
+    transition: max-height 400ms ease-out
+    background-color: $accent2
+
+  details[open] span::before
+    content: "-"
+    font-size: $phi2
+    font-weight: bold
+    color: $accent1
+
+  details[open] 
+    box-shadow: 4px 4px 4px 0px $secondary
+    transform: translate(-3px, -3px)
+    background-color: $accent2
 </style>

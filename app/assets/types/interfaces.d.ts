@@ -4,7 +4,6 @@ import type { KnownComponent } from "~/assets/types/types.d.ts"
 export interface IFaqSection {
   question: string;
   answer: string;
-  height: number;
 }
 
 export interface IInfoCardSection {
