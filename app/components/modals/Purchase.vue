@@ -52,8 +52,8 @@ const { data: modalsBlocks } = await useFetch<SectionFullRow[]>("/api/view/purch
 
 const { component_article_header, component_color_card, component_info, component_psp, component_button } = useComponents(modalsBlocks);
 
-const { isQuantityEven, getCounterColorsCookie, getCounterColorList } = useCounterColorsCookie();
-const deactivateButton = computed(() => isQuantityEven() ? false : true);
+const { isQuantityEven, total, getCounterColorList } = useCounterColorsCookie();
+const deactivateButton = computed(() => !isQuantityEven() || total.value === 0);
 
 const goPay = () => {
   console.log("pay");
