@@ -19,7 +19,6 @@ const { getPspState, setPspState } = usePspsState();
 
 <style lang="sass" scoped>
 .box-component
-  @include transition
   display: flex
   justify-content: center
   align-items: center
@@ -31,6 +30,12 @@ const { getPspState, setPspState } = usePspsState();
   border-bottom: 6px solid $accent2
   background-color: $second-background-color
   cursor: pointer
+  transition: border-bottom .4s ease-out, background-color .2s ease-out, transform .2s ease-out, box-shadow .25s ease-out
+
+  &:hover
+    transition: border-bottom .4s ease-out, background-color .2s ease-out, transform .2s ease-out, box-shadow .25s ease-out
+    box-shadow: 4px 4px 4px 0px $secondary
+    transform: translate(-3px, -3px)
 
   &__logo
     display: flex
