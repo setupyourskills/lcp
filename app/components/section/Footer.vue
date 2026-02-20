@@ -11,6 +11,9 @@ section.footer
         :style="item.component_style" 
         :transition="false"
       )
+    div.footer__language-selector-container
+      div.footer__language-selector
+        ComponentSelect(:options="languageOptions")
     div.footer__copyright.margin-space(
       v-html="JSON.parse(component_info.component_name)[lang]"
     )
@@ -28,6 +31,13 @@ const { component_article_header, component_info_card, component_info } = useCom
 const { setModalState } = useModalsState();
 
 const { clickHandler } = useModalClickHandler();
+
+const languageOptions = [
+  { name: 'en', label: 'English' },
+  { name: 'fr', label: 'Français' },
+  { name: 'zht', label: '繁体中文' },
+  { name: 'zhs', label: '简体中文' }
+];
 </script>
 
 <style lang="sass">
@@ -44,10 +54,17 @@ const { clickHandler } = useModalClickHandler();
     @include flexbox-wrap
     z-index: 1
     position: relative
-    margin-block: $phi2 $phi2
+    margin-block: $phi2 0
 
   &__info-card
     flex: 1 0 250px
+
+  &__language-selector-container
+    margin-block: $phi1
+
+  &__language-selector
+    margin: auto
+    width: 250px
 
   &__copyright
     z-index: 1
