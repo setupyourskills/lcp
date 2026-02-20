@@ -352,20 +352,6 @@ WHERE  p.name = "cookies"
   },
 
   {
-    view: "alertOdd_popup_view",
-    template: `
-CREATE OR REPLACE VIEW alertOdd_popup_view AS
-
-SELECT "component_info"      AS component_type,
-       i.content         AS component_name
-FROM   popups p
-JOIN   component_info i ON p.component_id = i.id
-WHERE  p.name = "alertOdd"
-  AND  p.component_type = "component_info";
-`,
-  },
-
-  {
     view: "contact_modal_view",
     template: `
 CREATE OR REPLACE VIEW contact_modal_view AS

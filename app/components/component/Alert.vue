@@ -3,25 +3,23 @@ div.alert.alert--appear(v-if="isDisplay")
   div.alert__container
     div.alert__icon
       slot(name="icon")
-    p.alert__content.font-s(v-html="props.content")
+    p.alert__content.font-s(v-html="getAlertContent()")
 </template>
 
 <script setup lang="ts">
 import type { IAlertProps, IPopupsState } from "~/assets/types/interfaces.d.ts"
 
 const props = withDefaults(defineProps<IAlertProps>(), {
-  alertName: "",
-  content: "Content"
+  alertName: "alertInfo",
 });
 
 const isDisplay = ref(false);
-const alertState = ref(true);
 
-const { getPopupState, setPopupState } = usePopupsState();
+const { getPopupState, setPopupState, getAlertContent } = usePopupsState();
 
-const isAlertOpen = computed(() => getPopupState(props.alertName as keyof IPopupsState));
+const isAlertOpen = computed(() => getPopupState(props.alertName));
 
-const OPEN_POPUP_TIMEOUT = 2500;
+const OPEN_POPUP_TIMEOUT = 2000;
 
 watch(isAlertOpen, (newVal) => {
   if (newVal) {
@@ -29,7 +27,7 @@ watch(isAlertOpen, (newVal) => {
     nextTick(() => { })
 
     setTimeout(() => {
-     setPopupState("alertOdd", false);
+     setPopupState(props.alertName, false);
     }, OPEN_POPUP_TIMEOUT);
   } else {
     const el = document.querySelector('.alert')
@@ -63,7 +61,7 @@ watch(isAlertOpen, (newVal) => {
     margin: $phi1
 
   &__icon
-    @include svg-icon-small
+    width: $phi2
     margin-block: 0
 
   &__content

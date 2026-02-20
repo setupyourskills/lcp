@@ -10,7 +10,9 @@ div.modals
 
 div.popups
   PopupsCookies
-  PopupsAlertOdd
+  PopupsAlertInfo
+  PopupsAlertOk
+  PopupsAlertError
 
 div.main-group
   SectionHero

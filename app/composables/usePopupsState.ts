@@ -1,23 +1,35 @@
 import type { IPopupsState } from "~/assets/types/interfaces.d.ts";
 
 export const usePopupsState = () => {
-  const popupsState = useState<IPopupsState>("statePopup", () => ({
+  const _popupsState = useState<IPopupsState>("statePopup", () => ({
     cookies: false,
-    alertOdd: false,
+    alertInfo: false,
+    alertOk: false,
+    alertError: false,
   }));
+
+  const _alertContentState = useState("stateAlertContent");
 
   function setPopupState<K extends keyof IPopupsState>(
     popupElement: K,
     popupState: boolean,
+    alertContent?: string
   ) {
-    popupsState.value[popupElement] = popupState;
+    if (popupState === true && alertContent) {
+      _alertContentState.value = alertContent;
+    }
+    _popupsState.value[popupElement] = popupState;
   }
 
   function getPopupState<K extends keyof IPopupsState>(
     popupElement: K,
   ): boolean {
-    return popupsState.value[popupElement];
+    return _popupsState.value[popupElement];
   }
 
-  return { setPopupState, getPopupState };
+  function getAlertContent() {
+    return _alertContentState.value;
+  }
+
+  return { setPopupState, getPopupState, getAlertContent };
 };

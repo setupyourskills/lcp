@@ -48,13 +48,14 @@ export interface ICloseComponentProps {
 
 // Popups
 export interface IAlertProps {
-  alertName: string;
-  content: string;
+  alertName: keyof IPopupsState;
 }
 
 export interface IPopupsState {
   cookies: boolean;
-  alertOdd: boolean;
+  alertInfo: boolean;
+  alertOk: boolean;
+  alertError: boolean;
 }
 
 export interface IPopupProps {
