@@ -70,7 +70,7 @@ export type ComponentsMap = { [K in KnownComponent]?: object };
 export type LanguageCookie = "fr" | "en" | "zh";
 
 export type ComponentStatus = {
-  component_content: string;
+  component_ok: string;
   component_failed: string;
   component_invalid: string;
 };

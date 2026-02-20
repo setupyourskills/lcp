@@ -34,48 +34,44 @@ div.contact-modal
         :title="JSON.parse(component_button.component_name)[lang]"
         type="submit"
       )
-      p.contact-modal__status.font-xs  {{ contactStatusMessage }}
 </template>
 
 <script setup lang="ts">
-import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
+import type { ISendMailResponse, SectionFullRow } from "~/assets/types/interfaces.d.ts"
 import type { ComponentStatus } from "~/assets/types/types.d.ts";
 
 const { lang } = useLanguageCookie();
-// console.log(lang);
 
 const { data: modalsBlocks } = await useFetch<SectionFullRow[]>("/api/view/contact_modal_view");
 
 const { component_article_header, component_input, component_textarea, component_button, component_status } = useComponents(modalsBlocks);
 const status = component_status as ComponentStatus;
 
-import type { ISendMailResponse } from "~/assets/types/interfaces.d.ts"
-
 const CLOSE_MODAL_TIMEOUT = 3000;
 
 const { setModalState } = useModalsState();
+const { setPopupState } = usePopupsState();
+
 const closeModal = () => setModalState("contact", false);
 
 const contactNameInput = ref();
 const contactEmailInput = ref();
 const contactContentTextarea = ref();
-const contactStatusMessage = ref();
 
 const isSubmitting = ref(false);
 
 const send = async () => {
   const { isInvalidRegex, isTooLong } = useCheckEmail(contactEmailInput.value);
 
-  if (isInvalidRegex || isTooLong) contactStatusMessage.value = status?.component_invalid;
-  else if (contactNameInput.value.length > 255) contactStatusMessage.value = status?.component_invalid;
-  else if (contactContentTextarea.value.length > 2500) contactStatusMessage.value = status?.component_invalid;
+  if (isInvalidRegex || isTooLong) setPopupState("alertError", true, JSON.parse(status.component_invalid)[lang.value]);
+  else if (contactNameInput.value.length > 255) setPopupState("alertError", true, JSON.parse(status.component_invalid)[lang.value]);
+  else if (contactContentTextarea.value.length > 2500) setPopupState("alertError", true, JSON.parse(status.component_invalid)[lang.value]);
   else {
-    contactStatusMessage.value = status?.component_content;
+    setPopupState("alertInfo", true, JSON.parse(status.component_ok)[lang.value]);
 
     if (isSubmitting.value) return;
 
     isSubmitting.value = true;
-    contactStatusMessage.value = "";
 
     let data: ISendMailResponse | undefined;
     try {
@@ -89,15 +85,14 @@ const send = async () => {
         }
       });
     } catch (error: any) {
-      contactStatusMessage.value = status?.component_failed;
+      setPopupState("alertError", true, JSON.parse(status.component_failed)[lang.value]);
       console.error("Error submitting form: ", error);
     } finally {
       isSubmitting.value = false;
-      console.log("message", contactStatusMessage.value);
     }
 
     if (data?.sent) {
-      contactStatusMessage.value = status?.component_content;
+      setPopupState("alertInfo", true, JSON.parse(status.component_ok)[lang.value]);
 
       setTimeout(() => {
         contactEmailInput.value = "";
@@ -122,8 +117,4 @@ const send = async () => {
 
   &__textarea-content
     flex: 1 1 100%
-
-  &__status
-    flex: 0 1 100%
-    font-style: normal
 </style>

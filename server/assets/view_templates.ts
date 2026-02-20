@@ -236,8 +236,9 @@ SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
        ah.mark         AS component_boolean,
-       NULL,
-       NULL
+       NULL            AS component_ok,
+       NULL            AS component_failed,
+       NULL            AS component_invalid
 FROM   sections s
 JOIN   component_article_header ah ON s.component_id = ah.id
 WHERE  s.name = "newsletter"
@@ -247,6 +248,7 @@ UNION ALL
 
 SELECT "component_input"      AS component_type,
        i.placeholder      AS component_name,
+       NULL,
        NULL,
        NULL,
        NULL,
@@ -263,6 +265,7 @@ SELECT "component_button"      AS component_type,
        NULL,
        NULL,
        NULL,
+       NULL,
        NULL
 FROM   sections s
 JOIN   component_button b ON s.component_id = b.id
@@ -276,6 +279,7 @@ SELECT "component_info"      AS component_type,
        NULL,
        NULL,
        NULL,
+       NULL,
        NULL
 FROM   sections s
 JOIN   component_info i ON s.component_id = i.id
@@ -286,10 +290,11 @@ UNION ALL
 
 SELECT "component_status"      AS component_type,
        NULL,
-       st.ok         AS component_content,
        NULL,
+       NULL,
+       st.ok             AS component_ok,
        st.failed         AS component_failed,
-       st.invalid         AS component_invalid
+       st.invalid        AS component_invalid
 FROM   sections s
 JOIN   component_status st ON s.component_id = st.id
 WHERE  s.name = "newsletter"
@@ -360,8 +365,9 @@ SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
        ah.mark         AS component_boolean,
-       NULL,
-       NULL
+       NULL            AS component_ok,
+       NULL            AS component_failed,
+       NULL            AS component_invalid
 FROM   modals m
 JOIN   component_article_header ah ON m.component_id = ah.id
 WHERE  m.name = "contact"
@@ -371,6 +377,7 @@ UNION ALL
 
 SELECT "component_input"      AS component_type,
        i.placeholder      AS component_name,
+       NULL,
        NULL,
        NULL,
        NULL,
@@ -387,6 +394,7 @@ SELECT "component_textarea"      AS component_type,
        NULL,
        NULL,
        NULL,
+       NULL,
        NULL
 FROM   modals m
 JOIN   component_textarea t ON m.component_id = t.id
@@ -400,6 +408,7 @@ SELECT "component_button"      AS component_type,
        NULL,
        NULL,
        NULL,
+       NULL,
        NULL
 FROM   modals m
 JOIN   component_button b ON m.component_id = b.id
@@ -410,10 +419,11 @@ UNION ALL
 
 SELECT "component_status"      AS component_type,
        NULL,
-       st.ok         AS component_content,
        NULL,
+       NULL,
+       st.ok             AS component_ok,
        st.failed         AS component_failed,
-       st.invalid         AS component_invalid
+       st.invalid        AS component_invalid
 FROM   modals m
 JOIN   component_status st ON m.component_id = st.id
 WHERE  m.name = "contact"

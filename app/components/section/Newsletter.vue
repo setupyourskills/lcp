@@ -19,7 +19,6 @@ section.newsletter
           :title="JSON.parse(component_button.component_name)[lang]"
           type="submit"
         )
-        p.newsletter__status.font-xs {{ newsletterStatusMessage }}
   div.newsletter__info
     p.font-xs(v-html="JSON.parse(component_info[0].component_name)[lang]") 
     p.font-xs(v-html="JSON.parse(component_info[1].component_name)[lang]") 
@@ -36,13 +35,14 @@ const { data: sectionBlocks } = await useFetch<SectionFullRow[]>("/api/view/news
 const { component_article_header, component_input, component_button, component_info, component_status } = useComponents(sectionBlocks);
 const status = component_status as ComponentStatus;
 
+const { setPopupState } = usePopupsState();
+
 const newsletterEmailInput = ref();
-const newsletterStatusMessage = ref();
 
 const join = async () => {
   const { isInvalidRegex, isTooLong } = useCheckEmail(newsletterEmailInput.value);
 
-  if (isInvalidRegex || isTooLong) newsletterStatusMessage.value = status?.component_invalid;
+  if (isInvalidRegex || isTooLong) setPopupState("alertError", true, JSON.parse(status.component_invalid)[lang.value]);
   else {
     try {
       const result = await $fetch<IUserResponse>("/api/addEmail", {
@@ -51,9 +51,9 @@ const join = async () => {
           email: newsletterEmailInput.value
         }
       });
-      newsletterStatusMessage.value = status?.component_content;
+      setPopupState("alertInfo", true, JSON.parse(status.component_ok)[lang.value]);
     } catch (e: any) {
-      newsletterStatusMessage.value = status?.component_failed;
+      setPopupState("alertError", true, JSON.parse(status.component_failed)[lang.value]);
     }
   }
 
@@ -88,10 +88,6 @@ const join = async () => {
   &__input
     flex: 0 1 450px
 
-  &__status
-    flex: 0 1 450px
-    font-style: normal
-    
   &__info
     @include flexbox-wrap
     align-items: center
