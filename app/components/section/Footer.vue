@@ -2,7 +2,7 @@
 section.footer
   div.footer__frame
     ComponentBubbles(section="footer")
-    div.footer__group.margin-space(ref="refFooterGroup")
+    div.footer__group.margin-space(@click="clickHandler($event, false)")
       ComponentInfoCard.footer__info-card(
         v-for="item in component_info_card"
         :key="item"
@@ -11,7 +11,9 @@ section.footer
         :style="item.component_style" 
         :transition="false"
       )
-    div.footer__copyright.margin-space(v-html="JSON.parse(component_info.component_name)[lang]")
+    div.footer__copyright.margin-space(
+      v-html="JSON.parse(component_info.component_name)[lang]"
+    )
 </template>
 
 <script setup lang="ts">
@@ -25,38 +27,7 @@ const { component_article_header, component_info_card, component_info } = useCom
 
 const { setModalState } = useModalsState();
 
-const refFooterGroup = ref<HTMLElement | null>(null);
-
-const handler = (e: MouseEvent) => {
-  const target = e.target as HTMLElement | null;
-  if (!target) return;
-
-  const href = target.getAttribute("href");
-  if (!href) return;
-
-  if (target.classList.contains("modal")) {
-    const modalKey = href.slice(1) as keyof IModalsState;
-
-    e.preventDefault();
-
-    setModalState(modalKey, true);
-  } else if (target.classList.contains("inner-link")) {
-    const targetId = href.slice(1);
-    const targetEl = document.getElementById(targetId);
-
-    e.preventDefault();
-
-    if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-};
-
-onMounted(() => {
-  if (!refFooterGroup.value) return;
-
-  refFooterGroup.value.addEventListener('click', handler);
-
-  return () => refFooterGroup.value?.removeEventListener('click', handler);
-});
+const { clickHandler } = useModalClickHandler();
 </script>
 
 <style lang="sass">
