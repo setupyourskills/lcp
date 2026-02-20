@@ -170,3 +170,12 @@ export interface SectionFullRow {
   boxName?:     string;
   text?:        string;
 }
+
+export interface IOptions {
+  name: string;
+  label: string;
+}
+
+export interface ISelectProps {
+  options: iOptions[];
+}

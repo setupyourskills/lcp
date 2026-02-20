@@ -67,7 +67,7 @@ type KnownComponent =
 
 export type ComponentsMap = { [K in KnownComponent]?: object };
 
-export type LanguageCookie = "fr" | "en" | "zh";
+export type LanguageCookie = "fr" | "en" | "zht" | "zht";
 
 export type ComponentStatus = {
   component_ok: string;
