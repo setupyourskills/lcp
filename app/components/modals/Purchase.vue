@@ -45,14 +45,28 @@ div.purchase-modal
 
 <script setup lang="ts">
 import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
+import type { ComponentStatus } from "~/assets/types/types.d.ts";
 
 const { lang } = useLanguageCookie();
 
 const { data: modalsBlocks } = await useFetch<SectionFullRow[]>("/api/view/purchase_modal_view");
 
-const { component_article_header, component_color_card, component_info, component_psp, component_button } = useComponents(modalsBlocks);
+const {
+  component_article_header,
+  component_color_card,
+  component_info,
+  component_psp,
+  component_button,
+  component_status
+} = useComponents(modalsBlocks);
+const status = component_status as ComponentStatus;
 
-const { isQuantityEven, total, getCounterColorList } = useCounterColorsCookie();
+const {
+  isQuantityEven,
+  total,
+  getCounterColorList,
+} = useCounterColorsCookie();
+
 const deactivateButton = computed(() => !isQuantityEven() || total.value === 0);
 
 const goPay = () => {
@@ -62,7 +76,7 @@ const goPay = () => {
 const { setPopupState } = usePopupsState();
 
 watch(isQuantityEven, (newVal) => {
-  if (!newVal) setPopupState("alertOdd", true);
+  if (!newVal) setPopupState("alertInfo", true, JSON.parse(status.component_failed)[lang.value]);
 });
 </script>
 

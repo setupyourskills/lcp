@@ -630,7 +630,10 @@ CREATE OR REPLACE VIEW purchase_modal_view AS
 SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
-       ah.mark         AS component_boolean
+       ah.mark         AS component_boolean,
+       NULL            AS component_ok,
+       NULL            AS component_failed,
+       NULL            AS component_invalid
 FROM   modals m
 JOIN   component_article_header ah ON m.component_id = ah.id
 WHERE  m.name = "purchase"
@@ -641,6 +644,9 @@ UNION ALL
 SELECT "component_color_card"      AS component_type,
        cc.name         AS component_name,
        cc.label        AS component_content,
+       NULL,
+       NULL,
+       NULL,
        NULL
 FROM   modals m
 JOIN   component_color_card cc ON m.component_id = cc.id
@@ -651,6 +657,9 @@ UNION ALL
 
 SELECT "component_info"      AS component_type,
        i.content         AS component_name,
+       NULL,
+       NULL,
+       NULL,
        NULL,
        NULL
 FROM   modals m
@@ -663,6 +672,9 @@ UNION ALL
 SELECT "component_psp"   AS component_type,
        p.name         AS component_name,
        NULL,
+       NULL,
+       NULL,
+       NULL,
        NULL
 FROM   modals m
 JOIN   component_psp p ON m.component_id = p.id
@@ -674,11 +686,28 @@ UNION ALL
 SELECT "component_button"      AS component_type,
        b.title         AS component_name,
        NULL,
+       NULL,
+       NULL,
+       NULL,
        NULL
 FROM   modals m
 JOIN   component_button b ON m.component_id = b.id
 WHERE  m.name = "purchase"
-  AND  m.component_type = "component_button";
+  AND  m.component_type = "component_button"
+
+UNION ALL
+
+SELECT "component_status"      AS component_type,
+       NULL,
+       NULL,
+       NULL,
+       st.ok             AS component_ok,
+       st.failed         AS component_failed,
+       st.invalid        AS component_invalid
+FROM   modals m
+JOIN   component_status st ON m.component_id = st.id
+WHERE  m.name = "purchase"
+  AND  m.component_type = "component_status";
 `,
   },
 ];
