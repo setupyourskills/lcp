@@ -1,13 +1,14 @@
 <template lang="pug">
-div.popup.popup--appear(v-if="isDisplay")
-  ComponentCloseModal(:componentName="props.popupName" componentType="popup")
-  div.popup__group.margin-space
-    div.popup__group-title
-      div.popup__icon
-        slot(name="icon")
-      h4.popup__title {{ props.title }}
-    p.popup__content(v-html="props.content")
-    slot
+Transition
+  div.popup.popup--appear(v-if="isDisplay")
+    ComponentCloseModal(:componentName="props.popupName" componentType="popup")
+    div.popup__group.margin-space
+      div.popup__group-title
+        div.popup__icon
+          slot(name="icon")
+        h4.popup__title {{ props.title }}
+      p.popup__content(v-html="props.content")
+      slot
 </template>
 
 <script setup lang="ts">

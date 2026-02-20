@@ -1,12 +1,13 @@
 <template lang="pug">
-div.modal(v-if="isModalOpen")
-  div.modal__container
-    ComponentCloseModal(:componentName="props.modalName" componentType="modal")
-    div.modal__icon
-      slot(name="icon")
-    h2.modal__title.font-xl {{ props.title }}
-    p.modal__content.font-m(v-html="props.content")
-    slot
+Transition
+  div.modal(v-if="isModalOpen" :class="{ 'modal--activated': isModalOpen }")
+    div.modal__container
+      ComponentCloseModal(:componentName="props.modalName" componentType="modal")
+      div.modal__icon
+        slot(name="icon")
+      h2.modal__title.font-xl {{ props.title }}
+      p.modal__content.font-m(v-html="props.content")
+      slot
 </template>
 
 <script setup lang="ts">
