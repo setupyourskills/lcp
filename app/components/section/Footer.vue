@@ -13,7 +13,7 @@ section.footer
       )
     div.footer__language-selector-container
       div.footer__language-selector
-        ComponentSelect(:options="languageOptions")
+        ComponentSelect(v-model="selectedLang" :options="languageOptions" :selectedOption="lang")
     div.footer__copyright.margin-space(
       v-html="JSON.parse(component_info.component_name)[lang]"
     )
@@ -21,6 +21,7 @@ section.footer
 
 <script setup lang="ts">
 import type { SectionFullRow, IModalsState } from "~/assets/types/interfaces.d.ts"
+import type { LanguageCookie } from "~/assets/types/types.d.ts"
 
 const { lang } = useLanguageCookie();
 
@@ -28,16 +29,19 @@ const { data: sectionBlocks } = await useFetch<SectionFullRow[]>("/api/view/foot
 
 const { component_article_header, component_info_card, component_info } = useComponents(sectionBlocks);
 
-const { setModalState } = useModalsState();
-
 const { clickHandler } = useModalClickHandler();
 
+const { setLanguage } = useLanguageCookie();
+const selectedLang = ref(lang.value);
 const languageOptions = [
   { name: 'en', label: 'English' },
   { name: 'fr', label: 'Français' },
   { name: 'zht', label: '繁体中文' },
   { name: 'zhs', label: '简体中文' }
 ];
+watch(selectedLang, (newVal) => {
+  if (newVal) setLanguage(newVal as LanguageCookie);
+});
 </script>
 
 <style lang="sass">

@@ -14,8 +14,8 @@ export const useLanguageCookie = () => {
     _languageCookie.value = lang;
   }
 
-  function getLanguage() {
-    return _languageCookie.value;
+  function getLanguage(): LanguageCookie {
+    return _languageCookie.value as LanguageCookie;
   }
 
   const lang = computed(() => _languageCookie.value);
