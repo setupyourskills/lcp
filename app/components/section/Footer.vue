@@ -42,6 +42,13 @@ const languageOptions = [
 watch(selectedLang, (newVal) => {
   if (newVal) setLanguage(newVal as LanguageCookie);
 });
+
+onMounted(() => {
+  if (typeof navigator !== 'undefined') {
+    selectedLang.value = navigator.language as LanguageCookie
+  }
+});
+
 </script>
 
 <style lang="sass">
