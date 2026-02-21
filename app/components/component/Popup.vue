@@ -27,10 +27,8 @@ const isPopupOpen = computed(() => getPopupState(props.popupName as keyof IPopup
 const isDisplay = ref(false)
 
 watch(isPopupOpen, (newVal) => {
-  if (newVal) {
-    isDisplay.value = true
-    nextTick(() => { })
-  } else {
+  if (newVal) isDisplay.value = true
+  else {
     const el = document.querySelector('.popup')
     if (el) {
       el.classList.remove('popup--appear')

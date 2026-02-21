@@ -24,7 +24,6 @@ const OPEN_POPUP_TIMEOUT = 2000;
 watch(isAlertOpen, (newVal) => {
   if (newVal) {
     isDisplay.value = true
-    nextTick(() => { })
 
     setTimeout(() => {
      setPopupState(props.alertName, false);
