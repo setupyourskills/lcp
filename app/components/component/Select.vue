@@ -1,6 +1,6 @@
 <template lang="pug">
 div.custom-select
-  select.font-s(v-model="selectedLang")
+  select.font-s(v-model="selected")
     option(
       v-for="opt in options"
       :value="opt.name"
@@ -9,9 +9,6 @@ div.custom-select
 
 <script setup lang="ts">
 import type { ISelectProps } from "~/assets/types/interfaces.d.ts"
-import type { LanguageCookie } from "~/assets/types/types.d.ts"
-
-const { setLanguage } = useLanguageCookie();
 
 const props = withDefaults(defineProps<ISelectProps>(), {
   options: () => [
@@ -19,16 +16,10 @@ const props = withDefaults(defineProps<ISelectProps>(), {
     { name: "fr", label: "Français" },
     { name: "zht", label: "繁体中文" },
     { name: "zhs", label: "简体中文" }
-  ]
+  ],
 });
 
-const selectedLang = ref<string>("en");
-
-watch(selectedLang, (newVal) => {
-  if (newVal) {
-    setLanguage(newVal as LanguageCookie);
-  }
-});
+const selected = defineModel();
 </script>
 
 <style lang="sass" scoped>
