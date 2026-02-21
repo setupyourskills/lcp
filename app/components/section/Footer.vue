@@ -31,8 +31,9 @@ const { component_article_header, component_info_card, component_info } = useCom
 
 const { clickHandler } = useModalClickHandler();
 
-const { setLanguage } = useLanguageCookie();
+const { setLanguage, setCustom, getCustom } = useLanguageCookie();
 const selectedLang = ref(lang.value);
+const defaultLang = ref<string | null>(null);
 const languageOptions = [
   { name: 'en', label: 'English' },
   { name: 'fr', label: 'Français' },
@@ -40,15 +41,35 @@ const languageOptions = [
   { name: 'zhs', label: '简体中文' }
 ];
 watch(selectedLang, (newVal) => {
+  if (defaultLang.value !== null && newVal !== defaultLang.value) setCustom();
+
   if (newVal) setLanguage(newVal as LanguageCookie);
 });
 
-onMounted(() => {
+function setBrowserLanguage() {
+  if (getCustom()) return;
+  
   if (typeof navigator !== 'undefined') {
-    selectedLang.value = navigator.language as LanguageCookie
-  }
-});
+    const browserLang = navigator.language.toLowerCase();
+    const firstTwo = browserLang.slice(0, 2);
 
+    let detected: LanguageCookie;
+    if (firstTwo === "fr" || firstTwo === "en") {
+      detected = firstTwo;
+    } else if (browserLang === "zh-tw" || browserLang === "zh-hk") {
+      detected = "zht";
+    } else if (firstTwo === "zh") {
+      detected = "zhs";
+    } else {
+      detected = "en";
+    }
+
+    selectedLang.value = detected;
+    defaultLang.value = detected;
+  }
+}
+
+onMounted(() => setBrowserLanguage());
 </script>
 
 <style lang="sass">
