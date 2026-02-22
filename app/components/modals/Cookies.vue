@@ -84,7 +84,7 @@ watch(() => consent, (newVal) => {
     margin-bottom: $phi2
 
   &__consent
-    margin-bottom: $phi-1
+    margin-bottom: $phi1
 
   &__buttons
     @include flexbox-wrap
