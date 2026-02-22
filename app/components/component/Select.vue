@@ -33,6 +33,7 @@ const selected = defineModel();
     padding: $phi-1 $phi1_5
     background-color: $second-background-color
     border: 4px solid $accent2
+    outline: none
     border-radius: 15px
     cursor: pointer
     font-weight: bold
