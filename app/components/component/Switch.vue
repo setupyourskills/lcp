@@ -1,7 +1,12 @@
 <template lang="pug">
 div.switch-component
-  div.switch-component__container(@click="handleSwitchButton" :class="{ 'switch-component__container--back-on': props.modelValue, 'switch-component__container--deactivated': props.deactivated, }")
-    button.switch-component__button(:class="{ 'switch-component__button--on' : props.modelValue, 'switch-component__button--deactivated': props.deactivated, }")
+  div.switch-component__container(
+    @click="handleSwitchButton"
+    :class="{ 'switch-component__container--back-on': props.modelValue, 'switch-component__container--deactivated': props.deactivated, }"
+  )
+    button.switch-component__button(
+      :class="{ 'switch-component__button--on' : props.modelValue, 'switch-component__button--deactivated': props.deactivated, }"
+    )
   div.switch-component__label.font-m {{ props.label }}
 </template>
 
@@ -35,8 +40,8 @@ const handleSwitchButton = () => {
 
   &__container
     position: relative
-    width: 56px
-    height: 28px
+    width: 100px
+    height: 53px
     border-radius: 25px
     background-color: $deactivate-button-text
     cursor: pointer
@@ -51,18 +56,19 @@ const handleSwitchButton = () => {
   &__button
     position: absolute
     top: 4px
-    left: 4px
-    width: 20px
-    height: 20px
+    left: 5px
+    width: 44px
+    aspect-ratio: 1 / 1
     border: none
     border-radius: 50%
     background-color: $deactivate
     transition: transform .1s ease-out
+    pointer-event: none
     cursor: pointer
 
     &--on
       background-color: $accent1
-      transform: translate(28px, 0)
+      transform: translate(45px, 0)
       transition: transform .1s ease-out
 
     &--deactivated
