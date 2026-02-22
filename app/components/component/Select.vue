@@ -38,21 +38,21 @@ const selected = defineModel();
     cursor: pointer
     font-weight: bold
 
+  &::before,
+  &::after
+    --size: 0.4rem;
+    content: "";
+    position: absolute;
+    right: 1.5rem;
+    pointer-events: none;
+
   &::before
-    content: "⏶"
-    position: absolute
-    top: 1px
-    right: $phi1_5
-    color: $accent1
-    font-size: $phi1_5
-    pointer-events: none
+    border-inline: var(--size) solid transparent;
+    border-bottom: var(--size) solid black;
+    top: 35%;
 
   &::after
-    content: "⏷"
-    position: absolute
-    bottom: 1px
-    right: $phi1_5
-    color: $accent1
-    font-size: $phi1_5
-    pointer-events: none
+    border-inline: var(--size) solid transparent;
+    border-top: var(--size) solid black;
+    top: 55%;
 </style>
