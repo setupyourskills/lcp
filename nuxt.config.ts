@@ -58,6 +58,11 @@ export default defineNuxtConfig({
         },
       },
     },
+    server: {
+      allowedHosts: [
+        ""
+      ],
+    },
   },
   runtimeConfig: {
     dbHost: process.env.DB_HOST,
