@@ -3,6 +3,19 @@ import { vite as vidstack } from "vidstack/plugins";
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
+  app: {
+    head: {
+      link: [
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "192x192",
+          href: "/favicon.png",
+        },
+      ],
+    },
+  },
   modules: ["@nuxt/image", "@nuxt/fonts"],
   typescript: {
     typeCheck: true,
