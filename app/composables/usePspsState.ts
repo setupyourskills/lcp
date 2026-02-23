@@ -2,9 +2,8 @@ import type { IPspsState } from "~/assets/types/interfaces.d.ts";
 
 export const usePspsState = () => {
   const pspsState = useState<IPspsState>("statePsp", () => ({
+    card: true,
     paypal: false,
-    stripe: true,
-    card: false,
   }));
 
   function resetPspsState() {
@@ -13,9 +12,7 @@ export const usePspsState = () => {
     });
   }
 
-  function setPspState<K extends keyof IPspsState>(
-    pspElement: K,
-  ) {
+  function setPspState<K extends keyof IPspsState>(pspElement: K) {
     resetPspsState();
     pspsState.value[pspElement] = true;
   }

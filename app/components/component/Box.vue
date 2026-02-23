@@ -11,7 +11,7 @@ div.box-component(
 import type { IBoxProps } from "~/assets/types/interfaces.d.ts"
 
 const props = withDefaults(defineProps<IBoxProps>(), {
-  boxName: "paypal",
+  boxName: "card",
 });
 
 const { getPspState, setPspState } = usePspsState();
