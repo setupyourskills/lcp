@@ -1,5 +1,8 @@
 <template lang="pug">
-button.button-component.font-l {{ props.title }}
+button.button-component.font-l(
+  :disabled="props.redirect"
+  :class="{ 'deactivate-big-button': props.redirect }"
+) {{ props.redirect ? '...' : props.title }}
 </template>
 
 <script setup lang="ts">
@@ -7,6 +10,7 @@ import type { IButtonProps } from "~/assets/types/interfaces.d.ts"
 
 const props = withDefaults(defineProps<IButtonProps>(), {
   title: "Title",
+  redirect: false
 });
 </script>
 
