@@ -75,39 +75,38 @@ const {
     position: relative
     margin-bottom: $phi1_5
     height: 240px
-    width: 187px
+    width: 260px
 
-    @media screen and (max-width: 899.99px)
-      width: 260px
+    @media screen and (min-width: 900px)
+      width: 187px
     
     &::after
       content: ''
       z-index: -1
       display: block
       position: absolute
-      top: -25px
-      left: -10px
+      top: -15px
+      left: -70px
       width: 400px
       height: 400px
       border-radius: 50%
       background-color: $yellow-bubble
 
-      @media screen and (max-width: 899.99px)
-        margin-top: $phi1
-        top: -30px
-        left: -70px
+      @media screen and (min-width: 900px)
+        top: -35px
+        left: -10px
 
   &__box1
     position: absolute
-    top: -10px
-    left: 120px
-    width: 65%
+    top: 10px
+    left: 100px
+    width: 50%
     transform: rotate(10deg)
 
-    @media screen and (max-width: 899.99px)
-      top: 10px
-      left: 100px
-      width: 50%
+    @media screen and (min-width: 900px)
+      top: -10px
+      left: 120px
+      width: 65%
 
     @media screen and (min-width: 1200px)
       top: 10px
@@ -115,15 +114,15 @@ const {
 
   &__box2
     position: absolute
-    top: 50px
-    left: 30px
-    width: 75%
+    top: 70px
+    left: 10px
+    width: 55%
     transform: rotate(-10deg)
 
-    @media screen and (max-width: 899.99px)
-      top: 70px
-      left: 10px
-      width: 55%
+    @media screen and (min-width: 900px)
+      top: 50px
+      left: 30px
+      width: 75%
 
     @media screen and (min-width: 1200px)
       top: 70px
