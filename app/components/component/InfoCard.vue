@@ -34,7 +34,7 @@ const props = withDefaults(defineProps<IInfoCardProps>(), {
     justify-content: center
     align-items: center
     margin-inline: auto
-    margin-block: 0 $phi1
+    margin-block: $phi-1 $phi1
     aspect-ratio: 1 / 1;
     width: $phi3
     border-radius: 50%

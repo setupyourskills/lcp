@@ -86,47 +86,53 @@ const {
       display: block
       position: absolute
       top: -25px
-      left: -30px
+      left: -10px
       width: 400px
       height: 400px
       border-radius: 50%
       background-color: $yellow-bubble
 
       @media screen and (max-width: 899.99px)
+        margin-top: $phi1
         top: -30px
         left: -70px
 
   &__box1
     position: absolute
     top: -10px
-    left: 100px
+    left: 120px
     width: 65%
     transform: rotate(10deg)
 
     @media screen and (max-width: 899.99px)
+      top: 10px
+      left: 100px
       width: 50%
 
     @media screen and (min-width: 1200px)
       top: 10px
-      left: 140px
+      left: 160px
 
   &__box2
     position: absolute
     top: 50px
-    left: 10px
+    left: 30px
     width: 75%
     transform: rotate(-10deg)
 
     @media screen and (max-width: 899.99px)
+      top: 70px
+      left: 10px
       width: 55%
 
     @media screen and (min-width: 1200px)
       top: 70px
-      left: 50px
+      left: 70px
 
   &__button-group
     display: flex
     justify-content: center
+    margin-top: $phi1
     width: 100%
 
   &__info
