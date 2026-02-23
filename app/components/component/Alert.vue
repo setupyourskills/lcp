@@ -19,7 +19,7 @@ const { getPopupState, setPopupState, getAlertContent } = usePopupsState();
 
 const isAlertOpen = computed(() => getPopupState(props.alertName));
 
-const OPEN_POPUP_TIMEOUT = 2000;
+const OPEN_POPUP_TIMEOUT = 3000;
 
 watch(isAlertOpen, (newVal) => {
   if (newVal) {
