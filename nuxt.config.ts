@@ -69,5 +69,22 @@ export default defineNuxtConfig({
     dbUser: process.env.DB_USER,
     dbPassword: process.env.DB_PASSWORD,
     dbName: process.env.DB_NAME,
+
+    stripeSecretKey: process.env.STRIPE_SECRET_KEY,
+    stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
+
+    stripeProductRefGreen: process.env.STRIPE_PRODUCT_GREEN,
+    stripeProductRefOrange: process.env.STRIPE_PRODUCT_ORANGE,
+    stripeProductRefYellow: process.env.STRIPE_PRODUCT_YELLOW,
+    stripeProductRefBlack: process.env.STRIPE_PRODUCT_BLACK,
+    stripeProductRefRed: process.env.STRIPE_PRODUCT_RED,
+    stripeProductRefPink: process.env.STRIPE_PRODUCT_PINK,
+    stripeProductRefBlue: process.env.STRIPE_PRODUCT_BLUE,
+    stripeProductRefGold: process.env.STRIPE_PRODUCT_GOLD,
+    stripeProductRefWhite: process.env.STRIPE_PRODUCT_WHITE,
+
+    public: {
+      stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
+    },
   },
 });
