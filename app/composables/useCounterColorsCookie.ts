@@ -10,7 +10,7 @@ export const useCounterColorsCookie = () => {
       red: 0,
       blue: 0,
       green: 0,
-      purple: 0,
+      pink: 0,
       gold: 0,
       orange: 0,
       white: 0,

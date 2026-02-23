@@ -68,7 +68,7 @@ export interface ICounterColorsCookie {
   red: number;
   blue: number;
   green: number;
-  purple: number;
+  pink: number;
   gold: number;
   orange: number;
   white: number;
