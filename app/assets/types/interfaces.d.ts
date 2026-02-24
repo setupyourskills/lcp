@@ -180,3 +180,8 @@ export interface IOptions {
 export interface ISelectProps {
   options: iOptions[];
 }
+
+interface IPurchaseItem {
+  color: string;
+  count: number;
+}

@@ -75,3 +75,4 @@ export type ComponentStatus = {
   component_invalid: string;
 };
 
+export type PaymentTypes = "card" | "paypal";
