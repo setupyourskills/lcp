@@ -695,7 +695,7 @@ UNION ALL
 
 SELECT "component_button"      AS component_type,
        b.title         AS component_name,
-       NULL,
+       b.redirect      AS component_content,
        NULL,
        NULL,
        NULL,

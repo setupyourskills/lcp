@@ -21,5 +21,14 @@ export const usePspsState = () => {
     return pspsState.value[pspElement];
   }
 
-  return { setPspState, getPspState };
+  const whichPsp = (): keyof IPspsState => {
+    for (const key in pspsState.value) {
+      if (pspsState.value[key as keyof IPspsState])
+        return key as keyof IPspsState;
+    }
+
+    return "card";
+  };
+
+  return { setPspState, getPspState, whichPsp };
 };

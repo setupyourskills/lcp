@@ -22,10 +22,10 @@ div.purchase-modal
       h4 {{ JSON.parse(component_info[1].component_name)[lang] }}
       ul
         li(
-          v-for="item in getCounterColorList"
-          :key="item"
+          v-for="item in formattedList"
+          :key="item.key"
         )
-          p {{ item }}
+          p {{ item.text }}
     div.purchase-modal__psp
       h4 {{ JSON.parse(component_info[2].component_name)[lang] }}
       div.purchase-modal__psp-component
@@ -39,6 +39,8 @@ div.purchase-modal
         :title="JSON.parse(component_button.component_name)[lang]"
         @click="goPay"
         :class="{ 'deactivate-big-button': deactivateButton }"
+        :redirect="isLoading"
+        :redirect-label="JSON.parse(component_button.component_content)[lang]"
       )
     p.purchase-modal__info-pay.font-xs(v-html="JSON.parse(component_info[3].component_name)[lang]")
 </template>
@@ -67,10 +69,49 @@ const {
   getCounterColorList,
 } = useCounterColorsCookie();
 
+const formattedList = computed(() =>
+  getCounterColorList.value.map((entry, idx) => {
+    const { color, count } = entry
+
+    return {
+      key: `${idx}-${color}`,
+      text: `${count}x ${color}`
+    }
+  })
+)
+
 const deactivateButton = computed(() => !isQuantityEven() || total.value === 0);
 
-const goPay = () => {
-  console.log("pay");
+const { whichPsp } = usePspsState();
+
+const isLoading = ref(false)
+
+const BUTTON_DISABLED_TIMEOUT = 2500;
+
+const goPay = async () => {
+  try {
+    isLoading.value = true
+
+    const { url } = await $fetch<{ url: string }>("/api/stripe/create-checkout-session", {
+      method: 'POST',
+      body: {
+        purchase: getCounterColorList.value,
+        paymentType: whichPsp()
+      },
+    })
+
+    if (url) {
+      window.location.href = url
+    }
+  } catch (error) {
+    console.error('Stripe payment error:', error)
+    alert('Payment failed. Please try again.')
+  } finally {
+
+        setTimeout(() => {
+    isLoading.value = false
+        }, BUTTON_DISABLED_TIMEOUT);
+  }
 };
 
 const { setPopupState } = usePopupsState();
