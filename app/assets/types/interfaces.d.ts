@@ -94,6 +94,8 @@ export interface IBubblesProps {
 
 export interface IButtonProps {
   title: string;
+  redirect?: boolean;
+  redirectLabel?: string;
 }
 
 export interface IColorCardProps {

@@ -2,7 +2,7 @@
 button.button-component.font-l(
   :disabled="props.redirect"
   :class="{ 'deactivate-big-button': props.redirect }"
-) {{ props.redirect ? '...' : props.title }}
+) {{ props.redirect ? props.redirectLabel : props.title }}
 </template>
 
 <script setup lang="ts">
@@ -10,7 +10,8 @@ import type { IButtonProps } from "~/assets/types/interfaces.d.ts"
 
 const props = withDefaults(defineProps<IButtonProps>(), {
   title: "Title",
-  redirect: false
+  redirect: false,
+  redirectLabel: "Redirecting..."
 });
 </script>
 
