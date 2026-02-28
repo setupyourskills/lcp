@@ -215,8 +215,6 @@ watch(isQuantityEven, (newVal) => {
       @media screen and (min-width: 1024px)
         text-align: left
 
-    &-unit_price
-
     &-description
       grid-column: span 2
 
