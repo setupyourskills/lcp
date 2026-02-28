@@ -3,6 +3,17 @@ export const CREATE_SUFFIX = "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8
 
 export const TABLE_NAMES = [
   {
+    table: "products",
+    template: `
+(id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+color VARCHAR(255) NOT NULL,
+name LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+description LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+price INT(11) NOT NULL,
+PRIMARY KEY (id))
+`,
+  },
+  {
     table: "users",
     template: `
 (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,

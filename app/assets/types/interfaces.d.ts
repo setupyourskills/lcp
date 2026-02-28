@@ -185,3 +185,18 @@ interface IPurchaseItem {
   color: string;
   count: number;
 }
+
+export interface Product {
+  id: number;
+  color: string;
+  product_id: string;
+  price_id: string;
+  name: string;
+  description: string;
+  image: string;
+  price: number;
+}
+
+export interface IProductState {
+  products: Product[];
+}
