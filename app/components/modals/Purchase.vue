@@ -20,21 +20,7 @@ div.purchase-modal
       p(v-html="JSON.parse(component_info[0].component_name)[lang]")
     div.purchase-modal__list
       h4 {{ JSON.parse(component_info[1].component_name)[lang] }}
-      ul.purchase-modal__product-ul(v-if="total")
-        li.purchase-modal__product-li(
-          v-for="item in formattedList"
-          :key="item"
-        ) 
-          div.purchase-modal__product-image(style="grid-area: box-1") 
-            NuxtImg(:src="item.img")
-          div.purchase-modal__product-qty.font-bold.font-m(style="grid-area: box-2") {{ item.qty }}
-          div.purchase-modal__product-name.font-bold.font-m(style="grid-area: box-3")  {{ item.name }}&nbsp;
-          div.purchase-modal__product-unit_price.font-xs(style="grid-area: box-4")  {{JSON.parse(component_info[6].component_name)[lang]}}{{ item.unit }}&nbsp;{{JSON.parse(component_info[7].component_name)[lang]}}
-          div.purchase-modal__product-description.font-s(style="grid-area: box-5")  {{ item.description }}
-          div.purchase-modal__product-price.font-bold.font-m(style="grid-area: box-6")  {{JSON.parse(component_info[4].component_name)[lang]}}{{ item.price }}&nbsp;{{JSON.parse(component_info[5].component_name)[lang]}}
-        p.purchase-modal__total
-          span.purchase-modal__total-title.font-bold {{ JSON.parse(component_info[8].component_name)[lang] }}&nbsp;
-          span.purchase-modal__total-price.font-bold.font-m {{JSON.parse(component_info[4].component_name)[lang]}}{{ totalPrice }}&nbsp;{{JSON.parse(component_info[5].component_name)[lang]}}
+      ComponentOrderList(v-if="total" :product="formattedList" :info="component_info.slice(4,9)")
       p.purchase-modal__nothing(v-else) {{ JSON.parse(component_info[9].component_name)[lang] }}
     div.purchase-modal__psp
       h4 {{ JSON.parse(component_info[2].component_name)[lang] }}
@@ -98,16 +84,6 @@ const formattedList = computed(() =>
     }
   })
 );
-
-const totalPrice = computed(() => {
-  const total = formattedList.value.reduce((acc, item) => {
-    const cents = parseInt(item.price);
-    console.log(formattedList.value)
-    return acc + cents;
-  }, 0);
-
-  return total.toFixed(2);
-});
 
 const deactivateButton = computed(() => !isQuantityEven() || total.value === 0);
 
@@ -178,56 +154,6 @@ watch(isQuantityEven, (newVal) => {
 
   &__list
     margin-block: $phi2
-
-  &__product
-
-    &-ul
-      padding: 0
-
-    &-li
-      display: grid
-      grid-template-columns: 1fr
-      grid-template-areas: "box-1" "box-2" "box-3" "box-4" "box-5" "box-6"
-      align-items: center
-      margin-top: $phi1_5
-      text-align: center
-
-      @media screen and (min-width: 650px)
-        grid-template-columns: 1fr .5fr 3fr 1fr
-        grid-template-rows: 1fr 1fr
-        grid-template-areas: "box-1 box-2 box-3 box-6" "box-1 box-2 box-4 box-6" "box-1 box-2 box-5 box-6"
-        grid-column-gap: $phi-1
-
-      @media screen and (min-width: 1024px)
-        grid-template-columns: 1fr .5fr 2fr 1fr 1fr
-        grid-template-rows: 1fr 1fr
-        grid-template-areas: "box-1 box-2 box-3 box-4 box-6" "box-1 box-2 box-5 box-5 box-6"
-        grid-column-gap: $phi-1
-
-    &-image img
-      width: 120px
-
-    &-qty
-      color: $accent1
-
-    &-name
-
-      @media screen and (min-width: 1024px)
-        text-align: left
-
-    &-description
-      grid-column: span 2
-
-      @media screen and (min-width: 1024px)
-        text-align: left
-
-  &__total
-    margin-top: $phi1_5
-    text-align: right
-    border-top: 2px solid $accent2
-
-    &-price
-      color: $accent1
 
   &__nothing
     color: $alert

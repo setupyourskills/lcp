@@ -200,3 +200,15 @@ export interface Product {
 export interface IProductState {
   products: Product[];
 }
+
+export interface LocaleString {
+  fr: string;
+  en: string;
+  zht: string;
+  zhs: string;
+}
+
+export interface IOrderListProps {
+  product: Product[];
+  info: LocaleString[];
+}
