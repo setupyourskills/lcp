@@ -37,12 +37,9 @@ div.contact-modal
 </template>
 
 <script setup lang="ts">
-import type { ISendMailResponse, SectionFullRow } from "~/assets/types/interfaces.d.ts"
-import type { ComponentStatus } from "~/assets/types/types.d.ts";
-
 const { lang } = useLanguageCookie();
 
-const { data: modalsBlocks } = await useFetch<SectionFullRow[]>("/api/view/contact_modal_view");
+const { data: modalsBlocks } = await useFetch<ISectionFullRow[]>("/api/view/contact_modal_view");
 
 const { component_article_header, component_input, component_textarea, component_button, component_status } = useComponents(modalsBlocks);
 const status = component_status as ComponentStatus;

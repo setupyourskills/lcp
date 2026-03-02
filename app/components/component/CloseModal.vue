@@ -7,12 +7,10 @@ div.close-modal
 </template>
 
 <script setup lang="ts">
-import type { ICloseComponentProps, IModalsState, IPopupsState } from "~/assets/types/interfaces.d.ts"
-
-const props = withDefaults(defineProps<ICloseComponentProps>(), {
-  componentType: "modal",
-  componentName: "",
-});
+const props = defineProps<{
+  componentType: string;
+  componentName: string;
+}>();
 
 const { setModalState } = useModalsState();
 const { setPopupState } = usePopupsState();

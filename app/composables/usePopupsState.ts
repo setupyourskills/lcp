@@ -1,5 +1,3 @@
-import type { IPopupsState } from "~/assets/types/interfaces.d.ts";
-
 export const usePopupsState = () => {
   const _popupsState = useState<IPopupsState>("statePopup", () => ({
     cookies: false,

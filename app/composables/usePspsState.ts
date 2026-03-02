@@ -1,5 +1,3 @@
-import type { IPspsState } from "~/assets/types/interfaces.d.ts";
-
 export const usePspsState = () => {
   const pspsState = useState<IPspsState>("statePsp", () => ({
     card: true,

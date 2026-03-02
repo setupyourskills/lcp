@@ -12,15 +12,13 @@ Transition
 </template>
 
 <script setup lang="ts">
-import type { IPopupProps, IPopupsState } from "~/assets/types/interfaces.d.ts"
-
 const { setPopupState, getPopupState } = usePopupsState();
 
-const props = withDefaults(defineProps<IPopupProps>(), {
-  popupName: "",
-  title: "Title",
-  content: "Content"
-});
+const props = defineProps<{
+  popupName: string;
+  title: string;
+  content: string;
+}>();
 
 const isPopupOpen = computed(() => getPopupState(props.popupName as keyof IPopupsState));
 

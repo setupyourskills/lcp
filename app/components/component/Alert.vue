@@ -7,11 +7,9 @@ div.alert.alert--appear(v-if="isDisplay")
 </template>
 
 <script setup lang="ts">
-import type { IAlertProps, IPopupsState } from "~/assets/types/interfaces.d.ts"
-
-const props = withDefaults(defineProps<IAlertProps>(), {
-  alertName: "alertInfo",
-});
+const props = defineProps<{
+  alertName: keyof IPopupsState;
+}>();
 
 const isDisplay = ref(false);
 
@@ -26,7 +24,7 @@ watch(isAlertOpen, (newVal) => {
     isDisplay.value = true
 
     setTimeout(() => {
-     setPopupState(props.alertName, false);
+      setPopupState(props.alertName, false);
     }, OPEN_POPUP_TIMEOUT);
   } else {
     const el = document.querySelector('.alert')

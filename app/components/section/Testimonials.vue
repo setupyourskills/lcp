@@ -17,11 +17,9 @@ section.testimonials
 </template>
 
 <script setup lang="ts">
-import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
-
 const { lang } = useLanguageCookie();
 
-const { data: sectionBlocks } = await useFetch<SectionFullRow[]>("/api/view/testimonials_view");
+const { data: sectionBlocks } = await useFetch<ISectionFullRow[]>("/api/view/testimonials_view");
 
 const { component_article_header, component_testimonial_card } = useComponents(sectionBlocks);
 </script>

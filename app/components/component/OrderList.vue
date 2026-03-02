@@ -18,9 +18,10 @@ div.order-list
 </template>
 
 <script setup lang="ts">
-import type { IOrderListProps } from "~/assets/types/interfaces.d.ts"
-
-const props = defineProps<IOrderListProps>()
+const props = defineProps<{
+  product: IProduct[];
+  info: {fr: string; en: string; zht: string; zhs: string}[];
+}>();
 
 const { lang } = useLanguageCookie();
 
@@ -32,7 +33,6 @@ const totalPrice = computed(() => {
 
   return total.toFixed(2);
 });
-
 </script>
 
 <style lang="sass">

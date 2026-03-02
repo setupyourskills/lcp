@@ -19,13 +19,11 @@ div.color-card-component
 </template>
 
 <script setup lang="ts">
-import type { IColorCardProps } from "~/assets/types/interfaces.d.ts"
-
-const props = withDefaults(defineProps<IColorCardProps>(), {
-  colorName: "red",
-  colorLabel: "red",
-  componentType: "normal",
-});
+const props = defineProps<{
+  colorName: keyof ICounterColorsCookie;
+  colorLabel: string;
+  componentType?: string;
+}>();
 
 const { isQuantityEven, getCounterColorsCookie, increaseColor, decreaseColor } = useCounterColorsCookie();
 

@@ -1,7 +1,5 @@
-import type { KnownComponent, ComponentsMap } from "~/assets/types/types.d.ts";
-
 export function useComponents(blocks: any) {
-  const components: ComponentsMap = {};
+  const components: { [K in KnownComponent]?: object } = {};
 
   for (const element of blocks.value) {
     const { component_type, ...rest } = element;

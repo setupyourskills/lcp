@@ -10,11 +10,9 @@ section.features
 </template>
 
 <script setup lang="ts">
-import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
-
 const { lang } = useLanguageCookie();
 
-const { data: sectionBlocks } = await useFetch<SectionFullRow[]>("/api/view/features_view");
+const { data: sectionBlocks } = await useFetch<ISectionFullRow[]>("/api/view/features_view");
 
 const { component_info_card } = useComponents(sectionBlocks);
 </script>

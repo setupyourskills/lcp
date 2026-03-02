@@ -42,12 +42,9 @@ div.purchase-modal
 </template>
 
 <script setup lang="ts">
-import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
-import type { ComponentStatus } from "~/assets/types/types.d.ts";
-
 const { lang } = useLanguageCookie();
 
-const { data: modalsBlocks } = await useFetch<SectionFullRow[]>("/api/view/purchase_modal_view");
+const { data: modalsBlocks } = await useFetch<ISectionFullRow[]>("/api/view/purchase_modal_view");
 
 const {
   component_article_header,

@@ -11,13 +11,11 @@ Transition
 </template>
 
 <script setup lang="ts">
-import type { IModalProps, IModalsState } from "~/assets/types/interfaces.d.ts"
-
-const props = withDefaults(defineProps<IModalProps>(), {
-  modalName: "",
-  title: "Title",
-  content: "Content"
-});
+  const props = defineProps< {
+    modalName: string;
+    title: string;
+    content: string;
+  } >();
 
 const { getModalState } = useModalsState();
 

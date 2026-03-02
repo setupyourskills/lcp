@@ -1,5 +1,3 @@
-import type { YesNoMore } from "~/assets/types/types.d.ts";
-
 const PREFIX = "sys-lcp";
 const MAX_AGE = 30 * 24 * 60 * 60;
 

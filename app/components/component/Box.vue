@@ -8,11 +8,9 @@ div.box-component(
 </template>
 
 <script setup lang="ts">
-import type { IBoxProps } from "~/assets/types/interfaces.d.ts"
-
-const props = withDefaults(defineProps<IBoxProps>(), {
-  boxName: "card",
-});
+const props = defineProps<{
+  boxName: string;
+}>();
 
 const { getPspState, setPspState } = usePspsState();
 </script>

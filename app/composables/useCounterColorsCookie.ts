@@ -1,5 +1,3 @@
-import type { ICounterColorsCookie } from "~/assets/types/interfaces.d.ts";
-
 const PREFIX = "sys-lcp";
 const COUNTER_COLORS_KEY = "counter_colors";
 const MAX_AGE = 30 * 24 * 60 * 60;

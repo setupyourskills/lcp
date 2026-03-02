@@ -8,11 +8,9 @@ div.bubbles-component
 </template>
 
 <script setup lang="ts">
-import type { IBubblesProps } from "~/assets/types/interfaces.d.ts"
-
-const props = withDefaults(defineProps<IBubblesProps>(), {
-  section: "purchase",
-});
+const props = defineProps<{
+  section: string;
+}>();
 </script>
 
 <style lang="sass">

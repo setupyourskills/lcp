@@ -1,6 +1,5 @@
 import mysql from "mysql2/promise";
 import { db } from "../utils/db";
-import type { Product } from "~/assets/types/interfaces.d.ts";
 
 export default defineEventHandler(async () => {
   const sql = `
@@ -11,7 +10,7 @@ export default defineEventHandler(async () => {
  try {
     const [rows] = await db.execute<mysql.RowDataPacket[]>(sql);
 
-    return rows as Product[];
+    return rows as IProduct[];
   } catch (err: any) {
     throw createError({
       statusCode: 500,

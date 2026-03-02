@@ -25,12 +25,9 @@ section.newsletter
 </template>
 
 <script setup lang="ts">
-import type { IUserResponse, SectionFullRow } from "~/assets/types/interfaces.d.ts";
-import type { ComponentStatus } from "~/assets/types/types.d.ts";
-
 const { lang } = useLanguageCookie();
 
-const { data: sectionBlocks } = await useFetch<SectionFullRow[]>("/api/view/newsletter_view");
+const { data: sectionBlocks } = await useFetch<ISectionFullRow[]>("/api/view/newsletter_view");
 
 const { component_article_header, component_input, component_button, component_info, component_status } = useComponents(sectionBlocks);
 const status = component_status as ComponentStatus;
@@ -45,7 +42,7 @@ const join = async () => {
   if (isInvalidRegex || isTooLong) setPopupState("alertError", true, JSON.parse(status.component_invalid)[lang.value]);
   else {
     try {
-      const result = await $fetch<IUserResponse>("/api/addEmail", {
+      const result = await $fetch<{id: number; email: string;}>("/api/addEmail", {
         method: "POST",
         body: {
           email: newsletterEmailInput.value

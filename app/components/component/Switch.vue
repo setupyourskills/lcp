@@ -11,13 +11,11 @@ div.switch-component
 </template>
 
 <script setup lang="ts">
-import type { ISwitchProps } from '~/assets/types/interfaces.d.ts'
-
-const props = withDefaults(defineProps<ISwitchProps>(), {
-  label: 'Label',
-  modelValue: false,
-  deactivated: false,
-});
+const props = defineProps<{
+  label: string;
+  modelValue: boolean;
+  deactivated?: boolean;
+}>();
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void

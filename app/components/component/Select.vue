@@ -8,16 +8,9 @@ div.custom-select
 </template>
 
 <script setup lang="ts">
-import type { ISelectProps } from "~/assets/types/interfaces.d.ts"
-
-const props = withDefaults(defineProps<ISelectProps>(), {
-  options: () => [
-    { name: "en", label: "English" },
-    { name: "fr", label: "Français" },
-    { name: "zht", label: "繁体中文" },
-    { name: "zhs", label: "简体中文" }
-  ],
-});
+const props = defineProps<{
+  options: { name: string; label: string; }[];
+}>();
 
 const selected = defineModel();
 </script>

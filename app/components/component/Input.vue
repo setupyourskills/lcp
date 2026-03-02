@@ -3,11 +3,9 @@ input.input-component.font-l(v-model="inputContent" :placeholder="props.placehol
 </template>
 
 <script setup lang="ts">
-import type { IInputProps } from "~/assets/types/interfaces.d.ts"
-
-const props = withDefaults(defineProps<IInputProps>(), {
-  placeholder: "Placeholder",
-});
+const props = defineProps<{
+  placeholder: string;
+}>();
 
 const inputContent = defineModel();
 </script>

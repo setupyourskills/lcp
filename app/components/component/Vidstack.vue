@@ -9,13 +9,12 @@
 
 <script setup lang="ts">
 import "vidstack/bundle";
-import type { IVidstackProps } from "~/assets/types/interfaces.d.ts"
 
-const props = withDefaults(defineProps<IVidstackProps>(), {
-  title: "Title",
-  videoSrc: "",
-  thumbnails: ""
-});
+const props = defineProps<{
+  title: string;
+  videoSrc: string;
+  thumbnails?: string;
+}>();
 </script>
 
 <style lang="sass">

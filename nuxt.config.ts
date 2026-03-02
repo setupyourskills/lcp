@@ -21,9 +21,6 @@ export default defineNuxtConfig({
     typeCheck: true,
     strict: true,
   },
-  imports: {
-    dirs: ["assets/types/**/*"],
-  },
   css: ["normalize.css/normalize.css"],
   image: {
     dir: "assets/images",

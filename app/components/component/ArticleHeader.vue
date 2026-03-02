@@ -5,13 +5,11 @@ div.title-component(:class="{ 'title-component--mark': props.mark }")
 </template>
 
 <script setup lang="ts">
-import type { IArticleHeaderProps } from "~/assets/types/interfaces.d.ts"
-
-const props = withDefaults(defineProps<IArticleHeaderProps>(), {
-  title: "Title",
-  content: "Content",
-  mark: true,
-});
+const props = defineProps<{
+  title: string;
+  content: string;
+  mark?: boolean;
+}>();
 </script>
 
 <style lang="sass" scoped>

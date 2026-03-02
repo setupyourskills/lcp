@@ -1,11 +1,9 @@
-import type { IProductState, Product, ICounterColorsCookie } from "~/assets/types/interfaces.d.ts";
-
 export const useProductsState = () => {
-  const _productState = useState<IProductState>("stateProducts", () => ({
+  const _productState = useState<{products: IProduct[]}>("stateProducts", () => ({
     products: [],
   }));
 
-  function setAllProducts(newProducts: Product[]) {
+  function setAllProducts(newProducts: IProduct[]) {
     _productState.value.products = newProducts;
   }
 
@@ -13,7 +11,7 @@ export const useProductsState = () => {
     if (!color) return;
 
     return _productState.value.products.find(
-      (p: Product) => p.color === color
+      (p: IProduct) => p.color === color
     );
   }
 

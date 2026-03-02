@@ -8,12 +8,10 @@ div.faq-component
 </template>
 
 <script setup lang="ts">
-import type { IFaqSection } from "~/assets/types/interfaces.d.ts"
-
-const props = withDefaults(defineProps<IFaqSection>(), {
-  question: "Question",
-  answer: "Answer",
-});
+const props = defineProps<{
+  question: string;
+  answer: string;
+}>();
 </script>
 
 <style lang="sass" scoped>

@@ -14,11 +14,9 @@ section.faq
 </template>
 
 <script setup lang="ts">
-import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
-
 const { lang } = useLanguageCookie();
 
-const { data: sectionBlocks } = await useFetch<SectionFullRow[]>("/api/view/faq_view");
+const { data: sectionBlocks } = await useFetch<ISectionFullRow[]>("/api/view/faq_view");
 
 const { component_article_header, component_faq } = useComponents(sectionBlocks);
 </script>

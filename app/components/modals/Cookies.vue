@@ -28,15 +28,11 @@ div.cookies-modal
 </template>
 
 <script setup lang="ts">
-import type { SectionFullRow } from "~/assets/types/interfaces.d.ts";
-
 const { lang } = useLanguageCookie();
 
-const { data: modalBlocks } = await useFetch<SectionFullRow[]>("/api/view/cookies_modal_view");
+const { data: modalBlocks } = await useFetch<ISectionFullRow[]>("/api/view/cookies_modal_view");
 
 const { component_article_header, component_info, component_button, component_cookies_parameters } = useComponents(modalBlocks);
-
-import type { YesNoMore } from "~/assets/types/types.d.ts";
 
 const { COOKIES_ACCEPTED_KEY, COOKIES_CAT_KEYS, setCookie } = useCookies();
 const { setModalState } = useModalsState();

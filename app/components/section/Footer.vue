@@ -20,12 +20,9 @@ section.footer
 </template>
 
 <script setup lang="ts">
-import type { SectionFullRow, IModalsState } from "~/assets/types/interfaces.d.ts"
-import type { LanguageCookie } from "~/assets/types/types.d.ts"
-
 const { lang } = useLanguageCookie();
 
-const { data: sectionBlocks } = await useFetch<SectionFullRow[]>("/api/view/footer_view");
+const { data: sectionBlocks } = await useFetch<ISectionFullRow[]>("/api/view/footer_view");
 
 const { component_article_header, component_info_card, component_info } = useComponents(sectionBlocks);
 

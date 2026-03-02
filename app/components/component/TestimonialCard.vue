@@ -9,14 +9,12 @@ div.testimonial-card-component
 </template>
 
 <script setup lang="ts">
-import type { ITestimonialSection } from "~/assets/types/interfaces.d.ts"
-
-const props = withDefaults(defineProps<ITestimonialSection>(), {
-  content: "Content",
-  avatar: "Avatar",
-  name: "Name",
-  country: "Country",
-});
+const props = defineProps<{
+  content: string;
+  avatar: string;
+  name: string;
+  country: string;
+}>();
 </script>
 
 <style lang="sass" scoped>

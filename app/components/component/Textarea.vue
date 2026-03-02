@@ -3,11 +3,9 @@ textarea.textarea-component.font-l(v-model="textareaContent" :placeholder="props
 </template>
 
 <script setup lang="ts">
-import type { ITextareaProps } from "~/assets/types/interfaces.d.ts"
-
-const props = withDefaults(defineProps<ITextareaProps>(), {
-  placeholder: "Placeholder",
-});
+const props = defineProps<{
+  placeholder: string;
+}>();
 
 const textareaContent = defineModel();
 </script>

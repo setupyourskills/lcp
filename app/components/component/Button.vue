@@ -6,13 +6,11 @@ button.button-component.font-l(
 </template>
 
 <script setup lang="ts">
-import type { IButtonProps } from "~/assets/types/interfaces.d.ts"
-
-const props = withDefaults(defineProps<IButtonProps>(), {
-  title: "Title",
-  redirect: false,
-  redirectLabel: "Redirecting..."
-});
+const props = defineProps<{
+  title: string;
+  redirect?: boolean;
+  redirectLabel?: string;
+}>();
 </script>
 
 <style lang="sass">

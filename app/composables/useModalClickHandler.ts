@@ -1,5 +1,3 @@
-import type { IModalsState } from "~/assets/types/interfaces.d.ts";
-
 const CLOSE_MODAL_TIMEOUT = 400;
 
 export const useModalClickHandler = () => {

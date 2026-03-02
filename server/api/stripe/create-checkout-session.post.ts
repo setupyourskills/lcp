@@ -1,8 +1,5 @@
 import { stripe } from "../../utils/stripe";
 
-import type { IPurchaseItem } from "~/assets/types/interfaces.d.ts";
-import type { PaymentTypes } from "~/assets/types/types.d.ts";
-
 const config = useRuntimeConfig();
 const PRODUCT_REF = {
   green: config.stripeProductRefGreen,
@@ -19,17 +16,26 @@ const PRODUCT_REF = {
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
-  const { purchase, paymentType } = body as { purchase: IPurchaseItem[], paymentType: PaymentTypes };
+  const { purchase, paymentType } = body as {
+    purchase: { color: string; count: number }[];
+    paymentType: "card" | "paypal";
+  };
 
   if (!purchase) {
-    throw createError({ statusCode: 400, statusMessage: "Purchase list is required!" });
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Purchase list is required!",
+    });
   }
 
   const lineItems = purchase.map((p) => {
     const priceId = PRODUCT_REF[p.color as keyof typeof PRODUCT_REF];
 
     if (!priceId) {
-      throw createError({ statusCode: 400, message: `Unknown product color: ${p.color}` });
+      throw createError({
+        statusCode: 400,
+        message: `Unknown product color: ${p.color}`,
+      });
     }
 
     return { price: priceId, quantity: p.count ?? 1 };
@@ -51,7 +57,7 @@ export default defineEventHandler(async (event) => {
     success_url: `${getRequestURL(event).origin}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${getRequestURL(event).origin}/cancel`,
   });
-  
+
   return {
     url: session.url,
   };

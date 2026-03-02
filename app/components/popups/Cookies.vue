@@ -21,12 +21,9 @@ div.cookie-popup
 </template>
 
 <script setup lang="ts">
-import type { YesNoMore } from "~/assets/types/types.d.ts";
-import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
-
 const { lang } = useLanguageCookie();
 
-const { data: popupBlocks } = await useFetch<SectionFullRow[]>("/api/view/cookies_popup_view");
+const { data: popupBlocks } = await useFetch<ISectionFullRow[]>("/api/view/cookies_popup_view");
 
 const { component_article_header, component_button } = useComponents(popupBlocks);
 

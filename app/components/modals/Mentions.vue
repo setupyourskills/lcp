@@ -17,11 +17,9 @@ div.mentions-modal
 </template>
 
 <script setup lang="ts">
-import type { SectionFullRow } from "~/assets/types/interfaces.d.ts";
-
 const { lang } = useLanguageCookie();
 
-const { data: modalBlocks } = await useFetch<SectionFullRow[]>("/api/view/mentions_modal_view");
+const { data: modalBlocks } = await useFetch<ISectionFullRow[]>("/api/view/mentions_modal_view");
 
 const { component_article_header, component_info, component_button } = useComponents(modalBlocks);
 

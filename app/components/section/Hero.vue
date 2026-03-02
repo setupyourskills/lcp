@@ -8,12 +8,10 @@ section.hero
 </template>
 
 <script setup lang="ts">
-import type { SectionFullRow } from "~/assets/types/interfaces.d.ts"
-
 const { setModalState } = useModalsState();
 const { lang } = useLanguageCookie();
 
-const { data: sectionBlocks } = await useFetch<SectionFullRow[]>("/api/view/hero_view");
+const { data: sectionBlocks } = await useFetch<ISectionFullRow[]>("/api/view/hero_view");
 
 const {
   component_article_header,
