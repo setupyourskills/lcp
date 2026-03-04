@@ -16,8 +16,7 @@ const props = defineProps<{
 <style lang="sass">
 .button-component
   @include transition
-  padding-inline: $phi3
-  padding-block: $phi1
+  padding: $phi1 $phi3
   min-width: 240px
   border: none
   border-radius: 25px
