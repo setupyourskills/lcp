@@ -28,7 +28,7 @@ export const useCounterColorsCookie = () => {
     ),
   );
 
-  const isQuantityEven = () => total.value % 2 === 0;
+  const isQuantityEven = computed(() => total.value % 2 === 0);
 
   const getCounterColorList = computed(() => {
     return Object.entries(counterColorsCookie.value)

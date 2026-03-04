@@ -13,7 +13,7 @@ div.color-card-component
       :class="counterColor ? 'font-default-color activate-button' : 'deactivate-small-button'"
       ) -
     div.color-card-component__number(
-    :class="!counterColor ? 'font-deactivate' : isQuantityEven() ? 'font-validate-color' : 'font-alert-color'"
+    :class="!counterColor ? 'font-deactivate' : isQuantityEven ? 'font-validate-color' : 'font-alert-color'"
      ) {{ counterColor ? `${counterColor}` : 0 }}
     div.color-card-component__plus(@click="incColor") +
 </template>

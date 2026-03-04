@@ -82,7 +82,7 @@ const formattedList = computed(() =>
   })
 );
 
-const deactivateButton = computed(() => !isQuantityEven() || total.value === 0);
+const deactivateButton = computed(() => !isQuantityEven || total.value === 0);
 
 const { whichPsp } = usePspsState();
 
