@@ -6,13 +6,15 @@ div.info-card-component.info-card-component--number(:class="{ 'info-card-compone
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   number?: number | null;
   title: string;
   content: string;
   style?: string;
   transition?: boolean;
-}>();
+}>(), {
+  transition: true
+});
 </script>
 
 <style lang="sass" scoped>
