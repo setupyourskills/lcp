@@ -43,8 +43,7 @@ const props = withDefaults(defineProps<{
   &__title::after
     content: ''
     display: block
-    margin-inline: auto
-    margin-block: $phi-1
+    margin: $phi-1 auto
     width: $phi3
     height: 6px
     background-color: $accent2
