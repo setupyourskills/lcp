@@ -17,21 +17,18 @@ const { getPopupState, setPopupState, getAlertContent } = usePopupsState();
 
 const isAlertOpen = computed(() => getPopupState(props.alertName));
 
-const OPEN_POPUP_TIMEOUT = 3500;
-
 watch(isAlertOpen, (newVal) => {
   if (newVal) {
-    isDisplay.value = true
+    isDisplay.value = true;
 
-    setTimeout(() => {
-      setPopupState(props.alertName, false);
-    }, OPEN_POPUP_TIMEOUT);
+    setTimeout(() => { setPopupState(props.alertName, false) }, OPEN_POPUP_TIMEOUT);
   } else {
-    const el = document.querySelector('.alert')
+    const el = document.querySelector(".alert");
+
     if (el) {
-      el.classList.remove('alert--appear')
-      el.classList.add('alert--disappear')
-      setTimeout(() => { isDisplay.value = false }, 500)
+      el.classList.remove("alert--appear");
+      el.classList.add("alert--disappear");
+      setTimeout(() => { isDisplay.value = false }, POPUP_DISAPPEAR_TIMEOUT);
     }
   }
 });
@@ -51,6 +48,12 @@ watch(isAlertOpen, (newVal) => {
   @media screen and (min-width: 600px)
     max-width: 50vw
 
+  &--appear
+    animation: alertFadeIn 0.5s forwards
+
+  &--disappear
+    animation: alertFadeOut 0.5s forwards
+
   &__container
     display: flex
     flex-direction: column
@@ -62,12 +65,6 @@ watch(isAlertOpen, (newVal) => {
 
   &__content
     text-align: left
-
-  &--appear
-    animation: alertFadeIn 0.5s forwards
-
-  &--disappear
-    animation: alertFadeOut 0.5s forwards
 
 @keyframes alertFadeOut
   from 

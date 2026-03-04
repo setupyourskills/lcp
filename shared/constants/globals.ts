@@ -1,0 +1,2 @@
+export const OPEN_POPUP_TIMEOUT = 3500;
+export const POPUP_DISAPPEAR_TIMEOUT = 500;
