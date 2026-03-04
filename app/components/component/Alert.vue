@@ -17,7 +17,7 @@ const { getPopupState, setPopupState, getAlertContent } = usePopupsState();
 
 const isAlertOpen = computed(() => getPopupState(props.alertName));
 
-const OPEN_POPUP_TIMEOUT = 3000;
+const OPEN_POPUP_TIMEOUT = 3500;
 
 watch(isAlertOpen, (newVal) => {
   if (newVal) {
@@ -49,7 +49,7 @@ watch(isAlertOpen, (newVal) => {
   background-color: $element-background-color
 
   @media screen and (min-width: 600px)
-    max-width: 75vw
+    max-width: 50vw
 
   &__container
     display: flex
