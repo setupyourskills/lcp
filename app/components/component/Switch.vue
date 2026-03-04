@@ -43,9 +43,11 @@ const handleSwitchButton = () => {
     border-radius: 25px
     background-color: $deactivate-button-text
     cursor: pointer
+    border-bottom: 6px solid $deactivate
 
     &--back-on
       background-color: $accent2
+      border-color: $accent1
 
     &--deactivated
       opacity: .35
