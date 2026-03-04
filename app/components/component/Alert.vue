@@ -59,10 +59,8 @@ watch(isAlertOpen, (newVal) => {
 
   &__icon
     width: $phi2
-    margin-block: 0
 
   &__content
-    margin: 0
     text-align: left
 
   &--appear
