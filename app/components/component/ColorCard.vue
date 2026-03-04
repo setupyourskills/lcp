@@ -22,23 +22,17 @@ div.color-card-component
 const props = defineProps<{
   colorName: keyof ICounterColorsCookie;
   colorLabel: string;
-  componentType?: string;
+  componentType?: "modal";
 }>();
 
 const { isQuantityEven, getCounterColorsCookie, increaseColor, decreaseColor } = useCounterColorsCookie();
 
 const counterColor = computed(() => getCounterColorsCookie(props.colorName));
 
-const incColor = () => {
-  if (props.componentType === "modal") {
-    increaseColor(props.colorName);
-  }
-};
+const incColor = () => increaseColor(props.colorName);
 
 const decColor = () => {
-  if (props.componentType === "modal" && counterColor.value) {
-    decreaseColor(props.colorName);
-  }
+  if (counterColor.value) decreaseColor(props.colorName);
 };
 </script>
 
@@ -56,16 +50,11 @@ const decColor = () => {
 
   &__color-name
     margin-block: 0 $phi1
-    text-align: center
-
-    @media screen and (min-width: 600px)
-      width: 140px
 
     &::before
       content: ''
       display: block
-      margin-inline: auto
-      margin-block: $phi1
+      margin: $phi1 auto
       box-sizing: border-box;
       width: $phi3
       aspect-ratio: 1 / 1;
@@ -75,9 +64,6 @@ const decColor = () => {
 
   &__counter-group
     display: flex
-    flex-direction: row
-    justify-content: space-around
-    align-items: center
     margin-top: $phi-2
     font-weight: bold
     border-radius: 10px
@@ -86,7 +72,6 @@ const decColor = () => {
 
   &__number
     flex: 2
-    margin: auto
     border-inline: 2px solid $accent2
 
   &__moins,
