@@ -72,10 +72,7 @@ export interface ISectionFullRow {
 export interface IProduct {
   id: number;
   color: string;
-  product_id: string;
-  price_id: string;
   name: string;
   description: string;
-  image: string;
   price: number;
 }
