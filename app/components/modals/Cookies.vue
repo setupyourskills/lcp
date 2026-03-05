@@ -34,39 +34,39 @@ const { data: modalBlocks } = await useFetch<ISectionFullRow[]>("/api/view/cooki
 
 const { component_article_header, component_info, component_button, component_cookies_parameters } = useComponents(modalBlocks);
 
-const { COOKIES_ACCEPTED_KEY, COOKIES_CAT_KEYS, setCookie } = useCookies();
+const {
+  COOKIES_ACCEPTED_KEY,
+  COOKIES_CAT_KEYS,
+  setCookie,
+  getCookie,
+} = useCookies();
 const { setModalState } = useModalsState();
 
-const choiceCookie = (choice: YesNoMore) => {
-  setCookie(COOKIES_ACCEPTED_KEY, choice);
+const choiceCookie = () => {
+  setCookie(COOKIES_ACCEPTED_KEY, true);
   setModalState("cookies", false);
 };
 
 const consent = reactive(
-  Object.fromEntries(COOKIES_CAT_KEYS.map(k => [k, true]))
+  Object.fromEntries(COOKIES_CAT_KEYS.map(k => [k, getCookie(k)]))
 );
 
-let prevVal = { ...consent };
 watch(() => consent, (newVal) => {
   for (const key in newVal) {
-    if (newVal[key] !== prevVal[key]) {
-      setCookie(key, newVal[key] ? "yes" : "no");
+    setCookie(key, consent[key]!);
 
-      switch (key) {
-        case "functional": {
-          break;
-        }
-        case "advertising": {
-          break;
-        }
-        case "analytics": {
-          break;
-        }
+    switch (key) {
+      case "functional": {
+        break;
+      }
+      case "advertising": {
+        break;
+      }
+      case "analytics": {
+        break;
       }
     }
   }
-
-  prevVal = { ...newVal };
 }, { deep: true });
 </script>
 

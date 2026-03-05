@@ -1,4 +1,4 @@
-export type YesNoMore = "yes" | "no" | "more";
+export type YesMore = "yes" | "more";
 
 export type KnownComponent =
   | "component_article_header"

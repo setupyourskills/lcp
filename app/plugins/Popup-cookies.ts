@@ -6,7 +6,7 @@ export default defineNuxtPlugin(() => {
 
   if (!isCookieAccepted.value) {
     for (const key of COOKIES_CAT_KEYS) {
-      setCookie(key, "yes");
+      setCookie(key, true);
     }
 
     setTimeout(() => {

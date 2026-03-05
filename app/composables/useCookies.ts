@@ -9,21 +9,21 @@ const COOKIES_CAT_KEYS = [
 ];
 
 export const useCookies = () => {
-  const _cookie = (cat: string, defaultValue?: string) =>
+  const _cookie = (cat: string) =>
     useCookie(`${PREFIX}_${cat}`, {
-      default: () => defaultValue ?? "",
+      default: () => "no",
       maxAge: MAX_AGE,
     });
 
-  function setCookie(cat: string, status: YesNoMore) {
-    _cookie(cat).value = status;
+  function setCookie(cat: string, status: boolean) {
+    _cookie(cat).value = status ? "yes" : "no";
   }
 
-  function getCookie(cat: string, defaultValue?: string) {
-    return _cookie(cat, defaultValue).value;
+  function getCookie(cat: string) {
+    return _cookie(cat).value === "yes";
   }
 
-  const isCookieAccepted = computed(() => getCookie(COOKIES_ACCEPTED_KEY) === "yes");
+  const isCookieAccepted = computed(() => (_cookie(COOKIES_ACCEPTED_KEY).value === "yes"));
 
   return { COOKIES_ACCEPTED_KEY, COOKIES_CAT_KEYS, getCookie, setCookie, isCookieAccepted };
 };

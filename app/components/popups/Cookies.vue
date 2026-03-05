@@ -33,9 +33,9 @@ const { COOKIES_ACCEPTED_KEY, setCookie } = useCookies();
 const { setPopupState } = usePopupsState();
 const { setModalState } = useModalsState();
 
-const choiceCookie = (choice: YesNoMore) => {
-  if (choice === "yes") setCookie(COOKIES_ACCEPTED_KEY, choice);
-  else {
+const choiceCookie = (choice: YesMore) => {
+  if (choice === "yes") setCookie(COOKIES_ACCEPTED_KEY, true);
+  else if (choice === "more") {
     setTimeout(() => {
       setModalState("cookies", true);
     }, OPEN_MODAL_TIMEOUT);
