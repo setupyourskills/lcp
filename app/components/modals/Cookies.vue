@@ -17,7 +17,7 @@ div.cookies-modal
       )
         ComponentSwitch(
           :label="JSON.parse(param.component_content)[lang]"
-          v-model="consent[param.component_name]"
+          v-model:selected="consent[param.component_name]"
           :deactivated="Boolean(!param.component_boolean)"
         )
     div.cookies-modal__buttons

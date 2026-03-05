@@ -2,10 +2,10 @@
 div.switch-component
   div.switch-component__container(
     @click="handleSwitchButton"
-    :class="{ 'switch-component__container--back-on': props.modelValue, 'switch-component__container--deactivated': props.deactivated, }"
+    :class="{ 'switch-component__container--back-on': selected, 'switch-component__container--deactivated': props.deactivated, }"
   )
     button.switch-component__button(
-      :class="{ 'switch-component__button--on' : props.modelValue, 'switch-component__button--deactivated': props.deactivated, }"
+      :class="{ 'switch-component__button--on' : selected, 'switch-component__button--deactivated': props.deactivated, }"
     )
   div.switch-component__label.font-m {{ props.label }}
 </template>
@@ -13,19 +13,15 @@ div.switch-component
 <script setup lang="ts">
 const props = defineProps<{
   label: string;
-  modelValue: boolean;
-  deactivated?: boolean;
+  deactivated: boolean;
 }>();
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: boolean): void
-}>();
+const selected = defineModel("selected");
 
 const handleSwitchButton = () => {
   if (props.deactivated) return;
 
-  const newVal = !props.modelValue;
-  emit('update:modelValue', newVal);
+  selected.value = !selected.value
 };
 </script>
 
