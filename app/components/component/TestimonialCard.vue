@@ -2,10 +2,11 @@
 div.testimonial-card-component
   p.testimonial-card-component__content.font-s {{ props.content }}
   div.testimonial-card-component__user
-    div.testimonial-card-component__avatar {{ props.avatar }}
+    div.testimonial-card-component__avatar.font-bold.font-l
+      span {{ props.avatar }}
     div.testimonial-card-component__details
-      span.testimonial-card-component__name.font-m {{ props.name }}
-      span.testimonial-card-component__country.font-s {{ props.country }}
+      p.testimonial-card-component__name.font-bold.font-m {{ props.name }}
+      p.testimonial-card-component__country.font-xs {{ props.country }}
 </template>
 
 <script setup lang="ts">
@@ -40,17 +41,19 @@ const props = defineProps<{
     margin-block: $phi1 0
 
   &__avatar
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto
     aspect-ratio: 1 / 1;
     width: $phi3
     border: 4px solid $accent2
     border-radius: 50%
-
-  &__details
-    display: flex
-    flex-direction: column
+    background-color: $element-background-color
+    color: $accent1
 
   &__name
-    font-weight: bold
+    margin: 0
 
   &__country
     font-style: italic
