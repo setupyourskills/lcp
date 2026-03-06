@@ -1,8 +1,14 @@
 <template lang="pug">
 Transition
-  div.modal(v-if="isModalOpen" :class="{ 'modal--activated': isModalOpen }")
+  div.modal(
+    v-if="isModalOpen"
+    :class="{ 'modal--activated': isModalOpen }"
+  )
     div.modal__container
-      ComponentCloseModal(:componentName="props.modalName" componentType="modal")
+      ComponentCloseModal(
+        :componentName="props.modalName"
+        componentType="modal"
+      )
       div.modal__icon
         slot(name="icon")
       h2.modal__title.font-xl {{ props.title }}
@@ -11,15 +17,15 @@ Transition
 </template>
 
 <script setup lang="ts">
-  const props = defineProps< {
-    modalName: string;
-    title: string;
-    content: string;
-  } >();
+const props = defineProps<{
+  modalName: keyof IModalsState;
+  title: string;
+  content: string;
+}>();
 
 const { getModalState } = useModalsState();
 
-const isModalOpen = computed(() => getModalState(props.modalName as keyof IModalsState));
+const isModalOpen = computed(() => getModalState(props.modalName));
 </script>
 
 <style lang="sass" scoped>
@@ -34,22 +40,6 @@ const isModalOpen = computed(() => getModalState(props.modalName as keyof IModal
   backdrop-filter: blur(6px)
   overflow-y: auto
 
-  &__close
-    position: absolute
-    right: $phi1
-    top: $phi2
-    font-size: $phi2
-    color: $accent1
-    background: none
-    border: none
-    cursor: pointer
-
-    @media screen and (min-width: 600px)
-      right: $phi2
-
-    @media screen and (min-width: 850px)
-      right: $phi3
-    
   &__container
     position: absolute
     text-align: center
