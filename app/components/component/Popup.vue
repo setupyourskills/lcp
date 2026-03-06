@@ -1,7 +1,10 @@
 <template lang="pug">
 Transition
   div.popup.popup--appear(v-if="isDisplay")
-    ComponentCloseModal(:componentName="props.popupName" componentType="popup")
+    ComponentCloseModal(
+      :componentName="props.popupName"
+      componentType="popup"
+    )
     div.popup__group.margin-space
       div.popup__group-title
         div.popup__icon
@@ -12,26 +15,27 @@ Transition
 </template>
 
 <script setup lang="ts">
-const { setPopupState, getPopupState } = usePopupsState();
-
 const props = defineProps<{
-  popupName: string;
+  popupName: keyof IPopupsState;
   title: string;
   content: string;
 }>();
 
-const isPopupOpen = computed(() => getPopupState(props.popupName as keyof IPopupsState));
-
 const isDisplay = ref(false)
+
+const { getPopupState } = usePopupsState();
+
+const isPopupOpen = computed(() => getPopupState(props.popupName));
 
 watch(isPopupOpen, (newVal) => {
   if (newVal) isDisplay.value = true
   else {
     const el = document.querySelector('.popup')
+
     if (el) {
       el.classList.remove('popup--appear')
       el.classList.add('popup--disappear')
-      setTimeout(() => { isDisplay.value = false }, 500)
+      setTimeout(() => { isDisplay.value = false }, POPUP_DISAPPEAR_TIMEOUT)
     }
   }
 });
@@ -49,22 +53,12 @@ watch(isPopupOpen, (newVal) => {
   border-top: $border-section-framed solid $accent2
   background-color: $element-background-color
 
-  &__close
-    position: absolute
-    right: $phi1
-    top: $phi1
-    font-size: $phi2
-    color: $accent1
-    background: none
-    border: none
-    cursor: pointer
+  &--appear
+    animation: popupFadeIn 0.5s forwards
 
-    @media screen and (min-width: 600px)
-      right: $phi2
+  &--disappear
+    animation: popupFadeOut 0.5s forwards
 
-    @media screen and (min-width: 850px)
-      right: $phi3
-    
   &__group
     display: flex
     flex-direction: column
@@ -75,15 +69,15 @@ watch(isPopupOpen, (newVal) => {
     @media screen and (min-width: 600px)
       text-align: left
 
-  &__group-title
-    display: flex
-    flex-direction: column
-    align-items: center
+    &-title
+      display: flex
+      flex-direction: column
+      align-items: center
 
-    @media screen and (min-width: 600px)
-      flex-direction: row
-      gap: $gap-space
-    
+      @media screen and (min-width: 600px)
+        flex-direction: row
+        gap: $gap-space
+
   &__icon
     @include svg-icon
     margin-block: $phi2 $phi-2
@@ -96,12 +90,6 @@ watch(isPopupOpen, (newVal) => {
 
   &__content
     margin-block: 0 $phi2
-
-  &--appear
-    animation: popupFadeIn 0.5s forwards
-
-  &--disappear
-    animation: popupFadeOut 0.5s forwards
 
 @keyframes popupFadeOut
   from 
