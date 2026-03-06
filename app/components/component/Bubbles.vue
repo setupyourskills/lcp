@@ -9,7 +9,7 @@ div.bubbles-component
 
 <script setup lang="ts">
 const props = defineProps<{
-  section: string;
+  section: "purchase" | "footer";
 }>();
 </script>
 
