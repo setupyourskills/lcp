@@ -1,32 +1,29 @@
 export const usePspsState = () => {
-  const pspsState = useState<IPspsState>("statePsp", () => ({
+  const _pspsState = useState<IPspsState>("statePsp", () => ({
     card: true,
     paypal: false,
   }));
 
-  function resetPspsState() {
-    (Object.keys(pspsState.value) as Array<keyof IPspsState>).forEach((k) => {
-      pspsState.value[k] = false;
-    });
-  }
-
   function setPspState<K extends keyof IPspsState>(pspElement: K) {
-    resetPspsState();
-    pspsState.value[pspElement] = true;
+    Object.keys(_pspsState.value).forEach(
+      (k) => (_pspsState.value[k as keyof IPspsState] = false),
+    );
+
+    _pspsState.value[pspElement] = true;
   }
 
   function getPspState<K extends keyof IPspsState>(pspElement: K): boolean {
-    return pspsState.value[pspElement];
+    return _pspsState.value[pspElement];
   }
 
-  const whichPsp = (): keyof IPspsState => {
-    for (const key in pspsState.value) {
-      if (pspsState.value[key as keyof IPspsState])
-        return key as keyof IPspsState;
-    }
+  const whichPsp = (): keyof IPspsState =>
+    Object.entries(_pspsState.value).find(
+      ([_, v]) => v === true,
+    )![0] as keyof IPspsState;
 
-    return "card";
+  return {
+    setPspState,
+    getPspState,
+    whichPsp,
   };
-
-  return { setPspState, getPspState, whichPsp };
 };
