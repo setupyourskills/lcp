@@ -21,10 +21,13 @@ section.purchase
             v-for="(image, id) in component_image"
             :key="id"
             :src="image.component_name"
-            :class="`purchase__box${(id+1).toString()}`"
+            :class="`purchase__box${(id+1)}`"
           )
-        div.purchase__button-group
-          ComponentButton.purchase__button(:title="JSON.parse(component_button.component_name)[lang]" @click="setModalState('purchase', true)")
+        div.purchase__button-container
+          ComponentButton.purchase__button(
+            :title="JSON.parse(component_button.component_name)[lang]"
+            @click="setModalState('purchase', true)"
+          )
       div.purchase__info
         p.font-xs(v-html="JSON.parse(component_info.component_name)[lang]")
 </template>
@@ -48,14 +51,9 @@ const {
 .purchase
   margin-top: $phi3
 
-  &__title-component
-    margin-top: $phi2
-
   &__frame
     @include frame
     position: relative
-    max-width: $frame-max-width
-    margin-inline: auto
     overflow: hidden
 
     @media screen and (min-width: 1024px)
@@ -65,6 +63,9 @@ const {
     z-index: 1
     position: relative
     padding-block: 0 $phi2
+
+  &__title-component
+    margin-top: $phi2
 
   &__form
     @include flexbox-wrap
@@ -126,10 +127,9 @@ const {
       top: 70px
       left: 70px
 
-  &__button-group
-    display: flex
-    justify-content: center
+  &__button-container
     margin-top: $phi1
+    text-align: center
     width: 100%
 
   &__info
