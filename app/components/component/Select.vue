@@ -1,6 +1,6 @@
 <template lang="pug">
 div.custom-select
-  select.font-s(v-model="selected")
+  select.font-bold.font-s(v-model="selected")
     option(
       v-for="opt in options"
       :value="opt.name"
@@ -9,7 +9,10 @@ div.custom-select
 
 <script setup lang="ts">
 const props = defineProps<{
-  options: { name: string; label: string; }[];
+  options: {
+    name: string;
+    label: string;
+  }[];
 }>();
 
 const selected = defineModel();
@@ -21,15 +24,14 @@ const selected = defineModel();
 
   select
     box-sizing: border-box;
-    appearance: none
     width: 100%
     padding: $phi-1 $phi1_5
-    background-color: $second-background-color
-    border: 4px solid $accent2
+    appearance: none
     outline: none
+    border: 4px solid $accent2
     border-radius: 15px
+    background-color: $second-background-color
     cursor: pointer
-    font-weight: bold
 
   &::before,
   &::after
@@ -40,12 +42,12 @@ const selected = defineModel();
     pointer-events: none;
 
   &::before
+    top: 35%;
     border-inline: var(--size) solid transparent;
     border-bottom: var(--size) solid black;
-    top: 35%;
 
   &::after
+    top: 55%;
     border-inline: var(--size) solid transparent;
     border-top: var(--size) solid black;
-    top: 55%;
 </style>
