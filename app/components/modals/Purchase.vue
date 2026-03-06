@@ -1,6 +1,6 @@
 <template lang="pug">
 div.purchase-modal
-  ComponentModal.purchase-modal__modal(
+  ComponentModal(
     modalName="purchase"
     :title="JSON.parse(component_article_header.component_name)[lang]"
     :content="JSON.parse(component_article_header.component_content)[lang]"
@@ -20,7 +20,11 @@ div.purchase-modal
       p(v-html="JSON.parse(component_info[0].component_name)[lang]")
     div.purchase-modal__list
       h4 {{ JSON.parse(component_info[1].component_name)[lang] }}
-      ComponentOrderList(v-if="total" :product="formattedList" :info="component_info.slice(4,9)")
+      ComponentOrderList(
+        v-if="total"
+        :product="formattedList"
+        :info="component_info.slice(4,9)"
+      )
       p.purchase-modal__nothing(v-else) {{ JSON.parse(component_info[9].component_name)[lang] }}
     div.purchase-modal__psp
       h4 {{ JSON.parse(component_info[2].component_name)[lang] }}
@@ -64,31 +68,37 @@ const {
 
 const { getProduct } = useProductsState();
 
+const { setPopupState } = usePopupsState();
+const { whichPsp } = usePspsState();
+
 const formattedList = computed(() =>
   getCounterColorList.value.map((entry, idx) => {
     const { color, count } = entry
     const product = getProduct(color);
 
-    if (!product) return { img: "", qty: "", name: "", description: "", unit: "", price: "" };
+    if (!product) return {
+      img: "",
+      qty: "",
+      name: "",
+      description: "",
+      unit: "",
+      price: "",
+    };
 
     return {
       img: `${color}.webp`,
       qty: `x${count}`,
       name: JSON.parse(product.name)[lang.value],
       description: JSON.parse(product.description)[lang.value],
-      unit: (product.price/100).toFixed(2),
-      price: (product.price*count/100).toFixed(2)
+      unit: (product.price / 100).toFixed(2),
+      price: (product.price * count / 100).toFixed(2)
     }
   })
 );
 
 const deactivateButton = computed(() => !isQuantityEven || total.value === 0);
 
-const { whichPsp } = usePspsState();
-
 const isLoading = ref(false)
-
-const BUTTON_DISABLED_TIMEOUT = 2500;
 
 const goPay = async () => {
   try {
@@ -106,17 +116,14 @@ const goPay = async () => {
       window.location.href = url
     }
   } catch (error) {
-    console.error('Stripe payment error:', error)
-    alert('Payment failed. Please try again.')
+    setPopupState("alertError", true, JSON.parse(status.component_invalid)[lang.value]);
   } finally {
-
     setTimeout(() => {
       isLoading.value = false
     }, BUTTON_DISABLED_TIMEOUT);
   }
 };
 
-const { setPopupState } = usePopupsState();
 
 watch(isQuantityEven, (newVal) => {
   if (!newVal) setPopupState("alertInfo", true, JSON.parse(status.component_failed)[lang.value]);
@@ -145,20 +152,20 @@ watch(isQuantityEven, (newVal) => {
   &__faq-component
     margin: $gap_space
 
-  &__button
-    @include flexbox-wrap
-    margin-top: $phi2
-
   &__list
     margin-block: $phi2
 
   &__nothing
     color: $alert
 
-  &__info-pay
-    margin-block: $phi-2 0
-
   &__psp-component
     @include flexbox-wrap
     margin-block: $phi-1
+
+  &__button
+    @include flexbox-wrap
+    margin-top: $phi2
+
+  &__info-pay
+    margin-block: $phi-2 0
 </style>
