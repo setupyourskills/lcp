@@ -5,7 +5,10 @@ section.video
     :title="JSON.parse(component_article_header.component_name)[lang]"
     :content="JSON.parse(component_article_header.component_content)[lang]"
   )
-  ComponentVidstack(title="Démonstration" :videoSrc="videoSrc")
+  ComponentVidstack(
+    title="Démonstration"
+    :videoSrc="videoSrc"
+  )
 </template>
 
 <script setup lang="ts">
