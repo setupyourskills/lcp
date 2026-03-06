@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   imports: {
-    dirs: ["../shared/constants/**/*"],
+    dirs: ["#shared/constants/**/*"],
   },
   app: {
     head: {
@@ -59,9 +59,7 @@ export default defineNuxtConfig({
       },
     },
     server: {
-      allowedHosts: [
-        ""
-      ],
+      allowedHosts: [""],
     },
   },
   runtimeConfig: {
