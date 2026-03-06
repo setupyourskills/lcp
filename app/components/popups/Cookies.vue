@@ -27,9 +27,7 @@ const { data: popupBlocks } = await useFetch<ISectionFullRow[]>("/api/view/cooki
 
 const { component_article_header, component_button } = useComponents(popupBlocks);
 
-const OPEN_MODAL_TIMEOUT = 400;
-
-const { COOKIES_ACCEPTED_KEY, setCookie } = useCookies();
+const { setCookie } = useCookies();
 const { setPopupState } = usePopupsState();
 const { setModalState } = useModalsState();
 
