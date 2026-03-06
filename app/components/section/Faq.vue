@@ -1,6 +1,6 @@
 <template lang="pug">
 section.faq
-  ComponentArticleHeader.faq__title-component(
+  ComponentArticleHeader(
     :mark="Boolean(component_article_header.component_boolean)"
     :title="JSON.parse(component_article_header.component_name)[lang]"
     :content="JSON.parse(component_article_header.component_content)[lang]"
