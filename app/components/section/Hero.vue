@@ -3,7 +3,10 @@ section.hero
   div.hero__group.margin-space
     h1.hero__title(v-html="JSON.parse(component_article_header.component_name)[lang]") 
     p.hero__subtitle(v-html="JSON.parse(component_article_header.component_content)[lang]")
-    ComponentButton.hero__button-component(:title="JSON.parse(component_button.component_name)[lang]" @click="setModalState('purchase', true)")
+    ComponentButton.hero__button-component(
+      :title="JSON.parse(component_button.component_name)[lang]"
+      @click="setModalState('purchase', true)"
+    )
   NuxtImg.hero__image(:src="component_image.component_name")
 </template>
 
@@ -48,6 +51,9 @@ const {
     @media screen and (min-width: 850px)
       width: 65%
 
+  &__button-component:hover
+    box-shadow: 4px 4px 4px 0px $deactivate-button-text
+
   &__image
     display: block
     width: 100%
@@ -57,7 +63,4 @@ const {
 
     @media screen and (min-width: 1024px)
       height: 800px
-
-  &__button-component:hover
-    box-shadow: 4px 4px 4px 0px gray
 </style>
