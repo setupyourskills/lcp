@@ -1,6 +1,6 @@
 <template lang="pug">
 div.contact-modal
-  ComponentModal.contact-modal__modal(
+  ComponentModal(
     modalName="contact"
     :title="JSON.parse(component_article_header.component_name)[lang]"
     :content="JSON.parse(component_article_header.component_content)[lang]"
@@ -41,24 +41,28 @@ const { lang } = useLanguageCookie();
 
 const { data: modalsBlocks } = await useFetch<ISectionFullRow[]>("/api/view/contact_modal_view");
 
-const { component_article_header, component_input, component_textarea, component_button, component_status } = useComponents(modalsBlocks);
+const {
+  component_article_header,
+  component_input,
+  component_textarea,
+  component_button,
+  component_status,
+} = useComponents(modalsBlocks);
 const status = component_status as ComponentStatus;
-
-const CLOSE_MODAL_TIMEOUT = 3000;
 
 const { setModalState } = useModalsState();
 const { setPopupState } = usePopupsState();
 
 const closeModal = () => setModalState("contact", false);
 
-const contactNameInput = ref();
-const contactEmailInput = ref();
-const contactContentTextarea = ref();
+const contactNameInput = ref("");
+const contactEmailInput = ref("");
+const contactContentTextarea = ref("");
 
 const isSubmitting = ref(false);
 
 const send = async () => {
-  const { isInvalidRegex, isTooLong } = useCheckEmail(contactEmailInput.value);
+  const { isInvalidRegex, isTooLong } = checkEmail(contactEmailInput.value);
 
   if (isInvalidRegex || isTooLong) setPopupState("alertError", true, JSON.parse(status.component_invalid)[lang.value]);
   else if (contactNameInput.value.length > 255) setPopupState("alertError", true, JSON.parse(status.component_invalid)[lang.value]);
@@ -83,7 +87,6 @@ const send = async () => {
       });
     } catch (error: any) {
       setPopupState("alertError", true, JSON.parse(status.component_failed)[lang.value]);
-      console.error("Error submitting form: ", error);
     } finally {
       isSubmitting.value = false;
     }
