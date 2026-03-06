@@ -1,10 +1,6 @@
-const PREFIX = "sys-lcp";
-const COUNTER_COLORS_KEY = "counter_colors";
-const MAX_AGE = 30 * 24 * 60 * 60;
-
 export const useCounterColorsCookie = () => {
-  const counterColorsCookie = useCookie<ICounterColorsCookie>(
-    `${PREFIX}_${COUNTER_COLORS_KEY}`,
+  const _counterColorsCookie = useCookie<ICounterColorsCookie>(
+    `${COLOR_PREFIX}_${COUNTER_COLORS_KEY}`,
     {
       default: () => ({
         red: 0,
@@ -17,21 +13,26 @@ export const useCounterColorsCookie = () => {
         yellow: 0,
         black: 0,
       }),
-      maxAge: MAX_AGE,
+      maxAge: COLOR_MAX_AGE,
     },
   );
 
-  const total: ComputedRef<number> = computed(() =>
-    Object.values(counterColorsCookie.value).reduce(
-      (sum: number, value) => sum + Number(value),
-      0,
-    ),
-  );
+  function getCounterColorsCookie<K extends keyof ICounterColorsCookie>(
+    color: K,
+  ) {
+    return _counterColorsCookie.value[color];
+  }
 
-  const isQuantityEven = computed(() => total.value % 2 === 0);
+  function increaseColor<K extends keyof ICounterColorsCookie>(color: K) {
+    _counterColorsCookie.value[color] += 1;
+  }
+
+  function decreaseColor<K extends keyof ICounterColorsCookie>(color: K) {
+    _counterColorsCookie.value[color] -= 1;
+  }
 
   const getCounterColorList = computed(() => {
-    return Object.entries(counterColorsCookie.value)
+    return Object.entries(_counterColorsCookie.value)
       .filter(([, count]) => Number(count) !== 0)
       .map(([color, count]) => ({
         color: color as keyof ICounterColorsCookie,
@@ -39,26 +40,21 @@ export const useCounterColorsCookie = () => {
       }));
   });
 
-  function increaseColor<K extends keyof ICounterColorsCookie>(color: K) {
-    counterColorsCookie.value[color] += 1;
-  }
+  const total: ComputedRef<number> = computed(() =>
+    Object.values(_counterColorsCookie.value).reduce(
+      (sum: number, value) => sum + Number(value),
+      0,
+    ),
+  );
 
-  function decreaseColor<K extends keyof ICounterColorsCookie>(color: K) {
-    counterColorsCookie.value[color] -= 1;
-  }
-
-  function getCounterColorsCookie<K extends keyof ICounterColorsCookie>(
-    color: K,
-  ) {
-    return counterColorsCookie.value[color];
-  }
+  const isQuantityEven = computed(() => total.value % 2 === 0);
 
   return {
-    isQuantityEven,
-    total,
+    getCounterColorsCookie,
     increaseColor,
     decreaseColor,
-    getCounterColorsCookie,
     getCounterColorList,
+    total,
+    isQuantityEven,
   };
 };
