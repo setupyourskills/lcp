@@ -13,9 +13,13 @@ section.footer
       )
     div.footer__language-selector-container
       div.footer__language-selector
-        ComponentSelect(v-model="selectedLang" :options="languageOptions" :selectedOption="lang")
+        ComponentSelect(
+          v-model="selectedLang"
+          :options="languageOptions"
+          :selectedOption="lang"
+        )
     div.footer__copyright.margin-space(
-      v-html="JSON.parse(component_info.component_name)[lang]"
+      v-html="JSON.parse(component_info[0].component_name)[lang]"
     )
 </template>
 
@@ -25,18 +29,21 @@ const { lang } = useLanguageCookie();
 const { data: sectionBlocks } = await useFetch<ISectionFullRow[]>("/api/view/footer_view");
 
 const { component_article_header, component_info_card, component_info } = useComponents(sectionBlocks);
+const info = component_info as { component_name: string }[];
 
 const { clickHandler } = useModalClickHandler();
 
 const { setLanguage, setCustom, getCustom } = useLanguageCookie();
+
 const selectedLang = ref(lang.value);
+
 const defaultLang = ref<string | null>(null);
-const languageOptions = [
-  { name: 'en', label: 'English' },
-  { name: 'fr', label: 'Français' },
-  { name: 'zht', label: '繁体中文' },
-  { name: 'zhs', label: '简体中文' }
-];
+
+const languageOptions = Object.entries(JSON.parse(info[1]!.component_name)).map(([code, label]) => ({
+  name: code,
+  label
+}));
+
 watch(selectedLang, (newVal) => {
   if (defaultLang.value !== null && newVal !== defaultLang.value) setCustom();
 
@@ -45,21 +52,16 @@ watch(selectedLang, (newVal) => {
 
 function setBrowserLanguage() {
   if (getCustom()) return;
-  
+
   if (typeof navigator !== 'undefined') {
     const browserLang = navigator.language.toLowerCase();
     const firstTwo = browserLang.slice(0, 2);
 
     let detected: LanguageCookie;
-    if (firstTwo === "fr" || firstTwo === "en") {
-      detected = firstTwo;
-    } else if (browserLang === "zh-tw" || browserLang === "zh-hk") {
-      detected = "zht";
-    } else if (firstTwo === "zh") {
-      detected = "zhs";
-    } else {
-      detected = "en";
-    }
+    if (firstTwo === "fr" || firstTwo === "en") detected = firstTwo;
+    else if (browserLang === "zh-tw" || browserLang === "zh-hk") detected = "zht";
+    else if (firstTwo === "zh") detected = "zhs";
+    else detected = "en";
 
     selectedLang.value = detected;
     defaultLang.value = detected;
