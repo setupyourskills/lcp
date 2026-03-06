@@ -1,6 +1,6 @@
 <template lang="pug">
 div.confidential-modal
-  ComponentModal.confidential-modal__modal(
+  ComponentModal(
     modalName="confidential"
     :title="JSON.parse(component_article_header.component_name)[lang]"
     :content="JSON.parse(component_article_header.component_content)[lang]"
@@ -24,7 +24,11 @@ const { lang } = useLanguageCookie();
 
 const { data: modalBlocks } = await useFetch<ISectionFullRow[]>("/api/view/confidential_modal_view");
 
-const { component_article_header, component_info, component_button } = useComponents(modalBlocks);
+const {
+  component_article_header,
+  component_info,
+  component_button,
+} = useComponents(modalBlocks);
 
 const { setModalState } = useModalsState();
 
