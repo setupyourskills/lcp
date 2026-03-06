@@ -1,33 +1,40 @@
 export const usePopupsState = () => {
-  const _popupsState = useState<IPopupsState>("statePopup", () => ({
-    cookies: false,
-    alertInfo: false,
-    alertOk: false,
-    alertError: false,
+  const _popupsState = useState<{
+    state: IPopupsState;
+    alertContent?: string;
+  }>("statePopup", () => ({
+    state: {
+      cookies: false,
+      alertInfo: false,
+      alertOk: false,
+      alertError: false,
+    },
+    alertContent: "",
   }));
-
-  const _alertContentState = useState("stateAlertContent");
 
   function setPopupState<K extends keyof IPopupsState>(
     popupElement: K,
     popupState: boolean,
-    alertContent?: string
+    alertContent?: string,
   ) {
-    if (popupState === true && alertContent) {
-      _alertContentState.value = alertContent;
+    if (alertContent && popupState) {
+      _popupsState.value.alertContent = alertContent;
     }
-    _popupsState.value[popupElement] = popupState;
+
+    _popupsState.value.state[popupElement] = popupState;
   }
 
   function getPopupState<K extends keyof IPopupsState>(
     popupElement: K,
   ): boolean {
-    return _popupsState.value[popupElement];
+    return _popupsState.value.state[popupElement];
   }
 
-  function getAlertContent() {
-    return _alertContentState.value;
-  }
+  const alertContent = computed(() => _popupsState.value.alertContent);
 
-  return { setPopupState, getPopupState, getAlertContent };
+  return {
+    setPopupState,
+    getPopupState,
+    alertContent,
+  };
 };

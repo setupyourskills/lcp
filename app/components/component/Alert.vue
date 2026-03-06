@@ -3,7 +3,7 @@ div.alert.alert--appear(v-if="isDisplay")
   div.alert__container
     div.alert__icon
       slot(name="icon")
-    p.alert__content.font-s(v-html="getAlertContent()")
+    p.alert__content.font-s(v-html="alertContent")
 </template>
 
 <script setup lang="ts">
@@ -13,7 +13,7 @@ const props = defineProps<{
 
 const isDisplay = ref(false);
 
-const { getPopupState, setPopupState, getAlertContent } = usePopupsState();
+const { getPopupState, setPopupState, alertContent } = usePopupsState();
 
 const isAlertOpen = computed(() => getPopupState(props.alertName));
 
