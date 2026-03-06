@@ -37,24 +37,22 @@ const { setPopupState } = usePopupsState();
 const newsletterEmailInput = ref();
 
 const join = async () => {
-  const { isInvalidRegex, isTooLong } = useCheckEmail(newsletterEmailInput.value);
+  const { isInvalidRegex, isTooLong } = checkEmail(newsletterEmailInput.value);
 
   if (isInvalidRegex || isTooLong) setPopupState("alertError", true, JSON.parse(status.component_invalid)[lang.value]);
   else {
     try {
-      const result = await $fetch<{id: number; email: string;}>("/api/addEmail", {
+      await $fetch<{ id: number; email: string; }>("/api/addEmail", {
         method: "POST",
-        body: {
-          email: newsletterEmailInput.value
-        }
+        body: { email: newsletterEmailInput.value }
       });
       setPopupState("alertInfo", true, JSON.parse(status.component_ok)[lang.value]);
     } catch (e: any) {
       setPopupState("alertError", true, JSON.parse(status.component_failed)[lang.value]);
     }
-  }
 
-  newsletterEmailInput.value = "";
+    newsletterEmailInput.value = "";
+  }
 };
 </script>
 
@@ -62,13 +60,8 @@ const join = async () => {
 .newsletter
   margin-top: $phi3
 
-  &__title-component
-    margin-top: $phi2
-
   &__frame
     @include frame
-    max-width: $frame-max-width
-    margin-inline: auto
 
     @media screen and (min-width: 1024px)
       margin-inline: $phi3
@@ -76,19 +69,17 @@ const join = async () => {
   &__group
     padding-block: 0 $phi2
 
+  &__title-component
+    margin-top: $phi2
+
   &__form
     @include flexbox-wrap
-    flex-direction: row
-    text-align: center
-    margin-inline: auto
 
   &__input
     flex: 0 1 450px
 
   &__info
     @include flexbox-wrap
-    align-items: center
-    row-gap: 0
-    column-gap: $gap-space
+    gap: 0 $gap-space
     margin-block: $phi-1 0
 </style>
