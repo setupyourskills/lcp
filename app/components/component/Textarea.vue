@@ -1,5 +1,8 @@
 <template lang="pug">
-textarea.textarea-component.font-l(v-model="textareaContent" :placeholder="props.placeholder")
+textarea.textarea-component.font-l(
+  v-model="textareaContent"
+  :placeholder="props.placeholder"
+)
 </template>
 
 <script setup lang="ts">
