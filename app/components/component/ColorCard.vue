@@ -8,7 +8,7 @@ div.color-card-component
     p.color-card-component__color-name.font-m {{ props.colorLabel }}
 
   div.color-card-component__counter-group.font-m(v-if="props.componentType === 'modal'")
-    div.color-card-component__moins(
+    div.color-card-component__minus(
       @click="decColor"
       :class="counterColor ? 'font-default-color activate-button' : 'deactivate-small-button'"
       ) -
@@ -25,7 +25,12 @@ const props = defineProps<{
   componentType?: "modal";
 }>();
 
-const { isQuantityEven, getCounterColorsCookie, increaseColor, decreaseColor } = useCounterColorsCookie();
+const {
+  isQuantityEven,
+  getCounterColorsCookie,
+  increaseColor,
+  decreaseColor,
+} = useCounterColorsCookie();
 
 const counterColor = computed(() => getCounterColorsCookie(props.colorName));
 
@@ -74,7 +79,7 @@ const decColor = () => {
     flex: 2
     border-inline: 2px solid $accent2
 
-  &__moins,
+  &__minus,
   &__plus
     flex: 1
 
