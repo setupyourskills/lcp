@@ -1,12 +1,12 @@
 <template lang="pug">
 section.testimonials
-  ComponentArticleHeader.testimonials__title-component(
+  ComponentArticleHeader(
     :mark="Boolean(component_article_header.component_boolean)"
     :title="JSON.parse(component_article_header.component_name)[lang]"
     :content="JSON.parse(component_article_header.component_content)[lang]"
   )
   div.testimonials__group
-    ComponentTestimonialCard.testimonials__testimonial-card(
+    ComponentTestimonialCard(
       v-for="testimonial in component_testimonial_card"
       :key="testimonial"
       :content="JSON.parse(testimonial.component_content)[lang]"
