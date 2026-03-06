@@ -1,5 +1,5 @@
 export const useModalsState = () => {
-  const modalsState = useState<IModalsState>("stateModal", () => ({
+  const _modalsState = useState<IModalsState>("stateModal", () => ({
     purchase: false,
     contact: false,
     mentions: false,
@@ -10,24 +10,30 @@ export const useModalsState = () => {
     use: false,
   }));
 
-  const isAnyModalOpen = () => Object.values(modalsState.value).some(Boolean);
+  function getModalState<K extends keyof IModalsState>(
+    modalSection: K,
+  ): boolean {
+    return _modalsState.value[modalSection];
+  }
 
   function setModalState<K extends keyof IModalsState>(
     modalSection: K,
     modalState: boolean,
   ) {
-    for (const key of Object.keys(modalsState.value)) {
-      modalsState.value[key as keyof IModalsState] = false;
-    }
+    Object.keys(_modalsState.value).forEach(
+      (k) => (_modalsState.value[k as keyof IModalsState] = false),
+    );
 
-    if (modalState) modalsState.value[modalSection] = modalState;
+    _modalsState.value[modalSection] = modalState;
   }
 
-  function getModalState<K extends keyof IModalsState>(
-    modalSection: K,
-  ): boolean {
-    return modalsState.value[modalSection];
-  }
+  const isAnyModalOpen = computed(() =>
+    Object.values(_modalsState.value).some(Boolean),
+  );
 
-  return { isAnyModalOpen, setModalState, getModalState };
+  return {
+    isAnyModalOpen,
+    setModalState,
+    getModalState,
+  };
 };

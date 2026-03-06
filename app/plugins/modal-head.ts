@@ -3,7 +3,7 @@ export default defineNuxtPlugin(() => {
 
   useHead({
     htmlAttrs: {
-      class: computed(() => (isAnyModalOpen() ? "modal-view" : "")),
+      class: computed(() => (isAnyModalOpen.value ? "modal-view" : "")),
     },
   });
 });
