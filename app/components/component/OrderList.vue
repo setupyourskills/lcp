@@ -20,7 +20,12 @@ div.order-list
 <script setup lang="ts">
 const props = defineProps<{
   product: IProduct[];
-  info: {fr: string; en: string; zht: string; zhs: string}[];
+  info: {
+    fr: string;
+    en: string;
+    zht: string;
+    zhs: string;
+  }[];
 }>();
 
 const { lang } = useLanguageCookie();
