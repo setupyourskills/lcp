@@ -1,5 +1,8 @@
 <template lang="pug">
-input.input-component.font-l(v-model="inputContent" :placeholder="props.placeholder")
+input.input-component.font-l(
+  v-model="inputContent"
+  :placeholder="props.placeholder"
+)
 </template>
 
 <script setup lang="ts">
