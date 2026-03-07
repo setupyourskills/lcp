@@ -1,9 +1,10 @@
 import nodemailer from "nodemailer";
 import type { Transporter } from "nodemailer";
 
-const TOEMAIL: string = process.env.NUXT_NODEMAILER_EMAIL_TO!;
-const USERNAME: string = process.env.NUXT_NODEMAILER_AUTH_USER!;
-const PASSWORD: string = process.env.NUXT_NODEMAILER_AUTH_PASS!;
+const config = useRuntimeConfig();
+const TO_EMAIL = config.mailerEmailTo;
+const USERNAME = config.mailerAuthUser;
+const PASSWORD = config.mailerAuthPass;
 
 let transporter: Transporter | null = null;
 const initTransporter = (): Transporter => {
@@ -16,6 +17,7 @@ const initTransporter = (): Transporter => {
       },
     });
   }
+
   return transporter;
 };
 
@@ -26,20 +28,21 @@ export default defineEventHandler(async (event) => {
     return createError({
       statusCode: 400,
       statusMessage: "Invalid payload",
-      data: { sent: false, message: "Missing required fields." },
+      data: { sent: false, message: "Missing required fields!" },
     });
   }
 
   const mailOptions = {
     replyTo: data.email,
-    to: TOEMAIL,
-    subject: "A user has just sent a message via your contact form.",
+    to: TO_EMAIL,
+    subject: "A user has just sent a message via your contact form!",
     html: `<p>${data.message}</p>`,
     text: data.message,
   };
 
   try {
     await initTransporter().sendMail(mailOptions);
+
     return {
       sent: true,
       message: "Message sent",
@@ -47,10 +50,10 @@ export default defineEventHandler(async (event) => {
   } catch (e) {
     return createError({
       statusCode: 500,
-      statusMessage: "Email could not be sent",
+      statusMessage: "Email could not be sent!",
       data: {
         sent: false,
-        message: "An internal error occurred while sending your email.",
+        message: "An internal error occurred while sending your email!",
       },
     });
   }

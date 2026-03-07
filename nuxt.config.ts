@@ -81,6 +81,10 @@ export default defineNuxtConfig({
     stripeProductRefGold: process.env.STRIPE_PRODUCT_GOLD,
     stripeProductRefWhite: process.env.STRIPE_PRODUCT_WHITE,
 
+    mailerEmailTo: process.env.NUXT_NODEMAILER_EMAIL_TO,
+    mailerAuthUser: process.env.NUXT_NODEMAILER_AUTH_USER,
+    mailerAuthPass: process.env.NUXT_NODEMAILER_AUTH_PASS,
+
     public: {
       stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
     },
