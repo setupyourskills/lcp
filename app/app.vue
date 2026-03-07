@@ -8,7 +8,7 @@ NuxtLayout
 <style lang="sass">
 html
   font-size: 14px
-  background-color: grey
+  background-color: $external-color
 
 .modal-view
   overflow: hidden
