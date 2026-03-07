@@ -1,3 +1,6 @@
 import Stripe from "stripe"
 
-export const stripe = new Stripe(useRuntimeConfig().stripeSecretKey, { typescript: true })
+const config = useRuntimeConfig();
+const STRIPE_SECRET_KEY = config.stripeSecretKey
+
+export const stripe = new Stripe(STRIPE_SECRET_KEY, { typescript: true })

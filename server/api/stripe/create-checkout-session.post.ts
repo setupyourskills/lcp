@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
     if (!priceId) {
       throw createError({
         statusCode: 400,
-        message: `Unknown product color: ${p.color}`,
+        message: `Unknown product color: ${p.color}!`,
       });
     }
 
@@ -55,7 +55,7 @@ export default defineEventHandler(async (event) => {
     line_items: lineItems,
 
     success_url: `${getRequestURL(event).origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${getRequestURL(event).origin}/cancel`,
+    cancel_url: `${getRequestURL(event).origin}`,
   });
 
   return {
