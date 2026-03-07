@@ -5,24 +5,26 @@ export default defineEventHandler(async (event) => {
   const componentName = event.context.params?.name;
 
   if (!componentName) {
-    throw createError({ statusCode: 400, message: "Component name missing" });
+    throw createError({ statusCode: 400, message: "Component name missing!" });
   }
 
-  const sql = `
+  const VIEW_QUERY = `
     SELECT *
     FROM  ${mysql.escapeId(componentName)}
   `;
 
   try {
-    const [rows] = await db.execute<mysql.RowDataPacket[]>(sql);
+    const [rows] = await db.execute<mysql.RowDataPacket[]>(VIEW_QUERY);
+
     if (!Array.isArray(rows) || rows.length === 0) {
-      throw createError({ statusCode: 404, message: "Section not found" });
+      throw createError({ statusCode: 404, message: "Section not found!" });
     }
+
     return rows;
   } catch (err: any) {
     throw createError({
       statusCode: 500,
-      message: "Database querry failed",
+      message: "Database querry failed!",
       data: { err },
     });
   }
