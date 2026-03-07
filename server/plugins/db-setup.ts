@@ -1,6 +1,11 @@
 import mysql from "mysql2/promise";
 import { db } from "../utils/db";
 import {
+  isTableEmpty,
+  isTableNotExist,
+  isViewNotExist,
+} from "../utils/mysql-tools";
+import {
   TABLE_NAMES,
   CREATE_PREFIX,
   CREATE_SUFFIX,
@@ -18,6 +23,7 @@ export default defineNitroPlugin(async () => {
         await db.execute<mysql.RowDataPacket[]>(
           `${CREATE_PREFIX} ${tableName.table} ${tableName.template} ${CREATE_SUFFIX}`,
         );
+
         console.log(`Table ${tableName.table} created!`);
       }
     }
@@ -25,6 +31,7 @@ export default defineNitroPlugin(async () => {
     for (const viewName of VIEW_NAMES) {
       if (await isViewNotExist(viewName.view)) {
         await db.execute<mysql.RowDataPacket[]>(viewName.template);
+
         console.log(`View ${viewName.view} created!`);
       }
     }
@@ -34,6 +41,7 @@ export default defineNitroPlugin(async () => {
         await db.execute<mysql.RowDataPacket[]>(
           `${INSERT_PREFIX} ${tableName.table} ${tableName.content}`,
         );
+
         console.log(`Content in Table ${tableName.table} inserted!`);
       }
     }
@@ -45,39 +53,3 @@ export default defineNitroPlugin(async () => {
     });
   }
 });
-
-async function isViewNotExist(viewName: string) {
-  const CHECK_QUERY = `
-    SELECT COUNT(*) AS cnt
-    FROM information_schema.views
-    WHERE TABLE_SCHEMA = DATABASE()
-      AND TABLE_NAME   = ?
-  `;
-  const [rows] = await db.execute<mysql.RowDataPacket[]>(CHECK_QUERY, [
-    viewName,
-  ]);
-
-  return Number(rows[0].cnt) === 0;
-}
-
-async function isTableNotExist(viewName: string) {
-  const CHECK_QUERY = `
-    SELECT COUNT(*) AS cnt
-    FROM information_schema.tables
-    WHERE TABLE_SCHEMA = DATABASE()
-      AND TABLE_NAME   = ?
-  `;
-  const [rows] = await db.execute<mysql.RowDataPacket[]>(CHECK_QUERY, [
-    viewName,
-  ]);
-
-  return Number(rows[0].cnt) === 0;
-}
-
-async function isTableEmpty(tableName: string) {
-  const CHECK_QUERY = `SELECT 1 FROM \`${tableName}\` LIMIT 1`;
-
-  const [rows] = await db.execute<mysql.RowDataPacket[]>(CHECK_QUERY);
-
-  return rows.length === 0;
-}
