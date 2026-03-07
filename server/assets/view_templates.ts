@@ -7,7 +7,7 @@ CREATE OR REPLACE VIEW hero_view AS
 SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
-       ah.mark         AS component_boolean
+       NULL
 FROM   sections s
 JOIN   component_article_header ah ON s.component_id = ah.id
 WHERE  s.name = "hero"
@@ -60,7 +60,7 @@ CREATE OR REPLACE VIEW video_view AS
 SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
-       ah.mark         AS component_boolean
+       NULL
 FROM   sections s
 JOIN   component_article_header ah ON s.component_id = ah.id
 WHERE  s.name = "video"
@@ -76,7 +76,7 @@ CREATE OR REPLACE VIEW colors_view AS
 SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
-       ah.mark         AS component_boolean
+       NULL
 FROM   sections s
 JOIN   component_article_header ah ON s.component_id = ah.id
 WHERE  s.name = "colors"
@@ -104,7 +104,7 @@ SELECT "component_article_header" AS component_type,
        NULL            AS component_number,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
-       ah.mark         AS component_boolean
+       NULL
 FROM   sections s
 JOIN   component_article_header ah ON s.component_id = ah.id
 WHERE  s.name = "purchase"
@@ -168,7 +168,7 @@ CREATE OR REPLACE VIEW faq_view AS
 SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
-       ah.mark         AS component_boolean
+       NULL
 FROM   sections s
 JOIN   component_article_header ah ON s.component_id = ah.id
 WHERE  s.name = "faq"
@@ -198,7 +198,7 @@ SELECT
     ah.subtitle                    AS component_content,
     NULL                           AS component_avatar,
     NULL                           AS component_country,
-    ah.mark                        AS component_boolean
+    NULL
 FROM
     sections s
 JOIN
@@ -235,7 +235,6 @@ CREATE OR REPLACE VIEW newsletter_view AS
 SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
-       ah.mark         AS component_boolean,
        NULL            AS component_ok,
        NULL            AS component_failed,
        NULL            AS component_invalid
@@ -248,7 +247,6 @@ UNION ALL
 
 SELECT "component_input"      AS component_type,
        i.placeholder      AS component_name,
-       NULL,
        NULL,
        NULL,
        NULL,
@@ -265,7 +263,6 @@ SELECT "component_button"      AS component_type,
        NULL,
        NULL,
        NULL,
-       NULL,
        NULL
 FROM   sections s
 JOIN   component_button b ON s.component_id = b.id
@@ -279,7 +276,6 @@ SELECT "component_info"      AS component_type,
        NULL,
        NULL,
        NULL,
-       NULL,
        NULL
 FROM   sections s
 JOIN   component_info i ON s.component_id = i.id
@@ -289,7 +285,6 @@ WHERE  s.name = "newsletter"
 UNION ALL
 
 SELECT "component_status"      AS component_type,
-       NULL,
        NULL,
        NULL,
        st.ok             AS component_ok,
@@ -337,7 +332,7 @@ CREATE OR REPLACE VIEW cookies_popup_view AS
 SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
-       ah.mark         AS component_boolean
+       NULL
 FROM   popups p
 JOIN   component_article_header ah ON p.component_id = ah.id
 WHERE  p.name = "cookies"
@@ -364,7 +359,6 @@ CREATE OR REPLACE VIEW contact_modal_view AS
 SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
-       ah.mark         AS component_boolean,
        NULL            AS component_ok,
        NULL            AS component_failed,
        NULL            AS component_invalid
@@ -377,7 +371,6 @@ UNION ALL
 
 SELECT "component_input"      AS component_type,
        i.placeholder      AS component_name,
-       NULL,
        NULL,
        NULL,
        NULL,
@@ -394,7 +387,6 @@ SELECT "component_textarea"      AS component_type,
        NULL,
        NULL,
        NULL,
-       NULL,
        NULL
 FROM   modals m
 JOIN   component_textarea t ON m.component_id = t.id
@@ -408,7 +400,6 @@ SELECT "component_button"      AS component_type,
        NULL,
        NULL,
        NULL,
-       NULL,
        NULL
 FROM   modals m
 JOIN   component_button b ON m.component_id = b.id
@@ -418,7 +409,6 @@ WHERE  m.name = "contact"
 UNION ALL
 
 SELECT "component_status"      AS component_type,
-       NULL,
        NULL,
        NULL,
        st.ok             AS component_ok,
@@ -439,7 +429,7 @@ CREATE OR REPLACE VIEW confidential_modal_view AS
 SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
-       ah.mark         AS component_boolean
+       NULL
 FROM   modals m
 JOIN   component_article_header ah ON m.component_id = ah.id
 WHERE  m.name = "confidential"
@@ -477,7 +467,7 @@ CREATE OR REPLACE VIEW use_modal_view AS
 SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
-       ah.mark         AS component_boolean
+       NULL
 FROM   modals m
 JOIN   component_article_header ah ON m.component_id = ah.id
 WHERE  m.name = "use"
@@ -515,7 +505,7 @@ CREATE OR REPLACE VIEW mentions_modal_view AS
 SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
-       ah.mark         AS component_boolean
+       NULL
 FROM   modals m
 JOIN   component_article_header ah ON m.component_id = ah.id
 WHERE  m.name = "mentions"
@@ -553,7 +543,7 @@ CREATE OR REPLACE VIEW terms_modal_view AS
 SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
-       ah.mark         AS component_boolean
+       NULL
 FROM   modals m
 JOIN   component_article_header ah ON m.component_id = ah.id
 WHERE  m.name = "terms"
@@ -591,7 +581,7 @@ CREATE OR REPLACE VIEW cookies_modal_view AS
 SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
-       ah.mark         AS component_boolean
+       NULL
 FROM   modals m
 JOIN   component_article_header ah ON m.component_id = ah.id
 WHERE  m.name = "cookies"
@@ -640,7 +630,6 @@ CREATE OR REPLACE VIEW purchase_modal_view AS
 SELECT "component_article_header" AS component_type,
        ah.title        AS component_name,
        ah.subtitle     AS component_content,
-       ah.mark         AS component_boolean,
        NULL            AS component_ok,
        NULL            AS component_failed,
        NULL            AS component_invalid
@@ -656,7 +645,6 @@ SELECT "component_color_card"      AS component_type,
        cc.label        AS component_content,
        NULL,
        NULL,
-       NULL,
        NULL
 FROM   modals m
 JOIN   component_color_card cc ON m.component_id = cc.id
@@ -667,7 +655,6 @@ UNION ALL
 
 SELECT "component_info"      AS component_type,
        i.content         AS component_name,
-       NULL,
        NULL,
        NULL,
        NULL,
@@ -684,7 +671,6 @@ SELECT "component_psp"   AS component_type,
        NULL,
        NULL,
        NULL,
-       NULL,
        NULL
 FROM   modals m
 JOIN   component_psp p ON m.component_id = p.id
@@ -698,7 +684,6 @@ SELECT "component_button"      AS component_type,
        b.redirect      AS component_content,
        NULL,
        NULL,
-       NULL,
        NULL
 FROM   modals m
 JOIN   component_button b ON m.component_id = b.id
@@ -708,7 +693,6 @@ WHERE  m.name = "purchase"
 UNION ALL
 
 SELECT "component_status"      AS component_type,
-       NULL,
        NULL,
        NULL,
        st.ok             AS component_ok,

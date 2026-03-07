@@ -1,9 +1,9 @@
 <template lang="pug">
 section.colors
   ComponentArticleHeader(
-    :mark="Boolean(component_article_header.component_boolean)"
     :title="JSON.parse(component_article_header.component_name)[lang]"
     :content="JSON.parse(component_article_header.component_content)[lang]"
+    :mark="true"
   )
   div.colors__group
     ComponentColorCard.colors__color-card(
