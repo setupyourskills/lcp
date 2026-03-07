@@ -64,7 +64,11 @@ export const CONTENT_BDD = [
 (45, 'footer', 'component_info_card', 7),
 (50, 'footer', 'component_info_card', 8),
 (51, 'footer', 'component_info', 4),
-(52, 'footer', 'component_info', 20);
+(52, 'footer', 'component_info', 20),
+(53, 'success', 'component_article_header', 16),
+(54, 'success', 'component_info', 21),
+(55, 'success', 'component_button', 8),
+(56, 'success', 'component_button', 9);
 `,
   },
 
@@ -152,7 +156,8 @@ export const CONTENT_BDD = [
 (12, '{\"fr\":\"Mentions Légales\",\"en\":\"Legal Notice\",\"zht\":\"法律聲明\",\"zhs\":\"法律声明\"}', '{\"fr\":\"Identité du site, responsabilité et cadre juridique - informations obligatoires à connaître\",\"en\":\"Site identity, liability, and legal framework – mandatory information to know\",\"zht\":\"網站身份、責任與法律框架 — 必須瞭解的資訊\",\"zhs\":\"网站身份、责任与法律框架 — 必须了解的信息\"}', NULL),
 (13, '{\"fr\":\"Conditions générales de vente\",\"en\":\"\",\"zht\":\"\",\"zhs\":\"\"}', '{\"fr\":\"Modalités d''achat, paiement et obligations contractuelles\",\"en\":\"Purchase methods, payment, and contractual obligations\",\"zht\":\"購買方式、付款與合約義務\",\"zhs\":\"购买方式、付款与合同义务\"}', NULL),
 (14, '{\"fr\":\"Gestion des cookies\",\"en\":\"Cookie management\",\"zht\":\"Cookie 管理\",\"zhs\":\"Cookie 管理\"}', '{\"fr\":\"Consentement, finalités et contrôle de votre expérience en ligne\",\"en\":\"Consent, purposes, and control of your online experience\",\"zht\":\"同意、目的與您線上體驗的控制\",\"zhs\":\"同意、目的与您线上体验的控制\"}', NULL),
-(15, '{\"fr\":\"Préparez votre commande\",\"en\":\"Prepare your order\",\"zht\":\"準備您的訂單\",\"zhs\":\"准备您的订单\"}', '{\"fr\":\"Choisissez le nombre de boîtes de couleur que vous désirez acheter.\",\"en\":\"Choose the number of colored boxes you wish to purchase.\",\"zht\":\"選擇您想購買的彩色盒子數量。\",\"zhs\":\"选择您想购买的彩色盒子数量。\"}', NULL);
+(15, '{\"fr\":\"Préparez votre commande\",\"en\":\"Prepare your order\",\"zht\":\"準備您的訂單\",\"zhs\":\"准备您的订单\"}', '{\"fr\":\"Choisissez le nombre de boîtes de couleur que vous désirez acheter.\",\"en\":\"Choose the number of colored boxes you wish to purchase.\",\"zht\":\"選擇您想購買的彩色盒子數量。\",\"zhs\":\"选择您想购买的彩色盒子数量。\"}', NULL),
+(16, '{\"fr\":\"Merci pour votre commande\",\"en\":\"\",\"zht\":\"\",\"zhs\":\"\"}', '{\"fr\":\"Merci pour votre commande\",\"en\":\"\",\"zht\":\"\",\"zhs\":\"\"}', NULL);
 `,
   },
 
@@ -166,7 +171,9 @@ export const CONTENT_BDD = [
 (4, '{\"fr\":\"Accepter\",\"en\":\"Accept\",\"zht\":\"接受\",\"zhs\":\"接受\"}', NULL),
 (5, '{\"fr\":\"Envoyer\",\"en\":\"Send\",\"zht\":\"發送\",\"zhs\":\"发送\"}', NULL),
 (6, '{\"fr\":\"Fermer\",\"en\":\"Close\",\"zht\":\"關閉\",\"zhs\":\"关闭\"}', NULL),
-(7, '{\"fr\":\"Payer\",\"en\":\"Pay\",\"zht\":\"付款\",\"zhs\":\"支付\"}', '{\"fr\":\"Redirection...\",\"en\":\"Redirecting...\",\"zht\":\"重定向…\",\"zhs\":\"重定向…\"}');
+(7, '{\"fr\":\"Payer\",\"en\":\"Pay\",\"zht\":\"付款\",\"zhs\":\"支付\"}', '{\"fr\":\"Redirection...\",\"en\":\"Redirecting...\",\"zht\":\"重定向…\",\"zhs\":\"重定向…\"}'),
+(8, '{\"fr\":\"S''inscrire\",\"en\":\"\",\"zht\":\"\",\"zhs\":\"\"}', NULL),
+(9, '{\"fr\":\"Retourner à l''accueil\",\"en\":\"\",\"zht\":\"\",\"zhs\":\"\"}', NULL);
 `,
   },
 
@@ -240,7 +247,8 @@ export const CONTENT_BDD = [
 (17, '{\"fr\":\"€ l''unité\",\"en\":\"per unit\",\"zht\":\"歐元\",\"zhs\":\"欧元\"}'),
 (18, '{\"fr\":\"Total :\",\"en\":\"Total:\",\"zht\":\"總計：\",\"zhs\":\"总计：\"}'),
 (19, '{\"fr\":\"Veuillez choisir au moins deux couleurs pour le lot Duo\",\"en\":\"Please select at least two colors for the Duo set.\",\"zht\":\"請為 Duo 套件選擇至少兩種顏色。\",\"zhs\":\"请为 Duo 套装选择至少两种颜色。\"}'),
-(20, '{\"fr\":\"Français\",\"en\":\"English\",\"zht\":\"繁体中文\",\"zhs\":\"简体中文\"}');
+(20, '{\"fr\":\"Français\",\"en\":\"English\",\"zht\":\"繁体中文\",\"zhs\":\"简体中文\"}'),
+(21, '{\"fr\":\"Vous pouvez vous inscrire à notre Discord\",\"en\":\"\",\"zht\":\"\",\"zhs\":\"\"}');
 `,
   },
 

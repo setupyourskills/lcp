@@ -720,4 +720,42 @@ WHERE  m.name = "purchase"
   AND  m.component_type = "component_status";
 `,
   },
+
+  {
+    view: "success_view",
+    template: `
+CREATE OR REPLACE VIEW success_view AS
+
+SELECT "component_article_header" AS component_type,
+       ah.title        AS component_name,
+       ah.subtitle     AS component_content,
+       ah.mark         AS component_boolean
+FROM   sections s
+JOIN   component_article_header ah ON s.component_id = ah.id
+WHERE  s.name = "success"
+  AND  s.component_type = "component_article_header"
+
+UNION ALL
+
+SELECT "component_info"      AS component_type,
+       i.content         AS component_name,
+       NULL,
+       NULL
+FROM   sections s
+JOIN   component_info i ON s.component_id = i.id
+WHERE  s.name = "success"
+  AND  s.component_type = "component_info"
+
+UNION ALL
+
+SELECT "component_button"      AS component_type,
+       b.title         AS component_name,
+       NULL,
+       NULL
+FROM   sections s
+JOIN   component_button b ON s.component_id = b.id
+WHERE  s.name = "success"
+  AND  s.component_type = "component_button";
+`,
+  },
 ];
