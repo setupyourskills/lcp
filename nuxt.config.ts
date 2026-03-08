@@ -19,7 +19,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  modules: ["@nuxt/image", "@nuxt/fonts"],
+  modules: ["@nuxt/image", "@nuxt/fonts", "nuxt-security"],
   typescript: {
     typeCheck: true,
     strict: true,
@@ -89,4 +89,6 @@ export default defineNuxtConfig({
       stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
     },
   },
+  security: {},
 });
+
