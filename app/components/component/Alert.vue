@@ -3,7 +3,7 @@ div.alert.alert--appear(v-if="isDisplay")
   div.alert__container
     div.alert__icon
       slot(name="icon")
-    p.alert__content.font-s(v-html="alertContent")
+    p.alert__content.font-s(v-clean-html="alertContent")
 </template>
 
 <script setup lang="ts">

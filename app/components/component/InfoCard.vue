@@ -2,7 +2,7 @@
 div.info-card-component.info-card-component--number(:class="{ 'info-card-component--transition': props.transition }")
   div.info-card-component__number.font-l(v-if="props.number") {{ props.number }}
   h3.info-card-component__title.font-l {{ props.title }}
-  p.info-card-component__content.font-s(v-html="props.content")
+  p.info-card-component__content.font-s(v-clean-html="props.content")
 </template>
 
 <script setup lang="ts">

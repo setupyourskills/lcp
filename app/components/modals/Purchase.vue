@@ -17,7 +17,7 @@ div.purchase-modal
         componentType="modal"
       )
     div.purchase-modal__info.font-xs
-      p(v-html="JSON.parse(component_info[0].component_name)[lang]")
+      p(v-clean-html="JSON.parse(component_info[0].component_name)[lang]")
     div.purchase-modal__list
       h4 {{ JSON.parse(component_info[1].component_name)[lang] }}
       ComponentOrderList(
@@ -42,7 +42,7 @@ div.purchase-modal
         :redirect="isLoading"
         :redirect-label="JSON.parse(component_button.component_content)[lang]"
       )
-    p.purchase-modal__info-pay.font-xs(v-html="JSON.parse(component_info[3].component_name)[lang]")
+    p.purchase-modal__info-pay.font-xs(v-clean-html="JSON.parse(component_info[3].component_name)[lang]")
 </template>
 
 <script setup lang="ts">

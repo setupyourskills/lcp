@@ -19,7 +19,7 @@ section.footer
           :selectedOption="lang"
         )
     div.footer__copyright.margin-space(
-      v-html="JSON.parse(component_info[0].component_name)[lang]"
+      v-clean-html="JSON.parse(component_info[0].component_name)[lang]"
     )
 </template>
 

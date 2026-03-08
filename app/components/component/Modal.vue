@@ -12,7 +12,7 @@ Transition
       div.modal__icon
         slot(name="icon")
       h2.modal__title.font-xl {{ props.title }}
-      p.modal__content.font-m(v-html="props.content")
+      p.modal__content.font-m(v-clean-html="props.content")
       slot
 </template>
 

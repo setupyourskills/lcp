@@ -20,8 +20,8 @@ section.newsletter
           type="submit"
         )
   div.newsletter__info
-    p.font-xs(v-html="JSON.parse(component_info[0].component_name)[lang]") 
-    p.font-xs(v-html="JSON.parse(component_info[1].component_name)[lang]") 
+    p.font-xs(v-clean-html="JSON.parse(component_info[0].component_name)[lang]") 
+    p.font-xs(v-clean-html="JSON.parse(component_info[1].component_name)[lang]") 
 </template>
 
 <script setup lang="ts">

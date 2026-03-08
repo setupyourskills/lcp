@@ -4,7 +4,7 @@ div.faq-component
     summary
       span {{ props.question }}
   div.content
-    p(v-html="props.answer")
+    p(v-clean-html="props.answer")
 </template>
 
 <script setup lang="ts">

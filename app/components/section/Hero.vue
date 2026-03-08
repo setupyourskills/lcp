@@ -1,8 +1,8 @@
 <template lang="pug">
 section.hero
   div.hero__group.margin-space
-    h1.hero__title(v-html="JSON.parse(component_article_header.component_name)[lang]") 
-    p.hero__subtitle(v-html="JSON.parse(component_article_header.component_content)[lang]")
+    h1.hero__title(v-clean-html="JSON.parse(component_article_header.component_name)[lang]") 
+    p.hero__subtitle(v-clean-html="JSON.parse(component_article_header.component_content)[lang]")
     ComponentButton.hero__button-component(
       :title="JSON.parse(component_button.component_name)[lang]"
       @click="setModalState('purchase', true)"

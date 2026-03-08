@@ -10,7 +10,7 @@ Transition
         div.popup__icon
           slot(name="icon")
         h4.popup__title {{ props.title }}
-      p.popup__content(v-html="props.content")
+      p.popup__content(v-clean-html="props.content")
       slot
 </template>
 
