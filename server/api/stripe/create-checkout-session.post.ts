@@ -54,8 +54,8 @@ export default defineEventHandler(async (event) => {
     mode: "payment",
     line_items: lineItems,
 
-    success_url: `${getRequestURL(event).origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${getRequestURL(event).origin}`,
+    success_url: `${getRequestURL(event).origin}?status=success`,
+    cancel_url: `${getRequestURL(event).origin}?status=cancel`,
   });
 
   return {

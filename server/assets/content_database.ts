@@ -68,7 +68,8 @@ export const CONTENT_BDD = [
 (53, 'success', 'component_article_header', 16),
 (54, 'success', 'component_info', 21),
 (55, 'success', 'component_button', 8),
-(56, 'success', 'component_button', 9);
+(56, 'success', 'component_info', 22),
+(57, 'success', 'component_button', 9);
 `,
   },
 
@@ -172,7 +173,7 @@ export const CONTENT_BDD = [
 (5, '{\"fr\":\"Envoyer\",\"en\":\"Send\",\"zht\":\"發送\",\"zhs\":\"发送\"}', NULL),
 (6, '{\"fr\":\"Fermer\",\"en\":\"Close\",\"zht\":\"關閉\",\"zhs\":\"关闭\"}', NULL),
 (7, '{\"fr\":\"Payer\",\"en\":\"Pay\",\"zht\":\"付款\",\"zhs\":\"支付\"}', '{\"fr\":\"Redirection...\",\"en\":\"Redirecting...\",\"zht\":\"重定向…\",\"zhs\":\"重定向…\"}'),
-(8, '{\"fr\":\"S''inscrire\",\"en\":\"\",\"zht\":\"\",\"zhs\":\"\"}', NULL),
+(8, '{\"fr\":\"S''inscrire\",\"en\":\"\",\"zht\":\"\",\"zhs\":\"\"}', '{\"fr\":\"Redirection...\",\"en\":\"Redirecting...\",\"zht\":\"重定向…\",\"zhs\":\"重定向…\"}'),
 (9, '{\"fr\":\"Retourner à l''accueil\",\"en\":\"\",\"zht\":\"\",\"zhs\":\"\"}', NULL);
 `,
   },
@@ -248,7 +249,8 @@ export const CONTENT_BDD = [
 (18, '{\"fr\":\"Total :\",\"en\":\"Total:\",\"zht\":\"總計：\",\"zhs\":\"总计：\"}'),
 (19, '{\"fr\":\"Veuillez choisir au moins deux couleurs pour le lot Duo\",\"en\":\"Please select at least two colors for the Duo set.\",\"zht\":\"請為 Duo 套件選擇至少兩種顏色。\",\"zhs\":\"请为 Duo 套装选择至少两种颜色。\"}'),
 (20, '{\"fr\":\"Français\",\"en\":\"English\",\"zht\":\"繁体中文\",\"zhs\":\"简体中文\"}'),
-(21, '{\"fr\":\"Vous pouvez vous inscrire à notre Discord\",\"en\":\"\",\"zht\":\"\",\"zhs\":\"\"}');
+(21, '{\"fr\":\"Vous pouvez vous inscrire à notre Discord\",\"en\":\"\",\"zht\":\"\",\"zhs\":\"\"}'),
+(22, '{\"fr\":\"Autres infos",\"en\":\"\",\"zht\":\"\",\"zhs\":\"\"}');
 `,
   },
 

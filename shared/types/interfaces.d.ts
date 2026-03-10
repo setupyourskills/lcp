@@ -7,6 +7,7 @@ export interface IModalsState {
   cookies: boolean;
   credits: boolean;
   use: boolean;
+  success: boolean;
 }
 
 export interface IPopupsState {

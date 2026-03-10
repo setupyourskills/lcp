@@ -8,6 +8,7 @@ export const useModalsState = () => {
     cookies: false,
     credits: false,
     use: false,
+    success: false,
   }));
 
   function getModalState<K extends keyof IModalsState>(
