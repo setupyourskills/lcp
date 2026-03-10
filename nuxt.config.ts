@@ -3,6 +3,10 @@ import { vite as vidstack } from "vidstack/plugins";
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
+  site: {
+    url: "localhost",
+    name: "Laser Skills - Setup Your Skills",
+  },
   imports: {
     dirs: ["#shared/constants/**/*"],
   },
@@ -19,7 +23,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  modules: ["@nuxt/image", "@nuxt/fonts", "nuxt-security"],
+  modules: ["@nuxt/image", "@nuxt/fonts", "nuxt-security", "@nuxtjs/seo"],
   typescript: {
     typeCheck: true,
     strict: true,
@@ -91,4 +95,3 @@ export default defineNuxtConfig({
   },
   security: {},
 });
-
