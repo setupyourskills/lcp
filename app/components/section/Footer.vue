@@ -16,7 +16,6 @@ section.footer
         ComponentSelect(
           v-model="selectedLang"
           :options="languageOptions"
-          :selectedOption="lang"
         )
     div.footer__copyright.margin-space(
       v-clean-html="JSON.parse(component_info[0].component_name)[lang]"
